@@ -1,0 +1,14 @@
+/* No CSS */
+
+
+/*# sourceMappingURL=right-container.component.css.map */
+
+.line {
+    background-color: rgb(80, 80, 80);
+    width: 3px;
+    height: 949px;
+    margin-left: 565px;
+    margin-top: -200px;
+    position: absolute;
+    float: right;
+}
