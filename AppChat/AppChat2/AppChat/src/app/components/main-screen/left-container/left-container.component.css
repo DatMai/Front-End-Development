@@ -1,0 +1,17 @@
+.wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: fixed;
+  left: 0;
+}
+
+.wrapper .left-container__header {
+  height: 30%;
+}
+
+.wrapper .left-container__content {
+  margin-top: 30px;
+  height: 70%;
+}
+/*# sourceMappingURL=left-container.component.css.map */

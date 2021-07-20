@@ -1,0 +1,48 @@
+.header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 90vh;
+    height: 90px;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background-color: gray;
+    position: fixed;
+    top: 0;
+}
+
+.header .header__infor {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.header .header__infor .header__avatar {
+    margin-left: 10vh;
+    border-radius: 50%;
+    width: 50px;
+}
+
+.header .header__infor .header__title {
+    margin: 0;
+    margin-left: 5vh;
+}
+
+.header .header__infor .header__title .header__title--small {
+    font-weight: lighter;
+}
+
+.header .header__actions {
+    height: 90px;
+    background-color: royalblue;
+    position: fixed;
+    right: 0;
+    padding-left: 10vh;
+}
+
+
+/*# sourceMappingURL=right-header.component.css.map */
