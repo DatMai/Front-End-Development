@@ -1,0 +1,63 @@
+[
+  {
+    "fullname":"Phan Thành Đoan",
+    "username":"doan",
+    "password":"12345",
+    "email":"thanhdoan1612@gmail.com",
+    "friends":["dat","TEST","long"],
+    "chatContents":[
+      {
+        "usernameTo":"TEST",
+        "messages": []
+      },{
+        "usernameTo":"dat",
+        "messages": []
+      },{
+        "usernameTo":"DOANTEST",
+        "messages": []
+      }
+    ]
+  },
+  {
+    "fullname":"Mai Huỳnh Phước Đạt",
+    "username":"dat",
+    "password":"12345",
+    "email":"thanhdoan1612@gmail.com",
+    "friends":["doan"]
+  },
+  {
+    "fullname":"TEST",
+    "username":"TEST",
+    "password":"12345",
+    "email":"test@gmail.com",
+    "friends":["doan","dat"],
+    "chatContents":[
+      {
+        "usernameTo":"doan",
+        "messages": []
+      },{
+        "usernameTo":"dat",
+        "messages": []
+      }
+    ]
+
+  }, {
+    "fullname":"Phạm Đình Long",
+    "username":"long",
+    "password":"12345",
+    "email":"dinhlong@gmail.com",
+    "friends":["dat","TEST","doan"],
+    "chatContents":[
+      {
+        "usernameTo":"TEST",
+        "messages": []
+      },{
+        "usernameTo":"doan",
+        "messages": []
+      }
+    ]
+  }
+]
+
+
+

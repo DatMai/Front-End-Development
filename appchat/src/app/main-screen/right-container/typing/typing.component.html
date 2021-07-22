@@ -1,0 +1,23 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="typing col-12">
+            <div class="row">
+
+                <div class="col-1">
+                    <button class="plus"><i class="fas fa-plus-circle"></i></button>
+                </div>
+                <div class="chat col-9">
+                    <input type="text" class="form-control" [(ngModel)]="this.message" aria-describedby="helpId" placeholder="Type a message..." />
+                </div>
+                <div class="col-2">
+                    <button class="image"><i class="far fa-image"></i></button>
+                    <button class="smile" ><i class="far fa-smile"></i></button>
+                    <button class="send" (click)="sendTo()"  *ngIf="this.selectedUser.username!=undefined"><i class="fas fa-location-arrow"></i> </button>
+                    <button class="send" (click)="sendToGroup()"  *ngIf="this.selectedGroup.name!=undefined"><i class="fas fa-location-arrow"></i> </button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

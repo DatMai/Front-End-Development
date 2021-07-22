@@ -1,0 +1,13 @@
+.
+<div class="container-fluid">
+
+    <app-right-header [selectedUser]="selectedUser" *ngIf="this.selectedUser.username!=undefined||this.selectedGroup.name!=undefined" ></app-right-header>
+
+
+    <app-chat-content [USERLOGIN]="USERLOGIN" [selectedUser]="selectedUser" [chatContent]="chatContent" *ngIf="this.selectedUser.username!=undefined||this.selectedGroup.name!=undefined"></app-chat-content>
+
+    <!-- <div class="line"></div> -->
+
+    <app-typing [selectedUser]="selectedUser" *ngIf="this.selectedUser.username!=undefined||this.selectedGroup.name!=undefined"></app-typing>
+
+</div>

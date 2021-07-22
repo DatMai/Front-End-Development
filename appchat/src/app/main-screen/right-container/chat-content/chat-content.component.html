@@ -1,0 +1,30 @@
+<div class="container-fluid">
+    <div class="chat-content" *ngIf="this.selectedUser.username!=undefined"  >
+        <div class="row" *ngFor="let mes of this.selectedChatContent.messages" >
+              <div *ngIf="mes.mine" class="col-7"></div>
+              <div *ngIf="mes.mine" class="user col-5"  >
+                  <p>{{mes.message}}</p>
+
+              </div>
+              <div *ngIf="!mes.mine" class="friend col-5"  >
+                <p>{{mes.message}}</p>
+            </div>
+              <div *ngIf="!mes.mine" class="col-7"></div>
+        </div>
+      </div>
+
+        <div class="chat-content" *ngIf="this.selectedGroup.name!=undefined"  >
+        <div class="row" *ngFor="let mes of this.selectedGroup.messages" >
+          <div *ngIf="mes.mine" class="col-7"></div>
+          <div *ngIf="mes.mine" class="user col-5"  >
+              <p>{{mes.message}}</p>
+
+          </div>
+          <div *ngIf="!mes.mine" class="friend col-5"  >
+            <p>{{mes.userName}} : {{mes.message}}</p>
+        </div>
+          <div *ngIf="!mes.mine" class="col-7"></div>
+    </div>
+  </div>
+
+</div>
