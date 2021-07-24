@@ -1,0 +1,54 @@
+.wrapper {
+    position: relative;
+    bottom: 0;
+    height: 68%;
+    z-index: 2;
+}
+
+.wrapper .list-friends::-webkit-scrollbar {
+    display: none;
+}
+
+.wrapper .list-friends {
+    width: 100%;
+    overflow-y: scroll;
+    height: 100%;
+}
+
+.wrapper .list-friends .friend {
+    margin-top: 10px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    border-radius: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-right: 20px;
+}
+
+.wrapper .list-friends .friend .friend__avatar {
+    margin-left: 10px;
+}
+
+.wrapper .list-friends .friend .avatar--circle {
+    border-radius: 50%;
+}
+
+.wrapper .list-friends .friend .avatar--small {
+    width: 50px;
+    height: 50px;
+}
+
+.wrapper .list-friends .friend .friend__infor {
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+.wrapper .list-friends .friend .text--small {
+    width: 100%;
+    font-weight: lighter;
+    font-size: smaller;
+}
+
+
+/*# sourceMappingURL=content.component.css.map */

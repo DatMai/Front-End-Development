@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,QAAQ,CAAC;EACL,OAAO,EAAE,IAAI;EACb,QAAQ,EAAE,KAAK;EACf,IAAI,EAAE,CAAC;CAQV;;AAXD,AAII,QAJI,CAIJ,uBAAuB,CAAC;EACpB,MAAM,EAAE,GAAG;CACd;;AANL,AAOI,QAPI,CAOJ,wBAAwB,CAAC;EACrB,UAAU,EAAE,IAAI;EAChB,MAAM,EAAE,GAAG;CACd",
+    "sources": [
+        "left-container.component.scss"
+    ],
+    "names": [],
+    "file": "left-container.component.css"
+}
