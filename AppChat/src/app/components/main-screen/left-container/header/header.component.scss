@@ -78,11 +78,16 @@
 .action {
     color: #d3d3d3;
     padding-top: 2vw;
-    padding-left: 2vw;
+    // padding-left: 2vw;
     justify-content: space-between;
-    padding-bottom: 5vh;
+    padding-bottom: 2vh;
     font-size: 1.5vw;
-    outline: none;
+    outline: none !important;
+    .nav-link {
+        background-color: transparent;
+        outline: none;
+        border: none;
+    }
      :hover {
         transition: linear 0.3s;
         color: #d02e4e;

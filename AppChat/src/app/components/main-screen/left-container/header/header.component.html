@@ -6,20 +6,34 @@
         </div>
         <i class=" header__bell-icon fa fa-bell" aria-hidden="true"></i>
     </div>
-    <div class="container action row">
+    <!-- <div class="container action row">
         <i class="action__comments far fa-comments active"></i>
         <i class="action__friends fas fa-user-friends"></i>
         <i class="action__list fas fa-list"></i>
         <i class="action__setting fas fa-cog"></i>
-    </div>
-    <div class="searching-bar flex container">
-        <form action="">
-            <div class="row">
-                <input class="col-9 input--border" type="text" placeholder=" Search">
+    </div> -->
+    <ul class="nav nav-pills container action" id="pills-tab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-chat-tab" data-bs-toggle="pill" data-bs-target="#pills-chat" type="button" role="tab" aria-controls="pills-home" aria-selected="true"> <i class="action__comments far fa-comments"></i></button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active " id="pills-friends-tab " data-bs-toggle="pill " data-bs-target="#pills-friend " type="button " role="tab " aria-controls="pills-profile " aria-selected="false ">    <i class="action__friends fas fa-user-friends "></i></button>
+        </li>
+        <li class="nav-item " role="presentation ">
+            <button class="nav-link " id="pills-setting-tab " data-bs-toggle="pill " data-bs-target="#pills-setting " type="button " role="tab " aria-controls="pills-contact " aria-selected="false ">           <i class="action__setting fas fa-cog "></i></button>
+        </li>
+    </ul>
+    <div class="searching-bar flex container ">
+        <form action=" ">
+            <div class="row ">
+                <input class="col-9 input--border " type="text " placeholder=" Search ">
 
                 <button class="col-3 submit--btn " type="submit "> <i class="fas fa-search "></i></button>
 
             </div>
         </form>
     </div>
+    <!--
+     -->
+
 </div>
