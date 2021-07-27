@@ -2,13 +2,11 @@
   {
     "name":"DOANTEST",
     "userList":[],
-    "messages":[],
-    "isGroup":true
+    "messages":[]
   },
   {
     "name":"Alo",
     "userList":[],
-    "messages":[],
-    "isGroup":true
+    "messages":[]
   }
 ]

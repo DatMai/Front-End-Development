@@ -2,7 +2,7 @@
     "version": 3,
     "mappings": "",
     "sources": [
-        "right-container.component.sass"
+        "right-container.component.scss"
     ],
     "names": [],
     "file": "right-container.component.css"

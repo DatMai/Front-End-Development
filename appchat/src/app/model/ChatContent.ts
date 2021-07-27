@@ -1,10 +1,12 @@
 import { UserModel } from "./userModel";
 
 export class ChatContent{
-  usernameTo?:string;
+  name?:string;
+  userList?:any;
   messages?:{
     message: string,
     userName: string,
     mine: boolean
   }[];
+  isGroup?:boolean;
 }

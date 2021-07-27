@@ -1,46 +1,28 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-12 text-center">
-            <img class="logo" src="assets/image/logo.png">
+<div class="header--wrapper">
+    <div class="header">
+        <img class="header__avatar avatar--circle avatar--medium" src="../../../../assets/image/avatar.jpg" alt="">
+        <div class="title--wrapper">
+            <h3 class="header__title">{{this.USERLOGIN.fullname}} <br> <span class="title__status">Online</span> </h3>
         </div>
+        <button class="btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class=" header__bell-icon fa fa-plus" aria-hidden="true"></i></button>
     </div>
-    <div class="title row text-center">
-        <div class="col-2"> <img class="avatar" src="assets/image/avatar.jpg" alt=""></div>
-        <div class="nameApp col-8">
-            <h2>ANHEM-CHAT</h2>
-        </div>
-        <div class="col-2">
-        <button class="icon-send" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
-          <!-- <i class="far fa-comment-dots"></i> -->
-          <i class="fa fa-plus" ></i>
-        </button>
-        </div>
+    <div class="container action row">
+        <button class="btn" (click)="this.showListChatBox()"><i class="action__comments far fa-comments " [ngClass]="{active: this.isShowListChatBox()}"></i></button>
+        <button class="btn" (click)="this.showListFriend()"><i class="action__friends fas fa-user-friends" [ngClass]="{active: this.isShowListFriend()}"></i></button>
+        <button class="btn"><i class="action__list fas fa-list " ></i></button>
+        <button class="btn"><i class="action__setting fas fa-cog "></i></button>
     </div>
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Group Chat</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div class="mb-3">
-                <label for="room-name" class="col-form-label">RoomName:</label>
-                <input type="text" class="form-control"  [(ngModel)]="this.roomName" [ngModelOptions]="{standalone: true}">
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CLOSE</button>
-            <button type="submit" class="btn btn-primary" (click)="this.createRoomChat()">CREATE</button>
-            <button type="submit" class="btn btn-primary" (click)="this.joinRoomChat()">JOIN</button>
-          </div>
-        </div>
-      </div>
+    <div class="searching-bar flex container">
+        <form action="">
+            <div class="row">
+                <input class="col-9 input--border" type="text" placeholder=" Search">
+
+                <button class="col-3 submit--btn " type="submit "> <i class="fas fa-search "></i></button>
+
+            </div>
+        </form>
     </div>
-    <app-search></app-search>
 
 </div>
+
+

@@ -5,14 +5,13 @@ import { UserModel } from '../model/userModel';
 import { DataService } from '../service/data.service';
 import { UserService } from '../service/user.service';
 import { WebSocketService } from '../service/web-socket.service';
-
+// declare const writeFile:any
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss',
 ]
 })
-
 
 
 export class LoginComponent implements OnInit {
@@ -28,6 +27,10 @@ export class LoginComponent implements OnInit {
   {
   }
   ngOnInit(): void {
+    this.userService.message.subscribe(value=>
+     this.message=value)
+     this.userService.alert.subscribe(value=>
+      this.alert=value)
   }
 
   createLoginForm():FormGroup{
@@ -59,24 +62,34 @@ export class LoginComponent implements OnInit {
     this.registerPanel="";
   }
 
-  async login(){
+  login(){
     let username =this.loginForm.get('username')?.value;
     let password = this.loginForm.get('password')?.value;
+    this.userService.login(username, password);
+    // this.dataService.checkLogin$.subscribe(data=>{
+      // console.log(this.dataService.checkLogin);
+      // // if (data.event!=undefined){
+      // if(this.dataService.checkLogin){
+      //   this.dataService.USERLOGIN=this.userService.findByUserName(username);
+      //   sessionStorage.setItem('USERLOGIN',JSON.stringify(this.dataService.USERLOGIN));
+      //   // this.alert.next("");
+      //   // this.message.next("");
+      //   this.router.navigateByUrl('home');
+      // }else{
+      //   this.alert="warning";
+      //   this.message="Bạn nhập sai tên đăng nhập hoặc mật khẩu";
+      // }
 
-    await this.userService.login(username,password);
-
-    if(this.userService.isLogin){
-      this.dataService.USERLOGIN=this.userService.findByUserName(username);
-      sessionStorage.setItem('USERLOGIN',JSON.stringify(this.dataService.USERLOGIN));
-      this.router.navigateByUrl('home');
-    }else
-      this.alert="warning";
-      this.message="Bạn nhập sai tên đăng nhập hoặc mật khẩu";
   }
 
   register(){
     this.user= Object.assign(this.user,this.registerForm.value);
 
+    // const data = ('Hello Node.js');
+    // writeFileAtomic('message.txt', data);
+  //   fs.writeFile('message.txt', data, (err) => {
+  //   When a request is aborted - the callback is called with an AbortError
+  // });
     // const writeJsonFile = require('write-json-file');
 
     // (async () => {

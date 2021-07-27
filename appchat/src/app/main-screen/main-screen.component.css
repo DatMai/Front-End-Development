@@ -1,0 +1,48 @@
+.main-screen {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    height: 100vh;
+}
+
+.main-screen .main-screen__left-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.main-screen .main-screen__left-container .left-container--height {
+    height: 100%;
+}
+
+.main-screen .main-screen__left-container .btn--hiding {
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+.main-screen .btn--showing {
+    position: fixed;
+    left: 0;
+    height: 100%;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+.main-screen .main-screen__right-container {
+    width: 70%;
+    height: 100%;
+}
+
+.main-screen .right-container--hide {
+    margin-left: 15px;
+}
+
+.main-screen .right-container--show {
+    margin-left: 5px;
+}
+
+
+/*# sourceMappingURL=main-screen.component.css.map */

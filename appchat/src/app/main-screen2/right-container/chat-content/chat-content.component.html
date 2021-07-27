@@ -1,0 +1,30 @@
+<div class="container-fluid"  id="chatContent" >
+    <div  class="chat-content"  *ngIf="this.isUserSelected()"  >
+        <div class="row" *ngFor="let mes of this.getSelectedChatContent().messages" >
+              <div *ngIf="mes.mine" class="col-7"></div>
+              <div *ngIf="mes.mine" class="user col-5"  >
+                  <p>{{mes.message}}</p>
+
+              </div>
+              <div *ngIf="!mes.mine" class="friend col-5"  >
+                <p>{{mes.message}}</p>
+            </div>
+              <div *ngIf="!mes.mine" class="col-7"></div>
+        </div>
+      </div>
+
+        <div  class="chat-content" *ngIf="this.isGroupSelected()"  >
+        <div class="row" *ngFor="let mes of this.getSelectedGroup().messages" >
+          <div *ngIf="mes.mine" class="col-7"></div>
+          <div *ngIf="mes.mine" class="user col-5"  >
+              <p>{{mes.message}}</p>
+
+          </div>
+          <div *ngIf="!mes.mine" class="friend col-5"  >
+            <p>{{mes.userName}} : {{mes.message}}</p>
+        </div>
+          <div *ngIf="!mes.mine" class="col-7"></div>
+    </div>
+  </div>
+
+</div>

@@ -4,7 +4,9 @@ import userData  from '../data/userData.json';
 import { WebSocketService } from './web-socket.service';
 import { DataService } from './data.service';
 import { ChatContent } from '../model/ChatContent';
-import { GroupChat } from '../model/GroupChat';
+import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
+import { ChatService } from './chat.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,7 +14,9 @@ import { GroupChat } from '../model/GroupChat';
 export class UserService {
   userList:UserModel[] =userData;
   isLogin:boolean=false;
-  constructor(private wss:WebSocketService,private dataService:DataService) {
+  message = new BehaviorSubject<string>("");
+  alert = new BehaviorSubject<string>("");
+  constructor(private wss:WebSocketService,private dataService:DataService,private chatService:ChatService,private router:Router) {
 
    }
    public addUser(user:UserModel) {
@@ -38,11 +42,19 @@ export class UserService {
     public async login(username:string,password:string){
       this.wss.checkLogin(username, password);
       await this.wss.receiveMessage();
-
+      console.log(this.wss.dataFromServer);
+      // if (data.event!=undefined){
       if(this.wss.dataFromServer.status=="success"){
-        this.isLogin= true;
+        this.dataService.USERLOGIN=this.findByUserName(username);
+        sessionStorage.setItem('USERLOGIN',JSON.stringify(this.dataService.USERLOGIN));
+        this.loadListChatBox(this.dataService.USERLOGIN);
+        this.router.navigateByUrl('home');
+      }else{
+        this.alert.next("warning");
+        this.message.next("Bạn nhập sai tên đăng nhập hoặc mật khẩu");
       }
     }
+
     public getListFriends(user:UserModel):UserModel[]{
       let rs : UserModel[]=[];
       user.friends?.forEach(f => {
@@ -50,23 +62,12 @@ export class UserService {
       });
       return rs;
     }
-    public getListChatBox(user:UserModel):UserModel[]{
-      let rs : UserModel[]=[];
-      user.chatContents?.forEach(f => {
-        // rs.push(this.findByUserName(f.usernameTo||""));
-        if(this.findByUserName(f.usernameTo||"").username==undefined){
-          rs.push( {
-          fullname :f.usernameTo,
-          username:f.usernameTo,
-          password:'',
-          email:'',
-          friends:[],
-          chatContents:[]
-        })
-        }else
-        rs.push(this.findByUserName(f.usernameTo||""));
-
-      });
+    public getListChatBox(user:UserModel):ChatContent[]{
+      let rs : ChatContent[]=[];
+      user.chatContents?.forEach(f =>{
+        rs.push(f);
+      }
+      );
       return rs;
     }
     public getGroupChat(user:UserModel):UserModel[]{
@@ -76,24 +77,14 @@ export class UserService {
       });
       return rs;
     }
-    public loadSelectedChatContent(user:UserModel){
-    let rs = this.dataService.chatContentExample.filter(
-        element =>element.usernameTo==user.username);
-     if (rs.length==0) {
-       this.dataService.selectedChatContent$.next({
-         "usernameTo":user.username,
-         "messages":[]
-       });
-     }else
-     this.dataService.selectedChatContent$.next(
-         rs[0]
-     );
+    public loadUserData(user:UserModel){
     }
-    public loadSelectedGroup(group:GroupChat){
-      let rs = this.dataService.groupChatContentExample.filter(
-          element =>element.name==group.name);
-      this.dataService.selectedGroup$.next(
-           rs[0]
-      );
+    public loadListChatBox(user:UserModel){
+      user.chatContents?.forEach(element => {
+        if (element.isGroup) this.chatService.joinRoomChat(element.name||"");
+        else
+        this.dataService.chatContentExample.push(element);
+      });
+      this.dataService.chatContent$.next(this.dataService.chatContentExample);
     }
 }

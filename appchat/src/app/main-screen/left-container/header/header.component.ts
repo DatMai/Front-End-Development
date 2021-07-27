@@ -1,29 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import { ChatService } from 'src/app/service/chat.service';
-import { WebSocketService } from 'src/app/service/web-socket.service';
+import { UserModel } from 'src/app/model/userModel';
+import { DataService } from 'src/app/service/data.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
   roomName:string="";
-  constructor(public chatService:ChatService,
-              private wss:WebSocketService
-              ) { }
+  USERLOGIN:UserModel={}
+  constructor(private dataService:DataService) { }
 
   ngOnInit(): void {
-    // this.createRoomChat();
+    this.USERLOGIN=this.dataService.USERLOGIN;
   }
-  public async createRoomChat() {
-      this.chatService.createRoomChat(this.roomName) ;
-      await this.wss.receiveMessage();
-      console.log(this.wss.dataFromServer);
+  public showListChatBox() {
+    this.dataService.isShowListChatBox=true;
+    this.dataService.isShowListFriend=false;
+  }
+  public showListFriend() {
+    this.dataService.isShowListFriend=true;
+    this.dataService.isShowListChatBox=false;
+  }
+  public isShowListChatBox() {
+   return  this.dataService.isShowListChatBox;
+  }
+  public isShowListFriend() {
+    return  this.dataService.isShowListFriend;
    }
-   public joinRoomChat() {
-    this.chatService.joinRoomChat(this.roomName) ;
-    // await this.wss.receiveMessage();
-    // console.log(this.wss.dataFromServer);
- }
 }

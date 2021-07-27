@@ -4,23 +4,24 @@
     "username":"doan",
     "password":"12345",
     "email":"thanhdoan1612@gmail.com",
-    "friends":["dat","TEST","long"],
+    "friends":["dat1","TEST","long","Ton","Minhnhat","Phuoc"],
     "chatContents":[
       {
-        "usernameTo":"TEST",
-        "messages": []
+        "name":"TEST",
+        "userList":"TEST",
+        "messages": [{"message":"Hello","userName":"Phan Thành Đoan","mine":true  }],
+        "isGroup":false
       },{
-        "usernameTo":"dat",
-        "messages": []
-      },{
-        "usernameTo":"DOANTEST",
-        "messages": []
+        "name":"DOANTEST",
+        "userList":"",
+        "messages":[],
+        "isGroup":true
       }
     ]
   },
   {
     "fullname":"Mai Huỳnh Phước Đạt",
-    "username":"dat",
+    "username":"dat1",
     "password":"12345",
     "email":"thanhdoan1612@gmail.com",
     "friends":["doan"]
@@ -30,14 +31,13 @@
     "username":"TEST",
     "password":"12345",
     "email":"test@gmail.com",
-    "friends":["doan","dat"],
+    "friends":["doan","dat1"],
     "chatContents":[
       {
-        "usernameTo":"doan",
-        "messages": []
-      },{
-        "usernameTo":"dat",
-        "messages": []
+        "name":"Phan Thành Đoan",
+        "userList":"doan",
+        "messages": [{"message":"Hello","userName":"Phan Thành Đoan","mine":false}],
+        "isGroup":false
       }
     ]
 
@@ -46,16 +46,29 @@
     "username":"long",
     "password":"12345",
     "email":"dinhlong@gmail.com",
-    "friends":["dat","TEST","doan"],
-    "chatContents":[
-      {
-        "usernameTo":"TEST",
-        "messages": []
-      },{
-        "usernameTo":"doan",
-        "messages": []
-      }
-    ]
+    "friends":["dat1","TEST","doan"],
+    "chatContents":[]
+  }, {
+    "fullname":"Phạm Huy Phước",
+    "username":"Phuoc",
+    "password":"123456",
+    "email":"",
+    "friends":["dat1","TEST","doan"],
+    "chatContents":[]
+  }, {
+    "fullname":"Trần Quang Minh Nhật",
+    "username":"Minhnhat",
+    "password":"123456",
+    "email":"dinhlong@gmail.com",
+    "friends":["dat1","TEST","doan"],
+    "chatContents":[]
+  }, {
+    "fullname":"Lê Phan Thanh Tôn",
+    "username":"Ton",
+    "password":"123456",
+    "email":"",
+    "friends":["dat1","TEST","doan"],
+    "chatContents":[]
   }
 ]
 

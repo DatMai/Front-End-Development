@@ -1,26 +1,55 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { LoginComponent } from '../login/login.component';
 import { ChatContent } from '../model/ChatContent';
 import { GroupChat } from '../model/GroupChat';
 import { UserModel } from '../model/userModel';
 import groupChatData  from '../data/groupChat.json';
-
+import { ChatService } from './chat.service';
+export  interface iDataService{
+  getSelectedGroup():GroupChat;
+  getSelectedUser():UserModel;
+}
 @Injectable({
   providedIn: 'root'
 })
-export class DataService  {
+export class DataService implements OnInit  {
   USERLOGIN :UserModel={};
+  checkLogin$=new BehaviorSubject<boolean>(false);
   selectedChatContent$=new BehaviorSubject<ChatContent>({});
-  selectedUser$= new BehaviorSubject<UserModel>({});
-  selectedGroup$= new BehaviorSubject<GroupChat>({});
   chatContent$=new BehaviorSubject<ChatContent[]>([]);
-  groupChatContent$=new BehaviorSubject<GroupChat[]>([]);
-  messages : {message: string, userName: string, mine: boolean}[] = [];
   chatContentExample: ChatContent[]=[];
-  groupChatContentExample: GroupChat[]= [];
+  selectedChatContent: ChatContent= {};
+  checkLogin: boolean=false;
+  isShowListFriend:boolean=false;
+  isShowListChatBox:boolean=true;
   constructor() {
 
   }
+
+  ngOnInit(): void {
+
+  }
+  public getChatContentExample() {
+    return this.chatContentExample;
+  }
+
+  public getSelectedChatContent() {
+    return this.selectedChatContent;
+  }
+
+  // public loadSelectedChatContent(chatContent:ChatContent){
+  //   let rs = this.chatContentExample.filter(
+  //       element =>element.userList==user.username);
+  //    if (rs.length==0) {
+  //      this.selectedChatContent$.next({
+  //        "userList":user.username,
+  //        "messages":[]
+  //      });
+  //    }else
+  //    this.selectedChatContent$.next(
+  //        rs[0]
+  //    );
+  // }
 
 }
