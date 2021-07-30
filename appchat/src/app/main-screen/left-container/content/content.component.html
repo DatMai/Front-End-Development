@@ -1,0 +1,19 @@
+<div class="wrapper">
+    <div class="list-friends" *ngIf="!this.isShowListFriend()">
+        <div class="friend" *ngFor="let f of this.getChatContentExample()" (click)="setSelectedChatContent(f)">
+            <img class="friend__avatar avatar--circle avatar--small" src="../../../../assets/image/avatar.jpg" alt="">
+            <h4 class="friend__infor">{{f.name}}
+                <span class="text--small"><br>{{this.getNewMessage(f)}}</span></h4>
+        </div>
+    </div>
+    <div class="list-friends" *ngIf="this.isShowListFriend()">
+        <div class="friend" *ngFor="let f of this.getListFriends()">
+            <img class="friend__avatar avatar--circle avatar--small" src="../../../../assets/image/avatar.jpg" alt="">
+            <h4 class="friend__infor">{{f.fullname}}
+                <span class="text--small"><br></span></h4>
+        </div>
+    </div>
+    <div class="image-logo">
+        <!-- <img src="assets/The Anh Em Company.png" alt=""> -->
+    </div>
+</div>

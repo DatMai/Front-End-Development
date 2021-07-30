@@ -1,0 +1,38 @@
+.header {
+    border-bottom-left-radius: 10vw;
+    display: flex;
+    height: 10vh;
+    align-items: center;
+    background-color: white;
+    // position: fixed;
+    .header__infor {
+        align-items: center;
+        display: flex;
+        .header__avatar {
+            margin-left: 10vh;
+            border-radius: 50%;
+            width: 3vw;
+        }
+        .header__title {
+            margin: 0;
+            margin-left: 5vh;
+            font-size: 1vw;
+            font-weight: bold;
+            .header__title--small {
+                font-size: 0.8vw;
+                font-weight: normal;
+            }
+        }
+    }
+    .header__actions {
+        background-color: none;
+        float: right;
+        padding-left: 10vh;
+        // margin-right: 30px;
+        .fas {
+            float: right;
+            font-size: 2vw;
+            // font-size: 26px;
+        }
+    }
+}
