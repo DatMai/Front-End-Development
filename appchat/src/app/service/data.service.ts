@@ -6,6 +6,7 @@ import { GroupChat } from '../model/GroupChat';
 import { UserModel } from '../model/userModel';
 import groupChatData  from '../data/groupChat.json';
 import { ChatService } from './chat.service';
+import { EmojisModel } from '../model/emojisModel';
 export  interface iDataService{
   getSelectedGroup():GroupChat;
   getSelectedUser():UserModel;
@@ -14,7 +15,8 @@ export  interface iDataService{
   providedIn: 'root'
 })
 export class DataService implements OnInit  {
-  USERLOGIN :UserModel={};
+  USERLOGIN: UserModel = {};
+  selectedEmoji$ = new BehaviorSubject<EmojisModel>({});
   checkLogin$=new BehaviorSubject<boolean>(false);
   selectedChatContent$=new BehaviorSubject<ChatContent>({});
   chatContent$=new BehaviorSubject<ChatContent[]>([]);

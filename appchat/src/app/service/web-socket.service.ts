@@ -195,6 +195,20 @@ export class WebSocketService {
       }
   }));
   }
+  checkRegister(user: string, pass: string): void {
+    this.ws.send(
+      JSON.stringify({
+        action: 'onchat',
+        data: {
+          event: 'REGISTER',
+          data: {
+            user: user,
+            pass: pass,
+          },
+        },
+      })
+    );
+  }
 
 
 }

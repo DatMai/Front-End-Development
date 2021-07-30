@@ -26,7 +26,61 @@
         border: none;
         background: none;
         margin-left: 1vw;
-        color: #d83156;
+        background-image: linear-gradient(#d32a4c, #eb522c);
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
     }
     .sending-text {}
+}
+
+
+/* width */
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+
+/* Track */
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+    border-radius: 50px;
+    background: rgb(68, 68, 68);
+}
+
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+    background-image: linear-gradient(#d32a4c, #eb522cc4);
+}
+
+.emojiArea {
+    position: absolute;
+    overflow-y: scroll;
+    margin-top: -24vw;
+    margin-left: 45vw;
+    height: 40vh;
+    width: 50vh;
+    // border: 2px solid #d83156;
+    border-radius: 10px;
+    background-image: linear-gradient(#d32a4c8c, #eb522c88);
+    cursor: pointer;
+    .emojis {
+        font-size: 1vw;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .emojiArea {
+        margin-top: -24vw;
+        margin-left: 70vw;
+    }
 }
