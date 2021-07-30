@@ -2,8 +2,8 @@
     "version": 3,
     "mappings": "",
     "sources": [
-        "app.component.scss"
+        "right-typing.component.scss"
     ],
     "names": [],
-    "file": "app.component.css"
+    "file": "right-typing.component.css"
 }

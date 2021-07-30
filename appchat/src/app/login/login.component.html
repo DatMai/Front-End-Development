@@ -1,12 +1,12 @@
 <div class="login-component">
 
-  <h2>Đăng nhập</h2>
+    <h2>Đăng nhập</h2>
     <div class="container {{registerPanel}}" id="container">
         <div class="form-container sign-up-container">
-            <form [formGroup]="registerForm"  (ngSubmit)="register()" action="#">
+            <form [formGroup]="registerForm" (ngSubmit)="register()" action="#">
                 <h1>Đăng Ký</h1>
                 <div class="social-container">
-                    <a class="social" ><i class="fab fa-facebook-f"></i></a>
+                    <a class="social"><i class="fab fa-facebook-f"></i></a>
                     <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
                     <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                 </div>
@@ -16,28 +16,28 @@
                 <input type="password" placeholder="Mật khẩu" formControlName="password" />
                 <!-- <input type="password" placeholder="Nhập lại mật khẩu" formControlName="rePassword" /> -->
                 <input type="email" placeholder="Email" formControlName="email" />
-                <button class="btn" type="submit"  >Đăng ký</button>
+                <button class="btn" type="submit">Đăng ký</button>
             </form>
         </div>
         <div class="form-container sign-in-container">
-          <form  [formGroup]="loginForm" (ngSubmit)="login()" action="#">
-              <h1>Đăng nhập</h1>
+            <form [formGroup]="loginForm" (ngSubmit)="login()" action="#">
+                <h1>Đăng nhập</h1>
 
-              <div class="social-container">
-                  <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                  <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                  <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-              </div>
-              <span>Đăng nhập bằng tài khoản</span>
-              <div class="alert alert-{{this.alert}}" role="alert" *ngIf="this.alert!=''">
-                {{this.message}}
-              </div>
-              <input type="text" placeholder="Tên đăng nhập" formControlName="username" />
-              <input type="password" placeholder="Mật khẩu"  formControlName="password" />
-              <a href="#">Quên mật khẩu?</a>
-              <button type="submit" class="btn" (onclick)="login()" >Đăng nhập</button>
-          </form>
-      </div>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>Đăng nhập bằng tài khoản</span>
+                <div class="alert alert-{{this.alert}}" role="alert" *ngIf="this.alert!=''">
+                    {{this.message}}
+                </div>
+                <input type="text" placeholder="Tên đăng nhập" formControlName="username" />
+                <input type="password" placeholder="Mật khẩu" formControlName="password" />
+                <a href="#">Quên mật khẩu?</a>
+                <button type="submit" class="btn" (onclick)="login()">Đăng nhập</button>
+            </form>
+        </div>
         <div class="overlay-container">
             <div class="overlay">
                 <div class="overlay-panel overlay-left">
@@ -53,4 +53,4 @@
             </div>
         </div>
     </div>
-  </div>
+</div>
