@@ -27,7 +27,20 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/18130041" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Doan -Version 4" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -38,9 +51,6 @@
       <option name="presentableId" value="Default" />
       <updated>1615789534937</updated>
       <workItem from="1615789536196" duration="2480000" />
-      <workItem from="1615792983316" duration="362000" />
-      <workItem from="1617607424773" duration="16000" />
-      <workItem from="1617945988907" duration="445000" />
     </task>
     <servers />
   </component>
@@ -48,13 +58,9 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1617946436071">
+    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1615792018611">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1617946436071" />
-    <state x="73" y="7" width="1235" height="699" key="new project wizard" timestamp="1617946385780">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="73" y="7" width="1235" height="699" key="new project wizard/0.0.1366.728@0.0.1366.728" timestamp="1617946385780" />
+    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1615792018611" />
   </component>
 </project>
