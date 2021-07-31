@@ -22,14 +22,20 @@
     height: 60vh;
     z-index: 2;
     overflow-y: scroll;
-    .list-friends {
+    .list {
         width: 100%;
         margin: 0;
-         :hover {
-            cursor: pointer;
+         :hover.friend {
             transition: linear 0.2s;
             background-image: linear-gradient(#d32a4c, #eb522cc4);
+            // clip-path: ();
+            cursor: pointer;
             color: rgb(252, 228, 255);
+        }
+         :hover.setting-item {
+            transition: linear 0.2s;
+            background-color: white;
+            color: black;
         }
     }
     // .image-logo {
@@ -39,6 +45,7 @@
     .friend {
         // border-radius: 1vw;
         color: rgb(170, 170, 170);
+        background: transparent;
         margin-top: 2vh;
         display: flex;
         // border-radius: 3vw;
@@ -48,6 +55,7 @@
         width: 100%;
         overflow-y: hidden;
         .friend__avatar {
+            position: relative;
             margin-left: 30px;
         }
         .avatar--circle {
@@ -59,16 +67,38 @@
         }
         .friend__infor {
             overflow-y: hidden;
-            background-color: transparent;
+            background: transparent;
             font-size: 1vw;
             margin-left: 10px;
         }
         .text--small {
             overflow-y: hidden;
-            background-color: transparent;
+            background: transparent;
             width: 100%;
             font-weight: lighter;
             font-size: smaller;
+        }
+    }
+    .setting {
+        .setting-item {
+            color: white;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: none;
+            background: transparent;
+            outline: none;
+            h6 {
+                margin: 0;
+                align-items: center;
+            }
+        }
+        .setting__container {
+            border-top: 1px solid white;
+        }
+        .log-out-container {
+            padding-top: 1vh;
         }
     }
 }

@@ -21,6 +21,9 @@ export class ContentComponent implements OnInit {
   public isShowListFriend() {
     return this.dataService.isShowListFriend;
   }
+  public isShowSetting(){
+    return this.dataService.isShowSetting;
+  }
   public getListFriends() {
     return this.userService.getListFriends(this.USERLOGIN);
   }
@@ -39,4 +42,5 @@ export class ContentComponent implements OnInit {
   public getNewMessage(chatContent:ChatContent):string{
     return this.chatService.getNewMessage(chatContent);
   }
+
 }

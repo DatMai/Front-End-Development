@@ -10,7 +10,7 @@
         <button class="btn" (click)="this.showListChatBox()"><i class="action__comments far fa-comments " [ngClass]="{active: this.isShowListChatBox()}"></i></button>
         <button class="btn" (click)="this.showListFriend()"><i class="action__friends fas fa-user-friends" [ngClass]="{active: this.isShowListFriend()}"></i></button>
         <button class="btn"><i class="action__list fas fa-list " ></i></button>
-        <button class="btn"><i class="action__setting fas fa-cog "></i></button>
+        <button class="btn" (click)="this.showSetting()"><i class="action__setting fas fa-cog " [ngClass]="{active: this.isShowSetting()}"></i></button>
     </div>
     <div class="searching-bar flex container">
         <form action="">
@@ -24,5 +24,3 @@
     </div>
 
 </div>
-
-

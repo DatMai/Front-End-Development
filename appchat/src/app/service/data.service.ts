@@ -25,6 +25,7 @@ export class DataService implements OnInit  {
   checkLogin: boolean=false;
   isShowListFriend:boolean=false;
   isShowListChatBox:boolean=true;
+  isShowSetting:boolean=false;
   constructor() {
 
   }
