@@ -76,13 +76,13 @@
 }
 
 .action {
-    color: #d3d3d3;
+    color: #d3d3d3 !important;
     padding-top: 2vw;
     padding-left: 2vw;
     justify-content: space-between;
     padding-bottom: 5vh;
     font-size: 2.5vw;
-    outline: none;
+    outline: none !important;
      :hover {
         transition: linear 0.3s;
         background-image: linear-gradient(#d32a4c, #eb522c);
