@@ -22,6 +22,7 @@
     height: 60vh;
     z-index: 2;
     overflow-y: scroll;
+    overflow-x: hidden;
     .list {
         width: 100%;
         margin: 0;
@@ -80,7 +81,13 @@
         }
     }
     .setting {
+        margin-top: 30px;
         .setting-item {
+            margin: 0.5vh;
+            padding-left: 1vw;
+            padding-right: 1vw;
+            // padding-bottom: 1vh;
+            ;
             color: white;
             width: 100%;
             display: flex;
@@ -90,15 +97,16 @@
             background: transparent;
             outline: none;
             h6 {
+                font-size: 1vw;
                 margin: 0;
                 align-items: center;
+            }
+            .setting-item--btn {
+                font-size: 1vw;
             }
         }
         .setting__container {
             border-top: 1px solid white;
-        }
-        .log-out-container {
-            padding-top: 1vh;
         }
     }
 }
