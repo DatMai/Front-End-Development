@@ -19,7 +19,7 @@ export class AppComponent implements OnInit,OnDestroy {
   }
   ngOnInit(): void {
     // this.wss.createWebsocket(environment.WESOCKET_URL);
-   
+    this.wss.openWebsocket();
     this.dataService.chatContent$.subscribe(
       value=>this.dataService.chatContentExample=value
     )

@@ -42,8 +42,7 @@ export class LoginComponent implements OnInit {
   {
   }
   ngOnInit(): void {
-    this.wss.openWebsocket();
-    // this.wss.createWebsocket(environment.WESOCKET_URL);
+    
     this.dataService.message$.subscribe(value=>
       this.message=value
     )

@@ -25,15 +25,15 @@ export class WebSocketService {
     this.createWebsocket(environment.WESOCKET_URL);
     this.ws.onopen= (e=>{
       if (sessionStorage.length>1) {
+
         let u= JSON.parse(sessionStorage.USERLOGIN);
         let RE_LOGIN_CODE=sessionStorage.RELOGINCODE;
         this.getReLoginMessage(u.username,RE_LOGIN_CODE);
         this.sendMessage1();
+
       }else{
         console.log(e);
-
       }
-
     });
     this.ws.onmessage=(e=>{
       let data = JSON.parse(e.data);
@@ -204,6 +204,7 @@ export class WebSocketService {
         sessionStorage.removeItem('RELOGINCODE');
         sessionStorage.setItem('RELOGINCODE',data.data.RE_LOGIN_CODE);
         this.dataService.USERLOGIN=JSON.parse(sessionStorage.USERLOGIN);
+        this.router.navigateByUrl('home');
       }else{
 
       }
@@ -214,13 +215,10 @@ export class WebSocketService {
         this.dataService.alert$.next("success");
         this.dataService.message$.next("Bạn đã đăng ký thành công");
       }else{
-        if (data.mes=="You are already logged in") {
-          this.dataService.alert$.next("warning");
-          this.dataService.message$.next("Bạn đang đăng nhập");
-          }else{
+
             this.dataService.alert$.next("warning");
             this.dataService.message$.next("Tên đăng nhập đã tồn tại");
-          }
+
         }
 
   }
@@ -242,9 +240,14 @@ export class WebSocketService {
         this.dataService.reLoginCode =data.data.RE_LOGIN_CODE;
         sessionStorage.setItem('RELOGINCODE',this.dataService.reLoginCode );
       }else{
-        this.dataService.USERLOGIN={};
-        this.dataService.alert$.next("warning");
-        this.dataService.message$.next("Bạn nhập sai tên đăng nhập hoặc mật khẩu");
+        if (data.mes=="You are already logged in") {
+          this.dataService.alert$.next("warning");
+          this.dataService.message$.next("Bạn đang đăng nhập");
+          }else {
+          this.dataService.USERLOGIN={};
+          this.dataService.alert$.next("warning");
+          this.dataService.message$.next("Bạn nhập sai tên đăng nhập hoặc mật khẩu");
+        }
       }
 
   }
