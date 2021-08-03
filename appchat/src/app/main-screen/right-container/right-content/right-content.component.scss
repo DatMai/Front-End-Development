@@ -28,6 +28,9 @@
                 color: rgb(255, 255, 255);
                 background-image: linear-gradient(#d32a4c, #eb522c);
             }
+            .partner__text:hover {
+              background-color:blue;
+          }
             .partner__name {
                 font-size: 12px;
                 margin-left: 5px;
@@ -50,12 +53,12 @@
     }
 
     .partner-chat+.my-chat {
-        background-color: black;
+        // background-color: black;
         margin-top: 0.5vw;
     }
 
     .my-chat+.partner-chat {
-        background-color: red;
+        // background-color: red;
         margin-top: 0.5vw;
     }
 

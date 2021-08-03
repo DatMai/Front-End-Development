@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserModel } from 'src/app/model/userModel';
 import { DataService } from 'src/app/service/data.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-header',
@@ -10,17 +11,21 @@ import { DataService } from 'src/app/service/data.service';
 export class HeaderComponent implements OnInit {
   roomName:string="";
   USERLOGIN:UserModel={}
-  constructor(private dataService:DataService) { }
+  constructor(private dataService:DataService,
+    private userService:UserService) { }
 
   ngOnInit(): void {
-    this.USERLOGIN=this.dataService.USERLOGIN;
+ 
   }
+
   public showSetting(){
     this.dataService.isShowSetting=true;
     this.dataService.isShowListChatBox=false;
     this.dataService.isShowListFriend=false;
   }
-
+  public getUserlogin(){
+    return this.dataService.USERLOGIN;
+  }
   public showListChatBox() {
     this.dataService.isShowListChatBox=true;
     this.dataService.isShowListFriend=false;
@@ -36,8 +41,8 @@ export class HeaderComponent implements OnInit {
   }
   public isShowListFriend() {
     return  this.dataService.isShowListFriend;
-   }
-   public isShowSetting(){
-     return this.dataService.isShowSetting;
-   }
+  }
+  public isShowSetting(){
+    return this.dataService.isShowSetting;
+  }
 }

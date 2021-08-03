@@ -4,8 +4,10 @@
 
 export const environment = {
   production: false,
-  wsEndpoint: ""
+  wsEndpoint: "",
+  WESOCKET_URL:"ws://203.113.148.132:23023/chat/chat"
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file

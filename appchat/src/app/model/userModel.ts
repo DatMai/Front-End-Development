@@ -5,6 +5,7 @@ export class UserModel{
   username?:string;
   password?:string;
   email?:string;
-  friends?:string[];
+  friends?:any[];
   chatContents?:ChatContent[];
+  status?:string;
 }

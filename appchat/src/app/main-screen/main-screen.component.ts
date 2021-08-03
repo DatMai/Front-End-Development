@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ChatService } from '../service/chat.service';
+import { DataService } from '../service/data.service';
+import { UserService } from '../service/user.service';
 import { WebSocketService } from '../service/web-socket.service';
 
 @Component({
@@ -7,19 +9,22 @@ import { WebSocketService } from '../service/web-socket.service';
   templateUrl: './main-screen.component.html',
   styleUrls: ['./main-screen.component.scss']
 })
-export class MainScreenComponent implements OnInit {
+export class MainScreenComponent implements OnInit,OnDestroy {
   roomName:string="";
   constructor(public chatService:ChatService,
-              private wss:WebSocketService
+              private userService:UserService,private dataService:DataService,private wss:WebSocketService
               ) { }
-
-  ngOnInit(): void {
-   
+  ngOnDestroy(): void {
+// this.wss.closeWebsocket();
   }
+  ngOnInit(): void {
+    // this.wss.openWebsocket();
+    // this.userService.loadUserLoginData();
+  }
+
   public createRoomChat() {
       this.chatService.createRoomChat(this.roomName) ;
-      // await this.wss.receiveMessage();
-      // console.log(this.wss.dataFromServer);
+      // this.userService.loadListFriend(this.dataService.USERLOGIN);
    }
    public joinRoomChat() {
     this.chatService.joinRoomChat(this.roomName) ;

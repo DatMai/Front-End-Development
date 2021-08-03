@@ -14,18 +14,26 @@ export  interface iDataService{
 @Injectable({
   providedIn: 'root'
 })
+
 export class DataService implements OnInit  {
-  USERLOGIN: UserModel = {};
+  reLoginCode:string="";
+  USERLOGIN :UserModel={};
+  UserloginTest:UserModel={};
+  userIsCheckingList :UserModel[]=[];
+  userIsChecking :UserModel={};
   selectedEmoji$ = new BehaviorSubject<EmojisModel>({});
-  checkLogin$=new BehaviorSubject<boolean>(false);
+  checkUserList$=new BehaviorSubject<boolean>(false);
   selectedChatContent$=new BehaviorSubject<ChatContent>({});
   chatContent$=new BehaviorSubject<ChatContent[]>([]);
+  message$= new BehaviorSubject<string>("");
+  alert$= new BehaviorSubject<string>("");
   chatContentExample: ChatContent[]=[];
   selectedChatContent: ChatContent= {};
   checkLogin: boolean=false;
   isShowListFriend:boolean=false;
   isShowListChatBox:boolean=true;
   isShowSetting:boolean=false;
+  chatContentUserName:string='';
   constructor() {
 
   }
@@ -33,26 +41,31 @@ export class DataService implements OnInit  {
   ngOnInit(): void {
 
   }
+  public resetData(){
+    this.isShowListFriend=false;
+    this.isShowListChatBox=true;
+    this.isShowSetting=false;
+    this.USERLOGIN={};
+    this.selectedChatContent={};
+    this.chatContentExample=[];
+    sessionStorage.removeItem('USERLOGIN');
+    sessionStorage.removeItem('RELOGINCODE');
+  }
   public getChatContentExample() {
+
     return this.chatContentExample;
   }
 
   public getSelectedChatContent() {
     return this.selectedChatContent;
   }
+  public getListFriends() {
+    return this.USERLOGIN.friends;
+  }
+  public getUSERLOGIN() {
+    return this.USERLOGIN;
+  }
 
-  // public loadSelectedChatContent(chatContent:ChatContent){
-  //   let rs = this.chatContentExample.filter(
-  //       element =>element.userList==user.username);
-  //    if (rs.length==0) {
-  //      this.selectedChatContent$.next({
-  //        "userList":user.username,
-  //        "messages":[]
-  //      });
-  //    }else
-  //    this.selectedChatContent$.next(
-  //        rs[0]
-  //    );
-  // }
 
 }
+

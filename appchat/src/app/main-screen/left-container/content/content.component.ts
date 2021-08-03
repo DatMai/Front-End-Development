@@ -5,6 +5,7 @@ import { UserModel } from 'src/app/model/userModel';
 import { ChatService } from 'src/app/service/chat.service';
 import { DataService } from 'src/app/service/data.service';
 import { UserService } from 'src/app/service/user.service';
+import { WebSocketService } from 'src/app/service/web-socket.service';
 
 @Component({
   selector: 'app-content',
@@ -13,10 +14,25 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class ContentComponent implements OnInit {
   USERLOGIN:UserModel={};
-  constructor(private dataService:DataService,private userService:UserService,private chatService:ChatService) { }
+  constructor(private dataService:DataService,private userService:UserService,private wss:WebSocketService,private chatService:ChatService) { }
 
   ngOnInit(): void {
     this.USERLOGIN=JSON.parse(sessionStorage.USERLOGIN);
+  }
+  public logout() {
+    this.userService.logout();
+    // console.log(this.dataService.reLoginCode);
+    // this.wss.relogin();
+
+    // this.wss.getReLoginMessage("doan",this.dataService.reLoginCode);
+    // this.wss.sendMessage1();
+    // this.wss.receiveMessage();
+  }
+  public checkUser(user:UserModel) {
+    return this.chatService.checkUser(user);
+  }
+  public isShowListChatBox() {
+    return this.dataService.isShowListChatBox;
   }
   public isShowListFriend() {
     return this.dataService.isShowListFriend;
@@ -25,7 +41,10 @@ export class ContentComponent implements OnInit {
     return this.dataService.isShowSetting;
   }
   public getListFriends() {
-    return this.userService.getListFriends(this.USERLOGIN);
+    return this.dataService.getListFriends();
+  }
+  public getUSERLOGIN() {
+    return this.dataService.USERLOGIN;
   }
   public getChatContentExample() {
     return this.dataService.getChatContentExample();
@@ -33,6 +52,10 @@ export class ContentComponent implements OnInit {
 
   public setSelectedChatContent(chatContent:ChatContent){
     this.chatService.setSelectedChatContent(chatContent);
+  }
+  public setSelectedChatContentByUserModel(usermodel:UserModel){
+    this.checkUser(usermodel);
+    this.chatService.setSelectedChatContentByUserModel(usermodel);
   }
 
   public goToBottom(){
