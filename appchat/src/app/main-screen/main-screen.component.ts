@@ -9,17 +9,13 @@ import { WebSocketService } from '../service/web-socket.service';
   templateUrl: './main-screen.component.html',
   styleUrls: ['./main-screen.component.scss']
 })
-export class MainScreenComponent implements OnInit,OnDestroy {
+export class MainScreenComponent implements OnInit {
   roomName:string="";
   constructor(public chatService:ChatService,
               private userService:UserService,private dataService:DataService,private wss:WebSocketService
               ) { }
-  ngOnDestroy(): void {
-// this.wss.closeWebsocket();
-  }
   ngOnInit(): void {
-    // this.wss.openWebsocket();
-    // this.userService.loadUserLoginData();
+  
   }
 
   public createRoomChat() {
