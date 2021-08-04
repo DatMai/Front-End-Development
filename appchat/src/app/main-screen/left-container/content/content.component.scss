@@ -43,12 +43,6 @@
     //     height: 5vh;
     //     width: 5vh;
     // }
-    .checkSearch {
-        color: rgb(170, 170, 170);
-        text-align: center;
-        font-weight: lighter;
-        font-size: large;
-    }
     .friend {
         // border-radius: 1vw;
         color: rgb(170, 170, 170);
@@ -85,10 +79,10 @@
             font-weight: lighter;
             font-size: smaller;
         }
-        .is_not_seen {
-            color: #d02e4e;
-            font-weight: bold;
-            font-size: inherit;
+        .is_not_seen{
+          color:#d02e4e;
+          font-weight: bold;
+          font-size:inherit;
         }
     }
     .setting {

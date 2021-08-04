@@ -13,6 +13,7 @@ import { WebSocketService } from '../service/web-socket.service';
 export class MainScreenComponent implements OnInit {
   roomName:string="";
   message:string='';
+  alert:string='';
   constructor(private wss:WebSocketService,private dataService:DataService,private router:Router
               ) { }
   ngOnInit(): void {
@@ -21,6 +22,9 @@ export class MainScreenComponent implements OnInit {
     }
     this.dataService.message$.subscribe(
       value => this.message=value
+    )
+    this.dataService.alert$.subscribe(
+      value => this.alert=value
     )
   }
 

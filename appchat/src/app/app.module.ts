@@ -42,7 +42,8 @@ import { MainScreenComponent } from './main-screen/main-screen.component';
     RightHeaderComponent,
     ContentComponent,
     RightContentComponent,
-    RightTypingComponent
+    RightTypingComponent,
+
   ],
   imports: [BrowserModule, AppRoutingModule,FormsModule,ReactiveFormsModule],
   providers: [],

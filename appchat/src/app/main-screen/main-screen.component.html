@@ -1,4 +1,4 @@
-<div class="main-screen" id="mainscreen">
+ <div class="main-screen" id="mainscreen">
     <div class="main-screen__left-container col-lg-3 col-md-12 col-sm-12">
         <app-left-container class="left-container--height"></app-left-container>
     </div>
@@ -18,7 +18,7 @@
             <div class="modal-body">
                 <form>
                     <div class="mb-3">
-                      <div class="alert alert-warning" style="width:100%" *ngIf="this.message!=''"  role="alert">
+                      <div class="alert alert-{{this.alert}}" style="width:100%" *ngIf="this.message!=''"  role="alert">
                         {{this.message}}
                       </div>
                         <label for="room-name" class="col-form-label">RoomName:</label>
@@ -33,4 +33,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> 
