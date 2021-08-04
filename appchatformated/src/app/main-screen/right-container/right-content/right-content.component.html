@@ -1,0 +1,25 @@
+<div class="container-fluid main-chat" id="chatContent">
+    <!-- Partner chat -->
+    <ng-container *ngFor="let mes of this.getSelectedChatContent().messages">
+        <div class="partner-chat  container-fluid row" *ngIf="!mes.mine">
+            <div class="wrapper col-12 row">
+                <div class="avatar--wrapper">
+                    <img class=" partner__avatar avatar" src="../../../../assets/image/avatar.jpg">
+                </div>
+                <div class="text--wrapper">
+                    <h6 class="partner__name">{{mes.userName}}</h6>
+                    <p class="partner__text text ">{{mes.message}}</p>
+                </div>
+            </div>
+        </div>
+        <!-- End parter chat -->
+        <!-- My chat -->
+        <div class="my-chat container-fluid row" *ngIf="mes.mine">
+            <div class="text--wrapper col-12">
+                <div class="text--border">
+                    <p class=" my__text text">{{mes.message}}</p>
+                </div>
+            </div>
+        </div>
+        <!-- End my chat -->
+    </ng-container>
