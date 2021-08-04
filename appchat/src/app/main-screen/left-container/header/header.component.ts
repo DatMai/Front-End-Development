@@ -6,43 +6,56 @@ import { UserService } from 'src/app/service/user.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  roomName:string="";
-  USERLOGIN:UserModel={}
-  constructor(private dataService:DataService,
-    private userService:UserService) { }
+  roomName: string = '';
+  USERLOGIN: UserModel = {};
 
-  ngOnInit(): void {
- 
+  name!: string;
+  check: boolean = false;
+  constructor(
+    private dataService: DataService,
+    private userService: UserService
+  ) {}
+
+  ngOnInit(): void {}
+  public search() {
+    this.dataService.setSearchKeyword(this.name);
+    this.dataService.isShowSearch = true;
+    this.dataService.isShowListFriend = false;
+    this.dataService.isShowListChatBox = false;
+    this.dataService.isShowSetting = false;
   }
 
-  public showSetting(){
-    this.dataService.isShowSetting=true;
-    this.dataService.isShowListChatBox=false;
-    this.dataService.isShowListFriend=false;
+  public showSetting() {
+    this.dataService.isShowSetting = true;
+    this.dataService.isShowListChatBox = false;
+    this.dataService.isShowListFriend = false;
+    this.dataService.isShowSearch = false;
   }
-  public getUserlogin(){
+  public getUserlogin() {
     return this.dataService.USERLOGIN;
   }
   public showListChatBox() {
-    this.dataService.isShowListChatBox=true;
-    this.dataService.isShowListFriend=false;
-    this.dataService.isShowSetting=false;
+    this.dataService.isShowListChatBox = true;
+    this.dataService.isShowListFriend = false;
+    this.dataService.isShowSetting = false;
+    this.dataService.isShowSearch = false;
   }
   public showListFriend() {
-    this.dataService.isShowListFriend=true;
-    this.dataService.isShowListChatBox=false;
-    this.dataService.isShowSetting=false;
+    this.dataService.isShowListFriend = true;
+    this.dataService.isShowListChatBox = false;
+    this.dataService.isShowSetting = false;
+    this.dataService.isShowSearch = false;
   }
   public isShowListChatBox() {
-   return  this.dataService.isShowListChatBox;
+    return this.dataService.isShowListChatBox;
   }
   public isShowListFriend() {
-    return  this.dataService.isShowListFriend;
+    return this.dataService.isShowListFriend;
   }
-  public isShowSetting(){
+  public isShowSetting() {
     return this.dataService.isShowSetting;
   }
 }
