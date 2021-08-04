@@ -560,8 +560,8 @@ export class WebSocketService {
               isSeen: false,
             });
           } else {
-            chatContentWithThisUsermodel[0].messages?.push(mes);
-            chatContentWithThisUsermodel[0].isSeen = false;
+            chatContentWithThisUsermodel.messages?.push(mes);
+            chatContentWithThisUsermodel.isSeen = false;
           }
           this.dataService.chatContent$.next(
             this.dataService.chatContentExample
