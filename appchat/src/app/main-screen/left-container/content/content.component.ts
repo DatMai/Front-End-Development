@@ -20,7 +20,7 @@ export class ContentComponent implements OnInit {
     this.USERLOGIN=JSON.parse(sessionStorage.USERLOGIN);
   }
   public logout() {
-    this.userService.logout();
+    this.wss.logout();
     // console.log(this.dataService.reLoginCode);
     // this.wss.relogin();
 
@@ -29,7 +29,7 @@ export class ContentComponent implements OnInit {
     // this.wss.receiveMessage();
   }
   public checkUser(user:UserModel) {
-    return this.chatService.checkUser(user);
+    return this.wss.checkUser(user);
   }
   public isShowListChatBox() {
     return this.dataService.isShowListChatBox;
@@ -40,8 +40,8 @@ export class ContentComponent implements OnInit {
   public isShowSetting(){
     return this.dataService.isShowSetting;
   }
-  public getListFriends() {
-    return this.dataService.getListFriends();
+  public getListUser() {
+    return this.dataService.getListUser();
   }
   public getUSERLOGIN() {
     return this.dataService.USERLOGIN;
@@ -51,6 +51,7 @@ export class ContentComponent implements OnInit {
   }
 
   public setSelectedChatContent(chatContent:ChatContent){
+    // this.userService.getAudio();
     this.chatService.setSelectedChatContent(chatContent);
   }
   public setSelectedChatContentByUserModel(usermodel:UserModel){
