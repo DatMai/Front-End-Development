@@ -26,6 +26,7 @@
         </div>
     </div>
     <div class="list-friends list" *ngIf="this.isShowSearch()">
+        <div class="checkSearch" *ngIf="checkSearch"> <i>"Không có kết quả tìm kiếm"</i> </div>
         <div class="friend" *ngFor="let f of this.getListSearch()" (click)="setSelectedChatContentByUserModel(f)">
             <img class="friend__avatar avatar--circle avatar--small" src="../../../../assets/image/avatar.jpg" alt="" />
             <h4 class="friend__infor">
