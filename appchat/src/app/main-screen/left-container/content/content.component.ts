@@ -13,11 +13,18 @@ import { WebSocketService } from 'src/app/service/web-socket.service';
   styleUrls: ['./content.component.scss']
 })
 export class ContentComponent implements OnInit {
-  USERLOGIN:UserModel={};
+  USERLOGIN: UserModel = {};
+  checkSearch: boolean = false;
+  name: string = '';
   constructor(private dataService:DataService,private userService:UserService,private wss:WebSocketService,private chatService:ChatService) { }
 
   ngOnInit(): void {
-    this.USERLOGIN=JSON.parse(sessionStorage.USERLOGIN);
+    this.USERLOGIN = JSON.parse(sessionStorage.USERLOGIN);
+    this.dataService.seach$.subscribe((text) => (this.name = text));
+
+    this.dataService.checkSearch$.subscribe(
+      (check) => (this.checkSearch = check)
+    );
   }
   public logout() {
     this.wss.logout();
@@ -27,6 +34,12 @@ export class ContentComponent implements OnInit {
     // this.wss.getReLoginMessage("doan",this.dataService.reLoginCode);
     // this.wss.sendMessage1();
     // this.wss.receiveMessage();
+  }
+  public getListSearch() {
+    return this.userService.search(this.name);
+  }
+  public isShowSearch() {
+    return this.dataService.isShowSearch;
   }
   public checkUser(user:UserModel) {
     return this.wss.checkUser(user);
