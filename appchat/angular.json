@@ -34,10 +34,12 @@
                             "src/assets"
                         ],
                         "styles": [
-                            "src/styles.css"
+                            "src/styles.css",
+                            "src/css/emojionearea.min.css"
                         ],
                         "scripts": [
-                          "node_modules/jquery/dist/jquery.min.js"
+                          "node_modules/jquery/dist/jquery.min.js",
+                          "src/js/emojionearea.min.js"
                         ]
                     },
                     "configurations": {

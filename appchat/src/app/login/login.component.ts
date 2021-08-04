@@ -38,11 +38,14 @@ export class LoginComponent implements OnInit {
   loginForm:FormGroup=this.createLoginForm();
   registerForm:FormGroup=this.createRegisterForm();
 
-  constructor(private dataService:DataService,private fb:FormBuilder,private wss:WebSocketService,private userService:UserService )
+  constructor(private dataService:DataService,private fb:FormBuilder,private router:Router,private wss:WebSocketService )
   {
   }
   ngOnInit(): void {
-    
+    if(sessionStorage.length>1){
+      this.router.navigateByUrl('home');
+    }
+
     this.dataService.message$.subscribe(value=>
       this.message=value
     )
@@ -81,13 +84,13 @@ export class LoginComponent implements OnInit {
   login(){
     let username =this.loginForm.get('username')?.value;
     let password = this.loginForm.get('password')?.value;
-    this.userService.login(username, password);
+    this.wss.login(username, password);
   }
 
   register() {
     let user = this.registerForm.value.username;
     let pass = this.registerForm.value.password;
-    this.userService.register(user, pass);
+    this.wss.register(user, pass);
   }
 
 

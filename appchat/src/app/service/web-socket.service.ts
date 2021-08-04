@@ -6,6 +6,8 @@ import { __await } from 'tslib';
 import { DataService } from './data.service';
 import { UserService } from './user.service';
 import  { environment } from 'src/environments/environment';
+import { UserModel } from '../model/userModel';
+import { AudioService } from './audio.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,7 @@ export class WebSocketService {
   data$  = new BehaviorSubject<any>({});
   dataFromServer:any;
   ws!: WebSocket;
-  constructor(private dataService:DataService,private router:Router) {
+  constructor(private dataService:DataService,private userService:UserService,private audioService:AudioService,private router:Router) {
 
   }
   public createWebsocket(url:string){
@@ -25,11 +27,9 @@ export class WebSocketService {
     this.createWebsocket(environment.WESOCKET_URL);
     this.ws.onopen= (e=>{
       if (sessionStorage.length>1) {
-
         let u= JSON.parse(sessionStorage.USERLOGIN);
         let RE_LOGIN_CODE=sessionStorage.RELOGINCODE;
-        this.getReLoginMessage(u.username,RE_LOGIN_CODE);
-        this.sendMessage1();
+        this.reLogin(u.username,RE_LOGIN_CODE);
 
       }else{
         console.log(e);
@@ -50,25 +50,23 @@ export class WebSocketService {
       console.log(e)
     });
   }
-  public receiveMessage(){
-    this.ws.onmessage=(e=>{
-      let data = JSON.parse(e.data);
-      this.getResponse(data);
-    });
-    return new Promise(resolve=>{
-      setTimeout(()=>{
-        resolve(this.ws.readyState)
-      },1000);
-    });
-  }
+  // public receiveMessage(){
+  //   this.ws.onmessage=(e=>{
+  //     let data = JSON.parse(e.data);
+  //     this.getResponse(data);
+  //   });
+  //   return new Promise(resolve=>{
+  //     setTimeout(()=>{
+  //       resolve(this.ws.readyState)
+  //     },1000);
+  //   });
+  // }
   public closeWebsocket(){
     this.ws.close();
   }
-  public sendMessage1(){
-    this.ws.send(this.message);
-  }
-  public getSendMesToGroup(nameRoom:string,message:string) {
-    this.message = JSON.stringify({
+
+  public sendMesToGroup(nameRoom:string,message:string) {
+    this.ws.send(JSON.stringify({
       "action": "onchat",
       "data": {
         "event": "SEND_CHAT",
@@ -78,9 +76,9 @@ export class WebSocketService {
           "mes": message
         }
       }
-    });
+    }));
   }
-  public getSendChatToPeople(nameto:string,message:string){
+  public sendChatToPeople(nameto:string,message:string){
       this.ws.send(JSON.stringify({
           action: "onchat",
           data: {
@@ -93,8 +91,8 @@ export class WebSocketService {
           }
     }));
   }
-  public getJoinRoomMessage(nameRoom:string){
-    this.message=JSON.stringify(
+  public joinRoomChat(nameRoom:string){
+    this.ws.send(JSON.stringify(
       {
       action: "onchat",
       data: {
@@ -103,10 +101,10 @@ export class WebSocketService {
           name: nameRoom
         }
       }
-    });
+    }));
   }
-  public getCreateRoomMessage(nameRoom:string){
-    this.message=JSON.stringify(
+  public createRoomChat(nameRoom:string){
+    this.ws.send(JSON.stringify(
       {
         "action": "onchat",
         "data": {
@@ -115,10 +113,10 @@ export class WebSocketService {
             "name": nameRoom
           }
         }
-      });
+      }));
   }
-  public getRegisterMessage(user:string,pass:string){
-    this.message=JSON.stringify(
+  public register(user:string,pass:string){
+    this.ws.send(JSON.stringify(
       {
         "action": "onchat",
         "data": {
@@ -128,10 +126,10 @@ export class WebSocketService {
             "pass": pass
           }
         }
-      });
+      }));
   }
-  public getLoginMessage(user:string,pass:string) {
-    this.message=(JSON.stringify({
+  public login(user:string,pass:string) {
+    this.ws.send((JSON.stringify({
       "action": "onchat",
       "data": {
         "event": "LOGIN",
@@ -140,10 +138,12 @@ export class WebSocketService {
           "pass": pass
         }
       }
-  }));
+  })));
+  this.dataService.USERLOGIN=this.userService.findByUsernameAndPass(user, pass);
+  setTimeout(()=>this.loadUserLoginData(),1000);
   }
-  public getRoomChatMessage(nameRoom:string,page:number){
-    this.message=(JSON.stringify({
+  public getRoomChat(nameRoom:string,page:number){
+    this.ws.send((JSON.stringify({
       "action": "onchat",
       "data": {
         "event": "GET_ROOM_CHAT_MES",
@@ -152,21 +152,23 @@ export class WebSocketService {
           "page":page
         }
       }
-    }));
+    })));
   }
-  public getCheckUserMessage(user:string){
-    this.message=(JSON.stringify({
+  public checkUser(user:UserModel){
+    this.ws.send((JSON.stringify({
      "action":"onchat",
      "data": {
        "event":"CHECK_USER",
        "data": {
-         "user":user
+         "user":user.username
         }
       }
-    }));
+    })));
+    this.dataService.userIsChecking=user;
+
   }
-  public getReLoginMessage(user:string,code:string) {
-      this.message=(JSON.stringify({
+  public reLogin(user:string,code:string) {
+      this.ws.send((JSON.stringify({
         "action": "onchat",
         "data": {
           "event": "RE_LOGIN",
@@ -175,18 +177,18 @@ export class WebSocketService {
             "code": code
           }
         }
-      }));
+      })));
   }
-  public getLogoutMessage() {
-    this.message=(JSON.stringify({
+  public logout() {
+    this.ws.send((JSON.stringify({
       action: "onchat",
       data: {
         event: "LOGOUT",
       }
-  }));
+  })));
   }
-  public getPeopleChatMessage(username:string,page:number){
-    this.message=(JSON.stringify({
+  public getPeopleChat(username:string,page:number){
+    this.ws.send((JSON.stringify({
       "action": "onchat",
       "data": {
         "event": "GET_PEOPLE_CHAT_MES",
@@ -195,228 +197,268 @@ export class WebSocketService {
           "page": page
         }
       }
-    }))
+    })));
   }
 
-  public getResponse(data:any){
-    if(data.event=="RE_LOGIN"){
-      if (data.status=="success") {
-        sessionStorage.removeItem('RELOGINCODE');
-        sessionStorage.setItem('RELOGINCODE',data.data.RE_LOGIN_CODE);
-        this.dataService.USERLOGIN=JSON.parse(sessionStorage.USERLOGIN);
-        this.router.navigateByUrl('home');
-      }else{
 
-      }
+
+
+//load dữ liệu chat
+  public loadListChatBox(user:UserModel){
+
+    let rs= this.userService.getListChatBox(user);
+    rs.forEach(element => {
+      if (element.isGroup) this.getRoomChat(element.name||"",element.totalPage||1);
+      else this.getPeopleChat(element.userList||"",element.totalPage||1);
+      this.dataService.chatContentExample.push(element);
+    });
+    sessionStorage.setItem("CHATBOX",JSON.stringify(rs));
+    this.dataService.chatContentExample=rs;
+    this.dataService.USERLOGIN.chatContents=rs;
+    this.dataService.chatContent$.next(this.dataService.chatContentExample);
   }
-    if(data.event=="REGISTER"){
-
-      if (data.status=="success") {
-        this.dataService.alert$.next("success");
-        this.dataService.message$.next("Bạn đã đăng ký thành công");
-      }else{
-
-            this.dataService.alert$.next("warning");
-            this.dataService.message$.next("Tên đăng nhập đã tồn tại");
-
-        }
-
-  }
-  if(data.event=="LOGOUT"){
-      if (data.status=="success") {
-        this.dataService.resetData();
-        sessionStorage.clear();
-        this.router.navigateByUrl('login');
-        this.dataService.alert$.next("success");
-        this.dataService.message$.next("Bạn đã đăng xuất. \n Vui lòng refresh lại trang để đăng nhập tiếp");
-      }else{
-
-      }
-  }
-  if(data.event=="LOGIN"){
-      if (data.status=="success") {
-        this.router.navigateByUrl('home');
-        sessionStorage.setItem('USERLOGIN',JSON.stringify(this.dataService.USERLOGIN));
-        this.dataService.reLoginCode =data.data.RE_LOGIN_CODE;
-        sessionStorage.setItem('RELOGINCODE',this.dataService.reLoginCode );
-      }else{
-        if (data.mes=="You are already logged in") {
-          this.dataService.alert$.next("warning");
-          this.dataService.message$.next("Bạn đang đăng nhập");
-          }else {
-          this.dataService.USERLOGIN={};
-          this.dataService.alert$.next("warning");
-          this.dataService.message$.next("Bạn nhập sai tên đăng nhập hoặc mật khẩu");
-        }
-      }
-
-  }
-  if (data.event=="CHECK_USER") {
-
-      if (data.status=="success") {
-        let newU=this.dataService.userIsChecking||{};
-        if ((data.data.status)) {
-          newU.status="Đang hoạt động";
-        }else{
-          newU.status="Chưa đăng nhập";
-        }
-        let u =this.dataService.USERLOGIN.friends?.find(
-            element => element.username==newU.username
-        )||{};
-        u=newU;
-        // this.dataService.checkUserList$.next(this.checkUserList||false);
-        } else {
-        console.log("Lỗi websocket");
-      }
-  }
-  if (data.event=="GET_ROOM_CHAT_MES"&&data.status=="success") {
-      let name =data.data.name;
-      let groupChatContain = this.dataService.chatContentExample.find(element =>
-        element.name==name
-    )||{};
-      let messages1: {"message": string, "userName": string, "mine": boolean,"createAt":string,"description":string}[]=[];
-      data.data.chatData.reverse().forEach((e:any) => {
-        let mine =false;
-        let USERLOGIN = JSON.parse(sessionStorage.USERLOGIN);
-        let createAt = e.createAt;
-        if (e.name==USERLOGIN.username) {
-           mine =true
-        }
-       messages1.push({"message": e.mes, "userName": e.name, "mine": mine,"createAt":createAt,"description":"mes"})
-     })
-    groupChatContain.messages=messages1.concat(groupChatContain.messages||[]);
-    groupChatContain.userList=data.data.userList;
-    this.dataService.chatContent$.next(
-     this.dataService.chatContentExample
-    );
-    let page = groupChatContain.totalPage||1;
-    if (messages1.length==50) {
-      page++;
-      this.getRoomChatMessage(name,page);
-      this.sendMessage1();
-      groupChatContain.totalPage=page;
+    public loadListFriend(){
+      let rs=this.dataService.getListUser();
+      let i=0;
+      setInterval(()=>{
+          if (i<rs.length&&this.dataService.USERLOGIN.username!=undefined) {
+            this.checkUser(rs[i]);
+            i++;
+            if (i==rs.length) i=0;
+          }
+        },500);
+      // sessionStorage.setItem("FRIENDS",JSON.stringify(this.userList));
     }
-  }
-  if(data.event=="SEND_CHAT"){
-    if (data.status=="success") {
-      let mes= {message: data.data.mes, userName: data.data.name, mine: false,createAt:data.data.createAt,description:"mes"};
-      if (data.data.type=="1") {
-        let groupChatContentWithNameroom= this.dataService.chatContentExample.filter(
-          element =>element.name==data.data.to
+    public loadUserLoginData(){
+      let user =this.dataService.USERLOGIN;
+      user.status="Đang hoạt động";
+      this.loadListFriend();
+      this.loadListChatBox(user);
+    }
+
+    //xử lý dữ liệu nhận từ server
+    public getResponse(data:any){
+      if(data.event=="RE_LOGIN"){
+        if (data.status=="success") {
+          sessionStorage.removeItem('RELOGINCODE');
+          sessionStorage.setItem('RELOGINCODE',data.data.RE_LOGIN_CODE);
+          this.dataService.USERLOGIN=JSON.parse(sessionStorage.USERLOGIN);
+          this.loadUserLoginData();
+        }else{
+        }
+    }
+      if(data.event=="REGISTER"){
+
+        if (data.status=="success") {
+          this.dataService.alert$.next("success");
+          this.dataService.message$.next("Bạn đã đăng ký thành công");
+        }else{
+
+              this.dataService.alert$.next("warning");
+              this.dataService.message$.next("Tên đăng nhập đã tồn tại");
+
+          }
+
+    }
+    if(data.event=="LOGOUT"){
+        if (data.status=="success") {
+          this.dataService.resetData();
+          sessionStorage.clear();
+          this.router.navigateByUrl('login');
+          this.dataService.alert$.next("success");
+          this.dataService.message$.next("Bạn đã đăng xuất. \n Vui lòng refresh lại trang để đăng nhập tiếp");
+        }else{
+
+        }
+    }
+    if(data.event=="LOGIN"){
+        if (data.status=="success") {
+
+          sessionStorage.setItem('USERLOGIN',JSON.stringify(this.dataService.USERLOGIN));
+          // this.dataService.reLoginCode =data.data.RE_LOGIN_CODE;
+          sessionStorage.setItem('RELOGINCODE',data.data.RE_LOGIN_CODE);
+          this.router.navigateByUrl('home');
+        }else{
+          if (data.mes=="You are already logged in") {
+            this.dataService.alert$.next("warning");
+            this.dataService.message$.next("Bạn đang đăng nhập");
+            }else {
+            this.dataService.USERLOGIN={};
+            this.dataService.alert$.next("warning");
+            this.dataService.message$.next("Bạn nhập sai tên đăng nhập hoặc mật khẩu");
+          }
+        }
+
+    }
+    if (data.event=="CHECK_USER") {
+
+        if (data.status=="success") {
+          let newU=this.dataService.userIsChecking||{};
+          if ((data.data.status)) {
+            newU.status="Đang hoạt động";
+          }else{
+            newU.status="Chưa đăng nhập";
+          }
+          let u =this.dataService.USERLOGIN.friends?.find(
+              element => element.username==newU.username
+          )||{};
+          u=newU;
+          // this.dataService.checkUserList$.next(this.checkUserList||false);
+          } else {
+          console.log("Lỗi websocket");
+        }
+    }
+    if (data.event=="GET_ROOM_CHAT_MES"&&data.status=="success") {
+        let name =data.data.name;
+        let groupChatContain = this.dataService.chatContentExample.find(element =>
+          element.name==name
+      )||{};
+        let messages1: {"message": string, "userName": string, "mine": boolean,"createAt":string,"description":string}[]=[];
+        data.data.chatData.reverse().forEach((e:any) => {
+          let mine =false;
+          let USERLOGIN = JSON.parse(sessionStorage.USERLOGIN);
+          let createAt = e.createAt;
+          if (e.name==USERLOGIN.username) {
+             mine =true
+          }
+         messages1.push({"message": e.mes, "userName": e.name, "mine": mine,"createAt":createAt,"description":"mes"})
+       })
+      groupChatContain.messages=messages1.concat(groupChatContain.messages||[]);
+      groupChatContain.userList=data.data.userList;
+      this.dataService.chatContent$.next(
+       this.dataService.chatContentExample
+      );
+      let page = groupChatContain.totalPage||1;
+      if (messages1.length==50) {
+        page++;
+        this.getRoomChat(name,page);
+        groupChatContain.totalPage=page;
+      }
+    }
+    if(data.event=="SEND_CHAT"){
+      if (data.status=="success") {
+        let mes= {message: data.data.mes, userName: data.data.name, mine: false,createAt:data.data.createAt,description:"mes"};
+        if (data.data.type=="1") {
+          let groupChatContentWithNameroom= this.dataService.chatContentExample.filter(
+            element =>element.name==data.data.to
+          );
+          groupChatContentWithNameroom[0].messages?.push(mes);
+          groupChatContentWithNameroom[0].isSeen=false;
+          this.dataService.chatContent$.next(
+            this.dataService.chatContentExample
+          );
+       }else
+        {
+        let chatContentWithThisUsermodel= this.dataService.chatContentExample.filter(
+          element =>element.userList==data.data.name
         );
-        groupChatContentWithNameroom[0].messages?.push(mes);
-        groupChatContentWithNameroom[0].isSeen=false;
+        if (chatContentWithThisUsermodel.length==0) {
+          this.dataService.chatContentExample.push({
+            "name":data.data.name,
+            "userList":data.data.name,
+            "messages":[mes],
+            "isGroup":false,
+            "isSeen":false
+          });
+        }else{
+         chatContentWithThisUsermodel[0].messages?.push(mes);
+         chatContentWithThisUsermodel[0].isSeen=false;
+        }
         this.dataService.chatContent$.next(
           this.dataService.chatContentExample
         );
-     }else
-      {
-      let chatContentWithThisUsermodel= this.dataService.chatContentExample.filter(
-        element =>element.userList==data.data.name
+      }
+      this.audioService.playAudio();
+    }else{
+
+    }
+  }
+    if (data.event=="JOIN_ROOM") {
+      if (data.status=="success"){
+        let name =data.data.name;
+        let messages1: {"message": string, "userName": string, "mine": boolean,createAt:string,description:string}[]=[];
+        data.data.chatData.reverse().forEach((e:any) => {
+          let mine =false;
+          let USERLOGIN = JSON.parse(sessionStorage.USERLOGIN);
+          if (e.name==USERLOGIN.username) {
+             mine =true
+          }
+         messages1.push({"message": e.mes, "userName": e.name, "mine": mine,createAt:data.data.chatData.createAt,description:"mes"})
+       })
+       let groupChatContain = this.dataService.chatContentExample.find(element =>
+           element.name==name
+       )||{};
+       if (groupChatContain.name==undefined){
+        this.dataService.chatContentExample=[
+        {
+           "name":name,
+           "userList":data.data.userList,
+           "messages":messages1,
+           "isGroup":true,
+           "isSeen":false
+        },...this.dataService.chatContentExample]
+      }else
+         {
+          groupChatContain.userList =data.data.userList;
+          groupChatContain.messages =messages1;
+         }
+      this.dataService.chatContent$.next(
+       this.dataService.chatContentExample
       );
-      if (chatContentWithThisUsermodel.length==0) {
-        this.dataService.chatContentExample.push({
+      let page = groupChatContain.totalPage||1;
+      if (messages1.length==50) {
+        page++;
+        this.getRoomChat(name,page);
+
+        groupChatContain.totalPage=page;
+      }
+    }else{
+      this.dataService.message$.next("Phòng không tồn tại");
+    }
+    if(data.event=="CREATE_ROOM"&&data.status=="success"){
+      this.dataService.chatContentExample.push(
+        {
           "name":data.data.name,
-          "userList":data.data.name,
-          "messages":[mes],
-          "isGroup":false,
+          "userList":data.data.userList,
+          "messages":[{"message":"Bạn đã tạo nhóm "+data.data.name , "userName": "Hệ thống", "mine": false,createAt:data.data.createAt,description:"NOTIFICATION"}],
+          "isGroup":true,
           "isSeen":false
+        }
+      );
+      this.dataService.chatContent$.next(
+        this.dataService.chatContentExample
+      );
+    }
+  }
+    if (data.event=="GET_PEOPLE_CHAT_MES"&&data.status=="success") {
+      let chatData = data.data;
+      if (chatData.length>0) {
+          let user = chatData[0].to==this.dataService.USERLOGIN.username?chatData[0].name:chatData[0].to;
+          let chatContent = this.dataService.chatContentExample.find(
+            value=> value.userList==user
+          )||{};
+        let messages1: {"message": string, "userName": string, "mine": boolean,"createAt":string,"description":string}[]=[];
+        chatData.sort((a, b) => a.id - b.id);
+        chatData.forEach((e:any) => {
+          let mine =false;
+          let USERLOGIN = JSON.parse(sessionStorage.USERLOGIN);
+          let createAt = e.createAt;
+          if (e.name==USERLOGIN.username) {
+             mine =true;
+          }
+         messages1.push({"message": e.mes, "userName": e.name, "mine": mine,"createAt":createAt,"description":"mes"})
         });
-      }else{
-       chatContentWithThisUsermodel[0].messages?.push(mes);
-       chatContentWithThisUsermodel[0].isSeen=false;
+        chatContent.messages=messages1.concat(chatContent.messages||[]);
+        this.dataService.chatContent$.next(
+          this.dataService.chatContentExample
+        );
+        let page = chatContent.totalPage||1;
+        page++;
+        this.getPeopleChat(user,page);
+        chatContent.totalPage=page;
       }
-      this.dataService.chatContent$.next(
-        this.dataService.chatContentExample
-      );
-    }
-  }else{
-
-  }
-}
-  if (data.event=="JOIN_ROOM") {
-      let name =data.data.name;
-      let messages1: {"message": string, "userName": string, "mine": boolean,createAt:string,description:string}[]=[];
-      data.data.chatData.reverse().forEach((e:any) => {
-        let mine =false;
-        let USERLOGIN = JSON.parse(sessionStorage.USERLOGIN);
-        if (e.name==USERLOGIN.username) {
-           mine =true
-        }
-       messages1.push({"message": e.mes, "userName": e.name, "mine": mine,createAt:data.data.chatData.createAt,description:"mes"})
-     })
-     let groupChatContain = this.dataService.chatContentExample.find(element =>
-         element.name==name
-     )||{};
-     if (groupChatContain.name==undefined){
-      this.dataService.chatContentExample=[
-      {
-         "name":name,
-         "userList":data.data.userList,
-         "messages":messages1,
-         "isGroup":true,
-         "isSeen":false
-      },...this.dataService.chatContentExample]
-    }else
-       {
-        groupChatContain.userList =data.data.userList;
-        groupChatContain.messages =messages1;
-       }
-    this.dataService.chatContent$.next(
-     this.dataService.chatContentExample
-    );
-    let page = groupChatContain.totalPage||1;
-    if (messages1.length==50) {
-      page++;
-      this.getRoomChatMessage(name,page);
-      this.sendMessage1();
-      groupChatContain.totalPage=page;
-    }
-  }
-  if(data.event=="CREATE_ROOM"&&data.status=="success"){
-    this.dataService.chatContentExample.push(
-      {
-        "name":data.data.name,
-        "userList":data.data.userList,
-        "messages":[{"message":"Bạn đã tạo nhóm "+data.data.name , "userName": "Hệ thống", "mine": false,createAt:data.data.createAt,description:"NOTIFICATION"}],
-        "isGroup":true,
-        "isSeen":false
       }
-    );
-    this.dataService.chatContent$.next(
-      this.dataService.chatContentExample
-    );
-  }
-  if (data.event=="GET_PEOPLE_CHAT_MES"&&data.status=="success") {
-    let chatData = data.data;
-    if (chatData.length>0) {
-        let user = chatData[0].to==this.dataService.USERLOGIN.username?chatData[0].name:chatData[0].to;
-        let chatContent = this.dataService.chatContentExample.find(
-          value=> value.userList==user
-        )||{};
-      let messages1: {"message": string, "userName": string, "mine": boolean,"createAt":string,"description":string}[]=[];
-      chatData.sort((a, b) => a.id - b.id);
-      chatData.forEach((e:any) => {
-        let mine =false;
-        let USERLOGIN = JSON.parse(sessionStorage.USERLOGIN);
-        let createAt = e.createAt;
-        if (e.name==USERLOGIN.username) {
-           mine =true;
-        }
-       messages1.push({"message": e.mes, "userName": e.name, "mine": mine,"createAt":createAt,"description":"mes"})
-      });
-      chatContent.messages=messages1.concat(chatContent.messages||[]);
-      this.dataService.chatContent$.next(
-        this.dataService.chatContentExample
-      );
-      let page = chatContent.totalPage||1;
-      page++;
-      this.getPeopleChatMessage(user,page);
-      this.sendMessage1();
-      chatContent.totalPage=page;
-    }
-    }
 
-  }
+    }
 }
 

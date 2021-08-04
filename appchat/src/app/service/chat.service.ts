@@ -7,6 +7,7 @@ import { UserModel } from '../model/userModel';
 import { DataService } from './data.service';
 import { WebSocketService } from './web-socket.service';
 import * as $ from 'jquery';
+import { UserService } from './user.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -18,53 +19,9 @@ export class ChatService {
           private wss:WebSocketService,
           private dataService:DataService,
           private router:Router,
-
+          private userService:UserService,
   ) {
 
-  }
-
-  public reLogin(username:string,code:string){
-
-    this.wss.getReLoginMessage(username,code);
-    this.wss.sendMessage1();
-    // this.wss.receiveMessage();
-
-  }
-  public getPeopleChatMessage(username:string,page:number){
-    this.wss.getPeopleChatMessage(username,page);
-    this.dataService.chatContentUserName=username;
-    // console.log(this.dataService.chatContentUserName);
-    this.wss.sendMessage1();
-  }
-  public createRoomChat(roomName:string) {
-    this.wss.getCreateRoomMessage(roomName);
-    this.wss.sendMessage1();
-    // this.wss.receiveMessage();
-  }
-  public joinRoomChat(roomName:string) {
-    this.wss.getJoinRoomMessage(roomName);
-    this.wss.sendMessage1();
-    // this.wss.receiveMessage();
-  }
-  public getRoomChatMes(roomName:string,page:number){
-    this.wss.getRoomChatMessage(roomName,page);
-    this.wss.sendMessage1();
-    // this.wss.receiveMessage();
-
-  }
-  public checkUser(user:UserModel){
-    this.wss.getCheckUserMessage(user.username||"");
-    this.dataService.userIsChecking=user
-    this.wss.sendMessage1();
-  }
-
-  public sendMesToGroup(nameRoom:string,message:string) {
-    this.wss.getSendMesToGroup(nameRoom,message);
-    this.wss.sendMessage1();
-  }
-  public sendChatToPeople(nameto:string,message:string) {
-    this.wss.getSendChatToPeople(nameto,message)
-    this.wss.sendMessage1();
   }
   public getNewMessage(chatContent:ChatContent):string{
     let listMessages=chatContent.messages||[{message:"Chưa có tin nhắn mới",userName:"Chưa có tin nhắn mới",mine:false}];
@@ -84,12 +41,12 @@ export class ChatService {
     let chatContentWithThisUsermodel;
     if (message!='') {
       if(this.dataService.selectedChatContent.isGroup){
-      this.sendMesToGroup(this.dataService.selectedChatContent.name||'',message);
+      this.wss.sendMesToGroup(this.dataService.selectedChatContent.name||'',message);
       chatContentWithThisUsermodel= this.dataService.chatContentExample.filter(
         element =>element.name==this.dataService.selectedChatContent.name
       );
       }else{
-      this.sendChatToPeople(this.dataService.selectedChatContent.userList||'',message);
+      this.wss.sendChatToPeople(this.dataService.selectedChatContent.userList||'',message);
       chatContentWithThisUsermodel= this.dataService.chatContentExample.filter(
         element =>element.userList==this.dataService.selectedChatContent.userList
       );
@@ -131,14 +88,7 @@ export class ChatService {
     }
     this.goToBottom();
   }
-  public sendTypingMessage(message:string){
-    if(message!=''){
-    if(this.dataService.selectedChatContent.isGroup)
-      this.sendMesToGroup(this.dataService.selectedChatContent.name||'','');
-      else
-      this.sendChatToPeople(this.dataService.selectedChatContent.userList||'','');
-    }
-  }
+
   public setSelectedChatContentByUserModel(usermodel:UserModel){
     let chatContent:ChatContent={};
     chatContent.name=usermodel.fullname;
@@ -149,16 +99,17 @@ export class ChatService {
     let rs =this.dataService.chatContentExample.find(value=>
       value.userList==usermodel.username
     )||{};
+    this.setSelectedChatContent(rs);
     if (rs.name==undefined) {
-      this.dataService.chatContentExample.push(chatContent);
-      this.getPeopleChatMessage(chatContent.userList,1);
-      this.setSelectedChatContent(chatContent);
-      console.log( this.dataService.chatContentExample);
+      rs=chatContent;
+      this.dataService.chatContentExample.push(rs);
+      this.wss.getPeopleChat(rs.userList,1);
+      this.setSelectedChatContent(rs);
       this.dataService.chatContent$.next(this.dataService.chatContentExample);
     }else{
       this.setSelectedChatContent(rs);
     }
-
   }
+
 }
 

@@ -36,6 +36,7 @@ export class RightTypingComponent implements OnInit {
     this.dataService.selectedEmoji$.subscribe(
       (value) => (this.selectedEmoji = value)
     );
+
   }
   public isChatBoxSelected() {
     return this.chatService.isChatBoxSelected();

@@ -4,10 +4,16 @@
     "username":"doan",
     "password":"12345",
     "email":"thanhdoan1612@gmail.com",
-    "friends":["dat1","TEST","long","Ton","Minhnhat","Phuoc"],
     "chatContents":[
       {
-        "name":"Phuoc",
+        "name":"Mai Huỳnh Phước Đạt",
+        "userList":"dat1",
+        "messages": [],
+        "isGroup":false,
+        "isSeen":true
+      },
+      {
+        "name":"Phạm Huy Phước",
         "userList":"Phuoc",
         "messages": [],
         "isGroup":false,
@@ -55,7 +61,6 @@
     "username":"dat1",
     "password":"12345",
     "email":"thanhdoan1612@gmail.com",
-    "friends":["doan"],
     "status":""
   },
   {
@@ -63,7 +68,6 @@
     "username":"TEST",
     "password":"12345",
     "email":"test@gmail.com",
-    "friends":["doan","dat1"],
     "chatContents":[
       {
         "name":"doan",
@@ -80,7 +84,6 @@
     "username":"long",
     "password":"12345",
     "email":"dinhlong@gmail.com",
-    "friends":["dat1","TEST","doan"],
     "chatContents":[],
     "status":""
   }, {
@@ -88,7 +91,6 @@
     "username":"Phuoc",
     "password":"123456",
     "email":"",
-    "friends":["dat1","TEST","doan"],
     "chatContents":[],
     "status":""
   }, {
@@ -96,7 +98,6 @@
     "username":"Minhnhat",
     "password":"123456",
     "email":"dinhlong@gmail.com",
-    "friends":["dat1","TEST","doan"],
     "chatContents":[],
     "status":""
   }, {
@@ -104,9 +105,14 @@
     "username":"Ton",
     "password":"123456",
     "email":"",
-    "friends":["dat1","TEST","doan"],
     "chatContents":[]
-
+  },
+  {
+    "fullname":"nhat",
+    "username":"nhat",
+    "password":"123456",
+    "email":"",
+    "chatContents":[]
   }
 ]
 

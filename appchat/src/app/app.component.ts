@@ -10,15 +10,11 @@ import { environment } from 'src/environments/environment';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit,OnDestroy {
+export class AppComponent implements OnInit {
 
   constructor(private dataService:DataService,private wss:WebSocketService ) {
   }
-  ngOnDestroy(): void {
-    this.wss.closeWebsocket();
-  }
   ngOnInit(): void {
-    // this.wss.createWebsocket(environment.WESOCKET_URL);
     this.wss.openWebsocket();
     this.dataService.chatContent$.subscribe(
       value=>this.dataService.chatContentExample=value

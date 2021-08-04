@@ -7,7 +7,7 @@
         </div>
     </div>
     <div class="list-friends list" *ngIf="this.isShowListFriend()" >
-        <div class="friend" *ngFor="let f of this.getListFriends()" (click)="setSelectedChatContentByUserModel(f)">
+        <div class="friend" *ngFor="let f of this.getListUser()" (click)="setSelectedChatContentByUserModel(f)">
             <img class="friend__avatar avatar--circle avatar--small" src="../../../../assets/image/avatar.jpg" alt="">
             <h4 class="friend__infor">{{f.fullname}}
                 <span class="text--small"><br>{{f.status}}</span></h4>

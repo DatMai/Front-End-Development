@@ -7,19 +7,14 @@ import { UserModel } from '../model/userModel';
 import groupChatData  from '../data/groupChat.json';
 import { ChatService } from './chat.service';
 import { EmojisModel } from '../model/emojisModel';
-export  interface iDataService{
-  getSelectedGroup():GroupChat;
-  getSelectedUser():UserModel;
-}
+import userData  from '../data/userData.json';
+
 @Injectable({
   providedIn: 'root'
 })
 
 export class DataService implements OnInit  {
-  reLoginCode:string="";
   USERLOGIN :UserModel={};
-  UserloginTest:UserModel={};
-  userIsCheckingList :UserModel[]=[];
   userIsChecking :UserModel={};
   selectedEmoji$ = new BehaviorSubject<EmojisModel>({});
   checkUserList$=new BehaviorSubject<boolean>(false);
@@ -29,11 +24,11 @@ export class DataService implements OnInit  {
   alert$= new BehaviorSubject<string>("");
   chatContentExample: ChatContent[]=[];
   selectedChatContent: ChatContent= {};
-  checkLogin: boolean=false;
   isShowListFriend:boolean=false;
   isShowListChatBox:boolean=true;
   isShowSetting:boolean=false;
   chatContentUserName:string='';
+  userList  :UserModel[]=userData;
   constructor() {
 
   }
@@ -48,14 +43,14 @@ export class DataService implements OnInit  {
     this.USERLOGIN={};
     this.selectedChatContent={};
     this.chatContentExample=[];
-    sessionStorage.removeItem('USERLOGIN');
-    sessionStorage.removeItem('RELOGINCODE');
+    sessionStorage.clear();
   }
   public getChatContentExample() {
-
     return this.chatContentExample;
   }
-
+  public getListUser() {
+    return this.userList;
+  }
   public getSelectedChatContent() {
     return this.selectedChatContent;
   }
