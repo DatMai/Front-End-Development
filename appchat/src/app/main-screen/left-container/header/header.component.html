@@ -13,14 +13,14 @@
         <button class="btn" (click)="this.showSetting()"><i class="action__setting fas fa-cog " [ngClass]="{active: this.isShowSetting()}"></i></button>
     </div>
     <div class="searching-bar flex container">
-        <form action="">
-            <div class="row">
-                <input class="col-9 input--border" type="text" placeholder=" Search">
 
-                <button class="col-3 submit--btn " type="submit "> <i class="fas fa-search "></i></button>
+        <div class="row">
+            <input class="col-9 input--border" type="text" (keydown.enter)="search()" placeholder="Enter name to search" [(ngModel)]="name" />
+            <button class="col-3 submit--btn" type="submit " (click)="search()">
+                <i class="fas fa-search"></i>
+              </button>
+        </div>
 
-            </div>
-        </form>
     </div>
 
 </div>
