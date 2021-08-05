@@ -7,25 +7,28 @@ import { UserModel } from '../model/userModel';
 import groupChatData  from '../data/groupChat.json';
 import { ChatService } from './chat.service';
 import { EmojisModel } from '../model/emojisModel';
-export  interface iDataService{
-  getSelectedGroup():GroupChat;
-  getSelectedUser():UserModel;
-}
+import userData  from '../data/userData.json';
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class DataService implements OnInit  {
-  USERLOGIN: UserModel = {};
+  USERLOGIN :UserModel={};
+  userIsChecking :UserModel={};
   selectedEmoji$ = new BehaviorSubject<EmojisModel>({});
-  checkLogin$=new BehaviorSubject<boolean>(false);
+  checkUserList$=new BehaviorSubject<boolean>(false);
   selectedChatContent$=new BehaviorSubject<ChatContent>({});
   chatContent$=new BehaviorSubject<ChatContent[]>([]);
+  message$= new BehaviorSubject<string>("");
+  alert$= new BehaviorSubject<string>("");
   chatContentExample: ChatContent[]=[];
   selectedChatContent: ChatContent= {};
-  checkLogin: boolean=false;
   isShowListFriend:boolean=false;
   isShowListChatBox:boolean=true;
   isShowSetting:boolean=false;
+  chatContentUserName:string='';
+  userList  :UserModel[]=userData;
   constructor() {
 
   }
@@ -33,26 +36,31 @@ export class DataService implements OnInit  {
   ngOnInit(): void {
 
   }
+  public resetData(){
+    this.isShowListFriend=false;
+    this.isShowListChatBox=true;
+    this.isShowSetting=false;
+    this.USERLOGIN={};
+    this.selectedChatContent={};
+    this.chatContentExample=[];
+    sessionStorage.clear();
+  }
   public getChatContentExample() {
     return this.chatContentExample;
   }
-
+  public getListUser() {
+    return this.userList;
+  }
   public getSelectedChatContent() {
     return this.selectedChatContent;
   }
+  public getListFriends() {
+    return this.USERLOGIN.friends;
+  }
+  public getUSERLOGIN() {
+    return this.USERLOGIN;
+  }
 
-  // public loadSelectedChatContent(chatContent:ChatContent){
-  //   let rs = this.chatContentExample.filter(
-  //       element =>element.userList==user.username);
-  //    if (rs.length==0) {
-  //      this.selectedChatContent$.next({
-  //        "userList":user.username,
-  //        "messages":[]
-  //      });
-  //    }else
-  //    this.selectedChatContent$.next(
-  //        rs[0]
-  //    );
-  // }
 
 }
+

@@ -2,7 +2,7 @@
     <div class="header">
         <img class="header__avatar avatar--circle avatar--medium" src="../../../../assets/image/avatar.jpg" alt="">
         <div class="title--wrapper">
-            <h3 class="header__title">{{this.USERLOGIN.fullname}} <br> <span class="title__status">Online</span> </h3>
+            <h3 class="header__title">{{this.getUserlogin().fullname}} <br> <span class="title__status">{{this.getUserlogin().status}}</span> </h3>
         </div>
         <button class="btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class=" header__bell-icon fa fa-plus" aria-hidden="true"></i></button>
     </div>

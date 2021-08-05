@@ -1,6 +1,7 @@
 import {
   Component,
   EventEmitter,
+  OnDestroy,
   OnInit,
   Output,
   ViewChild,
@@ -14,9 +15,13 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserModel } from '../model/userModel';
+import { ChatService } from '../service/chat.service';
 import { DataService } from '../service/data.service';
 import { UserService } from '../service/user.service';
 import { WebSocketService } from '../service/web-socket.service';
+import  { environment } from 'src/environments/environment';
+
+
 // declare const writeFile:any
 @Component({
   selector: 'app-login',
@@ -24,96 +29,71 @@ import { WebSocketService } from '../service/web-socket.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  @Output() userEvent = new EventEmitter<UserModel>();
-  message = '';
-  alert = '';
-  user: UserModel = {};
-  registerPanel = '';
-  loginForm: FormGroup = this.createLoginForm();
-  registerForm: FormGroup = this.createRegisterForm();
-  alertCheckSuccess: boolean = false;
-  alertCheckFail: boolean = false;
+  // file! : ;
+  message ="";
+  data:any
+  alert="";
+  user:UserModel={};
+  registerPanel="";
+  loginForm:FormGroup=this.createLoginForm();
+  registerForm:FormGroup=this.createRegisterForm();
 
-  register_form = new FormGroup({
-    name: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.required),
-    registerName: new FormControl('', Validators.required),
-    registerPassword: new FormControl('', Validators.required),
-  });
-  constructor(
-    private dataService: DataService,
-    private fb: FormBuilder,
-    private router: Router,
-    private wss: WebSocketService,
-    private userService: UserService
-  ) {}
+  constructor(private dataService:DataService,private fb:FormBuilder,private router:Router,private wss:WebSocketService )
+  {
+  }
   ngOnInit(): void {
-    this.userService.message.subscribe((value) => (this.message = value));
-    this.userService.alert.subscribe((value) => (this.alert = value));
+    if(sessionStorage.length>1){
+      this.router.navigateByUrl('home');
+    }
+
+    this.dataService.message$.subscribe(value=>
+      this.message=value
+    )
+    this.dataService.alert$.subscribe(value=>
+      this.alert=value
+    )
   }
 
-  createLoginForm(): FormGroup {
-    this.loginForm = this.fb.group({
-      username: [null, Validators.required],
-      password: [null, Validators.required],
-    });
+  createLoginForm():FormGroup{
+    this.loginForm= this.fb.group({
+      username:[null,Validators.required],
+      password:[null,Validators.required]
+    })
     return this.loginForm;
   }
-  createRegisterForm(): FormGroup {
-    this.registerForm = this.fb.group({
-      fullname: [null, Validators.required],
-      username: [null, Validators.required],
-      password: [null, Validators.required],
+  createRegisterForm():FormGroup{
+    this.registerForm= this.fb.group({
+      fullname:[null,Validators.required],
+      username:[null,Validators.required],
+      password:[null,Validators.required],
       // rePassword:[null,Validators.required],
-      email: [null, Validators.required],
+      // email:[null,Validators.required]
     });
     return this.registerForm;
   }
 
-  // passMatchingValidator(fg:FormGroup):Validators{
-  // return fg.get('password')?.value ===fg.get('rePassword')?.value? null: {notmached:true};
-  // }
-
-  showRegisterPanel(): void {
-    this.registerPanel = 'right-panel-active';
+  showRegisterPanel():void{
+    this.registerPanel="right-panel-active";
+    this.alert='';
   }
-  hideRegisterPanel(): void {
-    this.registerPanel = '';
+  hideRegisterPanel():void{
+    this.registerPanel="";
+    this.alert='';
   }
 
-  login() {
-    let username = this.loginForm.get('username')?.value;
+  login(){
+    let username =this.loginForm.get('username')?.value;
     let password = this.loginForm.get('password')?.value;
-    this.userService.login(username, password);
-    // this.dataService.checkLogin$.subscribe(data=>{
-    // console.log(this.dataService.checkLogin);
-    // // if (data.event!=undefined){
-    // if(this.dataService.checkLogin){
-    //   this.dataService.USERLOGIN=this.userService.findByUserName(username);
-    //   sessionStorage.setItem('USERLOGIN',JSON.stringify(this.dataService.USERLOGIN));
-    //   // this.alert.next("");
-    //   // this.message.next("");
-    //   this.router.navigateByUrl('home');
-    // }else{
-    //   this.alert="warning";
-    //   this.message="Bạn nhập sai tên đăng nhập hoặc mật khẩu";
-    // }
+    this.wss.login(username, password);
   }
 
-  async register() {
-    let user = this.register_form.value.registerName;
-    let pass = this.register_form.value.registerPassword;
-
-    this.wss.checkRegister(user, pass);
-    await this.wss.receiveMessage();
-
-    if (this.wss.dataFromServer.status == 'success') {
-      this.alertCheckSuccess = true;
-      this.alertCheckFail = false;
-    } else {
-      console.log(this.wss.dataFromServer);
-      this.alertCheckFail = true;
-      this.alertCheckSuccess = false;
-    }
+  register() {
+    let user = this.registerForm.value.username;
+    let pass = this.registerForm.value.password;
+    this.wss.register(user, pass);
   }
+
+
 }
+
+

@@ -1,48 +1,46 @@
 <div class="login-component">
     <div class="container {{registerPanel}}" id="container">
         <div class="form-container sign-up-container">
-            <form [formGroup]="register_form" #RegisterForm="ngForm" (ngSubmit)="register()" action="#">
+            <form [formGroup]="registerForm" (ngSubmit)="register()" action="#">
                 <h1>Đăng ký</h1>
                 <div class="social-container">
                     <!-- <img src="assets/image/logo.png" alt=""> -->
                     <h2>ANHEM-CHAT</h2>
                 </div>
                 <span>Đăng ký</span>
-                <div class="alert alert-success" *ngIf="alertCheckSuccess" role="alert">
-                    Đăng ký thành công
-                    <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
+                <div class="alert alert-{{this.alert}}" style="width:100%" *ngIf="this.alert!=''"  role="alert">
+                  {{this.message}}
                 </div>
-                <div class="alert alert-danger" *ngIf="alertCheckFail" role="alert">Tài khoản đã tồn tại</div>
-                <input type="text" placeholder="Họ và tên" formControlName="name" />
-                <p *ngIf="
-        register_form.controls.name.invalid &&
-        register_form.controls.name.touched
+                <input type="text" placeholder="Họ và tên" formControlName="fullname" />
+                <div class="alert alert-danger"  style="width: 300px" *ngIf="
+        registerForm.controls.fullname.invalid &&
+        registerForm.controls.fullname.touched
       ">
                     Vui lòng nhập họ và tên
-                </p>
-                <input type="text" placeholder="Tên Tài Khoản" formControlName="registerName" />
-                <p *ngIf="
-        register_form.controls.registerName.invalid &&
-        register_form.controls.registerName.touched
+                </div>
+                <input type="text" placeholder="Tên Tài Khoản" formControlName="username" />
+                <div  class="alert alert-danger" style="width: 300px" *ngIf="
+        registerForm.controls.username.invalid &&
+        registerForm.controls.username.touched
       ">
                     Vui lòng nhập tên tài khoản
-                </p>
-                <input type="email" placeholder="Email" formControlName="email" />
-                <p *ngIf="
-        register_form.controls.email.invalid &&
-        register_form.controls.email.touched
+                </div>
+                <!-- <input type="email" placeholder="Email" formControlName="email" />
+                <div  class="alert alert-danger" style="width: 300px" *ngIf="
+        registerForm.controls.email.invalid &&
+        registerForm.controls.email.touched
       ">
                     Vui lòng nhập Email
-                </p>
-                <input type="password" placeholder="Mật khẩu" formControlName="registerPassword" />
-                <p *ngIf="
-        register_form.controls.registerPassword.invalid &&
-        register_form.controls.registerPassword.touched
+                </div> -->
+                <input type="password" placeholder="Mật khẩu" formControlName="password" />
+                <div class="alert alert-danger" style="width: 300px" *ngIf="
+        registerForm.controls.password.invalid &&
+        registerForm.controls.password.touched
       ">
                     Vui lòng nhập mật khẩu
-                </p>
+                </div>
 
-                <button type="submit" class="btn" [disabled]="register_form.invalid" (onclick)="register()">Đăng ký</button>
+                <button type="submit"  [disabled]=registerForm.invalid class="btn" (onclick)="register()">Đăng ký</button>
             </form>
         </div>
         <div class="form-container sign-in-container">

@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ChatService } from '../service/chat.service';
+import { DataService } from '../service/data.service';
+import { UserService } from '../service/user.service';
 import { WebSocketService } from '../service/web-socket.service';
 
 @Component({
@@ -9,19 +12,30 @@ import { WebSocketService } from '../service/web-socket.service';
 })
 export class MainScreenComponent implements OnInit {
   roomName:string="";
-  constructor(public chatService:ChatService,
-              private wss:WebSocketService
+  message:string='';
+  alert:string='';
+  constructor(private wss:WebSocketService,private dataService:DataService,private router:Router
               ) { }
-
   ngOnInit(): void {
-   
+    if (sessionStorage.length==0) {
+      this.router.navigateByUrl('login')
+    }
+    this.dataService.message$.subscribe(
+      value => this.message=value
+    )
+    this.dataService.alert$.subscribe(
+      value => this.alert=value
+    )
   }
+
   public createRoomChat() {
-      this.chatService.createRoomChat(this.roomName) ;
-      // await this.wss.receiveMessage();
-      // console.log(this.wss.dataFromServer);
-   }
-   public joinRoomChat() {
-    this.chatService.joinRoomChat(this.roomName) ;
- }
+    this.wss.createRoomChat(this.roomName) ;
+  }
+  public joinRoomChat() {
+    this.wss.joinRoomChat(this.roomName) ;
+  }
+  public clear() {
+    this.roomName='';
+    this.message='';
+  }
 }

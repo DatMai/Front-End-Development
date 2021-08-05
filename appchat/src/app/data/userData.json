@@ -1,135 +1,120 @@
-[{
-        "fullname": "Phan Thành Đoan",
-        "username": "doan",
-        "password": "12345",
-        "email": "thanhdoan1612@gmail.com",
-        "friends": ["dat1", "TEST", "long", "Ton", "Minhnhat", "Phuoc"],
-        "chatContents": [{
-                "name": "TEST",
-                "userList": "TEST",
-                "messages": [
-                    { "message": "Hello", "userName": "Phan Thành Đoan", "mine": true }
-                ],
-                "isGroup": false
-            },
-            {
-                "name": "DOANTEST",
-                "userList": "",
-                "messages": [],
-                "isGroup": true
-            }
-        ]
-    },
-    {
-        "fullname": "Thomas Shelby",
-        "username": "tommy",
-        "password": "12345",
-        "email": "tommy@gmail.com",
-        "friends": ["dat1", "doan", "TEST"],
-        "chatContents": [{
-                "name": "Mai Huỳnh Phước Đạt",
-                "userList": "dat1",
-                "messages": [
-                    { "message": "Hello", "userName": "Thomas Shelby", "mine": true }
-                ],
-                "isGroup": false
-            },
-            {
-                "name": "TEST",
-                "userList": "TEST",
-                "messages": [
-                    { "message": "Hello", "userName": "Thomas Shelby", "mine": true }
-                ],
-                "isGroup": false
-            },
-            {
-                "name": "Phan Thành Đoan",
-                "userList": "doan",
-                "messages": [
-                    { "message": "Hello", "userName": "Thomas Shelby", "mine": false }
-                ],
-                "isGroup": false
-            }
-        ]
-    },
+[
+  {
+    "fullname":"Phan Thành Đoan",
+    "username":"doan",
+    "password":"12345",
+    "email":"thanhdoan1612@gmail.com",
+    "chatContents":[
+      {
+        "name":"Mai Huỳnh Phước Đạt",
+        "userList":"dat1",
+        "messages": [],
+        "isGroup":false,
+        "isSeen":true
+      },
+      {
+        "name":"Phạm Huy Phước",
+        "userList":"Phuoc",
+        "messages": [],
+        "isGroup":false,
+        "isSeen":true
+      },
+      {
+        "name":"Minhnhat",
+        "userList":"Minhnhat",
+        "messages": [],
+        "isGroup":false,
+        "isSeen":true
+      },
+      {
+        "name":"TEST",
+        "userList":"TEST",
+        "messages": [],
+        "isGroup":false,
+        "isSeen":true
+      },{
+        "name":"Ton",
+        "userList":"Ton",
+        "messages": [],
+        "isGroup":false,
+        "isSeen":true
+      },{
+        "name":"DOANTEST",
+        "userList":"",
+        "messages":[],
+        "isGroup":true,
+        "isSeen":false,
+        "totalPage":1
+      },{
+        "name":"Alo",
+        "userList":"",
+        "messages":[],
+        "isGroup":true,
+        "isSeen":false,
+        "totalPage":1
+      }
+    ],
+    "status":""
+  },
+  {
+    "fullname":"Mai Huỳnh Phước Đạt",
+    "username":"dat1",
+    "password":"12345",
+    "email":"thanhdoan1612@gmail.com",
+    "status":""
+  },
+  {
+    "fullname":"TEST",
+    "username":"TEST",
+    "password":"12345",
+    "email":"test@gmail.com",
+    "chatContents":[
+      {
+        "name":"doan",
+        "userList":"doan",
+        "messages": [],
+        "isGroup":false,
+        "isSeen":false
+      }
+    ],
+    "status":""
 
-    {
-        "fullname": "Mai Huỳnh Phước Đạt",
-        "username": "dat1",
-        "password": "12345",
-        "email": "phct869@gmail.com",
-        "friends": ["doan", "tommy", "TEST"],
-        "chatContents": [{
-                "name": "Thomas Shelby",
-                "userList": "tommy",
-                "messages": [
-                    { "message": "Hello", "userName": "Mai Huỳnh Phước Đạt", "mine": true }
-                ],
-                "isGroup": false
-            },
-            {
-                "name": "TEST",
-                "userList": "TEST",
-                "messages": [
-                    { "message": "Hello", "userName": "Thomas Shelby", "mine": true }
-                ],
-                "isGroup": false
-            },
-            {
-                "name": "Phan Thành Đoan",
-                "userList": "doan",
-                "messages": [
-                    { "message": "Hello", "userName": "Thomas Shelby", "mine": false }
-                ],
-                "isGroup": false
-            }
-        ]
-    },
-    {
-        "fullname": "TEST",
-        "username": "TEST",
-        "password": "12345",
-        "email": "test@gmail.com",
-        "friends": ["doan", "dat1"],
-        "chatContents": [{
-            "name": "Phan Thành Đoan",
-            "userList": "doan",
-            "messages": [
-                { "message": "Hello", "userName": "Phan Thành Đoan", "mine": false }
-            ],
-            "isGroup": false
-        }]
-    },
-    {
-        "fullname": "Phạm Đình Long",
-        "username": "long",
-        "password": "12345",
-        "email": "dinhlong@gmail.com",
-        "friends": ["dat1", "TEST", "doan"],
-        "chatContents": []
-    },
-    {
-        "fullname": "Phạm Huy Phước",
-        "username": "Phuoc",
-        "password": "123456",
-        "email": "",
-        "friends": ["dat1", "TEST", "doan"],
-        "chatContents": []
-    },
-    {
-        "fullname": "Trần Quang Minh Nhật",
-        "username": "Minhnhat",
-        "password": "123456",
-        "email": "dinhlong@gmail.com",
-        "friends": ["dat1", "TEST", "doan"],
-        "chatContents": []
-    },
-    {
-        "fullname": "Lê Phan Thanh Tôn",
-        "username": "Ton",
-        "password": "123456",
-        "email": "",
-        "friends": ["dat1", "TEST", "doan"],
-        "chatContents": []
-    }
+  }, {
+    "fullname":"Phạm Đình Long",
+    "username":"long",
+    "password":"12345",
+    "email":"dinhlong@gmail.com",
+    "chatContents":[],
+    "status":""
+  }, {
+    "fullname":"Phạm Huy Phước",
+    "username":"Phuoc",
+    "password":"123456",
+    "email":"",
+    "chatContents":[],
+    "status":""
+  }, {
+    "fullname":"Trần Quang Minh Nhật",
+    "username":"Minhnhat",
+    "password":"123456",
+    "email":"dinhlong@gmail.com",
+    "chatContents":[],
+    "status":""
+  }, {
+    "fullname":"Lê Phan Thanh Tôn",
+    "username":"Ton",
+    "password":"123456",
+    "email":"",
+    "chatContents":[]
+  },
+  {
+    "fullname":"nhat",
+    "username":"nhat",
+    "password":"123456",
+    "email":"",
+    "chatContents":[]
+  }
 ]
+
+
+
