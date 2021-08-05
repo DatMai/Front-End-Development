@@ -1,0 +1,37 @@
+<div id="right-manager">
+<!--  <img src="assets/image/avatar.jpg">-->
+  <div class="title">
+<!--    <img src="../../../../assets/image/avatar.jpg" class="title__avatar">-->
+    <h4 class="title__name">Tùy Chỉnh</h4>
+  </div>
+  <div class="manager__chat-setting">
+    <h6 (click)="showChatSetting()" class="chat-setting__title">Tùy chỉnh đoạn chat</h6>
+  <ul *ngIf="isShowChatSetting" class="chat-setting__list">
+    <li class="list__item"> Item 1 </li>
+    <li class="list__item"> Item 2 </li>
+    <li class="list__item"> Item 3 </li>
+    <li class="list__item"> Item 4 </li>
+  </ul>
+  </div>
+  <div class="manager__chat-private">
+    <h6 (click)="showChatPrivate()" class="chat-setting__title">Quyền riêng tư và hỗ trợ</h6>
+    <ul *ngIf="isShowChatPrivate" class="chat-setting__list">
+      <li class="list__item"> Item 1 </li>
+      <li class="list__item"> Item 2 </li>
+      <li class="list__item"> Item 3 </li>
+      <li class="list__item"> Item 4 </li>
+    </ul>
+  </div>
+
+  <div class="manager__chat-sharing">
+    <h6 (click)="showChatSharing()" class="chat-setting__title">Tệp được chia sẻ</h6>
+    <ul *ngIf="isShowChatSharing" class="chat-setting__list">
+      <li class="list__item"> Item 1 </li>
+      <li class="list__item"> Item 2 </li>
+      <li class="list__item"> Item 3 </li>
+      <li class="list__item"> Item 4 </li>
+    </ul>
+  </div>
+
+
+</div>
