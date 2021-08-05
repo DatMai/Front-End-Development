@@ -24,7 +24,7 @@ import { HeaderComponent } from './main-screen/left-container/header/header.comp
 import { RightTypingComponent } from './main-screen/right-container/right-typing/right-typing.component';
 import { RightHeaderComponent } from './main-screen/right-container/right-header/right-header.component';
 import { MainScreenComponent } from './main-screen/main-screen.component';
-import { RightManagerComponent } from './right-container/right-manager/right-manager.component';
+import { RightManagerComponent } from './main-screen/right-container/right-manager/right-manager.component';
 import { RoomModalComponent } from './main-screen/room-modal/room-modal.component';
 
 

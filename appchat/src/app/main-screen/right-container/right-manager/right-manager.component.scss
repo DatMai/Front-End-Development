@@ -1,0 +1,29 @@
+#right-manager{
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  .title{
+    padding-top: 25px;
+    padding-bottom: 25px;
+    width: 100%;
+    text-align: center;
+    .title__name{}
+  }
+  .manager__chat-setting{
+    width: 100%;
+    .chat-setting__title{
+      width: 100%;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      float: left;
+      cursor: pointer;
+
+    }
+    .chat-setting__list{
+      .list__item{
+        list-style: none;
+      }
+    }
+  }
+}

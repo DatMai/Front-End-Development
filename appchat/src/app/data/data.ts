@@ -11,6 +11,13 @@ let data = [
     "password":"12345",
     "email":"thanhdoan1612@gmail.com"
   }
+  ,
+  {
+    "fullname":"Ám Hương Sơ Ảnh",
+    "username":"huong",
+    "password":"12345",
+    "email":"thanhdoan1612@gmail.com"
+  }
 ]
 
 

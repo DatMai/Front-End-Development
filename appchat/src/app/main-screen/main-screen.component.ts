@@ -19,8 +19,6 @@ export class MainScreenComponent implements OnInit {
       this.router.navigateByUrl('login');
     }
   }
-  public isShowManager(){
-    return this.dataService.isShowManager;
-  }
+
 
 }

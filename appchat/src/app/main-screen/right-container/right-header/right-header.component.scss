@@ -26,16 +26,11 @@
         }
     }
     .header__actions {
-        padding-left: 0px !important;
-        padding-right: 0px !important;
-        background-color: none;
-        float: right;
-        padding-left: 10vh;
-        // margin-right: 30px;
+        background-color: transparent;
+         //margin-right: 30px;
         .fas {
             float: right;
             font-size: 2vw;
-            // font-size: 26px;
         }
     }
 }
