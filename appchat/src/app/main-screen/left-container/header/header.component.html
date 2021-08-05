@@ -14,7 +14,7 @@
     </div>
     <div class="searching-bar flex container">
         <div class="row">
-            <input class="col-9 input--border" type="text" (keydown.enter)="search()" placeholder="Enter name to search" [(ngModel)]="name" />
+            <input class="col-9 input--border" type="text" (click)="showSearch()" (keyup)="search()" placeholder="Enter name to search" [(ngModel)]="this.name" />
             <button class="col-3 submit--btn" type="submit " (click)="search()">
             <i class="fas fa-search"></i>
           </button>
