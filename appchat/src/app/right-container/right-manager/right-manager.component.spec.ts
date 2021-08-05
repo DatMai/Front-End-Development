@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RightTypingComponent } from './right-typing.component';
+import { RightManagerComponent } from './right-manager.component';
 
-describe('RightTypingComponent', () => {
-  let component: RightTypingComponent;
-  let fixture: ComponentFixture<RightTypingComponent>;
+describe('RightManagerComponent', () => {
+  let component: RightManagerComponent;
+  let fixture: ComponentFixture<RightManagerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RightTypingComponent ]
+      declarations: [ RightManagerComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RightTypingComponent);
+    fixture = TestBed.createComponent(RightManagerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

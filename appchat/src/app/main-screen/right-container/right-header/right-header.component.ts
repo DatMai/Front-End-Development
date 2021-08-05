@@ -16,5 +16,8 @@ export class RightHeaderComponent implements OnInit {
   public getSelectedChatContent() {
     return this.dataService.getSelectedChatContent();
   }
-
+  public showManager(){
+    let a = document.getElementById('right-manager')||document.body;
+    a.style.display='block';
+  }
 }

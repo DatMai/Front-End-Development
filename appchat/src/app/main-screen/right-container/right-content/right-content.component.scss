@@ -12,6 +12,7 @@
         .avatar {
             border-radius: 50%;
             width: 40px;
+            // visibility: hidden;
         }
         .text {
             font-size: 16px;
@@ -57,7 +58,6 @@
     }
 
     .partner-chat+.my-chat {
-
         margin-top: 30px;
     }
 
@@ -65,7 +65,11 @@
         margin-top: 30px;
     }
 
-    .partner-chat+.partner-chat {}
+    .partner-chat+.partner-chat {
+      // .avatar:last-child{
+      //   visibility:visible;
+      // }
+    }
 
     .between {
         .partner__text {

@@ -81,7 +81,12 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
     }
     return false;
   }
-
+  public isShowAvatar(index:number){
+    if(this.typeOfMes(index) == "end"  || this.typeOfMes(index) == "single"){
+      return true;
+    }
+    return false;
+  }
   public addCss(){
     // let parent = document.querySelectorAll(".begin");
     // let partner__text = document.querySelector("/p")
