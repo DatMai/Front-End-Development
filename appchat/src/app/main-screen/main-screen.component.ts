@@ -16,7 +16,7 @@ export class MainScreenComponent implements OnInit {
               ) { }
   ngOnInit(): void {
     if (sessionStorage.length==0) {
-      this.router.navigateByUrl('login')
+      this.router.navigateByUrl('login');
     }
   }
   public isShowManager(){

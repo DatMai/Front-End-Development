@@ -15,14 +15,8 @@ import userData  from '../data/userData.json';
 })
 
 export class DataService implements OnInit  {
-  private searchSubject: BehaviorSubject<string> = new BehaviorSubject<string>(
-    ''
-  );
-  seach$: Observable<string> = this.searchSubject.asObservable();
-  private userSearchSubject: BehaviorSubject<UserModel[]> = new BehaviorSubject<UserModel[]>([]);
-  private checkSearchSubject: BehaviorSubject<boolean> =new BehaviorSubject<boolean>(false);
-    checkSearch$: Observable<boolean> = this.checkSearchSubject.asObservable();
-  userSearch$: Observable<UserModel[]> = this.userSearchSubject.asObservable();
+  private searchSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  search$: Observable<string> = this.searchSubject.asObservable();
   USERLOGIN :UserModel={};
   userIsChecking :UserModel={};
   selectedEmoji$ = new BehaviorSubject<EmojisModel>({});
@@ -47,15 +41,11 @@ export class DataService implements OnInit  {
   ngOnInit(): void {
 
   }
-  public setCheckSearch(check: boolean) {
-    return this.checkSearchSubject.next(check);
-  }
+
   setSearchKeyword(text: string) {
     this.searchSubject.next(text);
   }
-  setUserSearch(users: UserModel[]) {
-    this.userSearchSubject.next(users);
-  }
+
   public resetData(){
     this.isShowListFriend=false;
     this.isShowListChatBox=true;
