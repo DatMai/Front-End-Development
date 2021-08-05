@@ -10,14 +10,26 @@ import { WebSocketService } from 'src/app/service/web-socket.service';
 @Component({
   selector: 'app-content',
   templateUrl: './content.component.html',
-  styleUrls: ['./content.component.scss']
+  styleUrls: ['./content.component.scss'],
 })
 export class ContentComponent implements OnInit {
-  USERLOGIN:UserModel={};
-  constructor(private dataService:DataService,private userService:UserService,private wss:WebSocketService,private chatService:ChatService) { }
+  USERLOGIN: UserModel = {};
+  checkSearch: boolean = false;
+  name: string = '';
+  constructor(
+    private dataService: DataService,
+    private userService: UserService,
+    private wss: WebSocketService,
+    private chatService: ChatService
+  ) {}
 
   ngOnInit(): void {
-    this.USERLOGIN=JSON.parse(sessionStorage.USERLOGIN);
+    this.dataService.seach$.subscribe((text) => (this.name = text));
+
+    this.dataService.checkSearch$.subscribe(
+      (check) => (this.checkSearch = check)
+    );
+    this.USERLOGIN = JSON.parse(sessionStorage.USERLOGIN);
   }
   public logout() {
     this.wss.logout();
@@ -28,7 +40,13 @@ export class ContentComponent implements OnInit {
     // this.wss.sendMessage1();
     // this.wss.receiveMessage();
   }
-  public checkUser(user:UserModel) {
+  public getListSearch() {
+    return this.userService.search(this.name);
+  }
+  public isShowSearch() {
+    return this.dataService.isShowSearch;
+  }
+  public checkUser(user: UserModel) {
     return this.wss.checkUser(user);
   }
   public isShowListChatBox() {
@@ -37,7 +55,7 @@ export class ContentComponent implements OnInit {
   public isShowListFriend() {
     return this.dataService.isShowListFriend;
   }
-  public isShowSetting(){
+  public isShowSetting() {
     return this.dataService.isShowSetting;
   }
   public getListUser() {
@@ -50,21 +68,20 @@ export class ContentComponent implements OnInit {
     return this.dataService.getChatContentExample();
   }
 
-  public setSelectedChatContent(chatContent:ChatContent){
+  public setSelectedChatContent(chatContent: ChatContent) {
     // this.userService.getAudio();
     this.chatService.setSelectedChatContent(chatContent);
   }
-  public setSelectedChatContentByUserModel(usermodel:UserModel){
+  public setSelectedChatContentByUserModel(usermodel: UserModel) {
     this.checkUser(usermodel);
     this.chatService.setSelectedChatContentByUserModel(usermodel);
   }
 
-  public goToBottom(){
-    let bottomPoint =(document.getElementById('chatContent')||document.body);
-    bottomPoint.scrollTo(0,bottomPoint.scrollHeight);
+  public goToBottom() {
+    let bottomPoint = document.getElementById('chatContent') || document.body;
+    bottomPoint.scrollTo(0, bottomPoint.scrollHeight);
   }
-  public getNewMessage(chatContent:ChatContent):string{
+  public getNewMessage(chatContent: ChatContent): string {
     return this.chatService.getNewMessage(chatContent);
   }
-
 }

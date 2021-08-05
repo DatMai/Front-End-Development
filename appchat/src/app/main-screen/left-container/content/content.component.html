@@ -6,11 +6,21 @@
                 <span class="text--small" [ngClass]="{is_not_seen: !f.isSeen}"><br>{{this.getNewMessage(f)}}</span></h4>
         </div>
     </div>
-    <div class="list-friends list" *ngIf="this.isShowListFriend()" >
+    <div class="list-friends list" *ngIf="this.isShowListFriend()">
         <div class="friend" *ngFor="let f of this.getListUser()" (click)="setSelectedChatContentByUserModel(f)">
-            <img class="friend__avatar avatar--circle avatar--small" src="../../../../assets/image/avatar.jpg" alt="">
-            <h4 class="friend__infor">{{f.fullname}}
-                <span class="text--small"><br>{{f.status}}</span></h4>
+            <img class="friend__avatar avatar--circle avatar--small" src="../../../../assets/image/avatar.jpg" alt="" />
+            <h4 class="friend__infor">
+                {{ f.fullname }} <span class="text--small"><br />{{ f.status }}</span>
+            </h4>
+        </div>
+    </div>
+    <div class="list-friends list" *ngIf="this.isShowSearch()">
+        <div class="checkSearch" *ngIf="checkSearch"> <i>"Không có kết quả tìm kiếm"</i> </div>
+        <div class="friend" *ngFor="let f of this.getListSearch()" (click)="setSelectedChatContentByUserModel(f)">
+            <img class="friend__avatar avatar--circle avatar--small" src="../../../../assets/image/avatar.jpg" alt="" />
+            <h4 class="friend__infor">
+                {{ f.fullname }} <span class="text--small"><br />{{ f.status }}</span>
+            </h4>
         </div>
     </div>
     <div class="setting list" *ngIf="this.isShowSetting()">

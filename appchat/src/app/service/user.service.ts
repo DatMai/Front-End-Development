@@ -16,6 +16,19 @@ export class UserService {
 
   constructor(private dataService:DataService) {
   }
+  public search(name: string): UserModel[] {
+    let users: UserModel[] = [];
+    users = this.userList.filter((res) => {
+      return res.fullname?.toLocaleLowerCase().match(name.toLocaleLowerCase());
+    });
+    if (users.length == 0) {
+      this.dataService.setCheckSearch(true);
+    } else {
+      this.dataService.setCheckSearch(false);
+    }
+    return users;
+  }
+
 
    public findByUserName(userName:string):UserModel{
     let u: UserModel= this.userList.find(user =>
