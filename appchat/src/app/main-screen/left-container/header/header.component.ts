@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { UserModel } from 'src/app/model/userModel';
 import { DataService } from 'src/app/service/data.service';
 import { UserService } from 'src/app/service/user.service';
+import { EventEmitter } from 'stream';
 
 @Component({
   selector: 'app-header',
@@ -11,21 +13,17 @@ import { UserService } from 'src/app/service/user.service';
 export class HeaderComponent implements OnInit {
   roomName: string = '';
   USERLOGIN: UserModel = {};
-
-  name!: string;
+  name: string='';
   check: boolean = false;
   constructor(
     private dataService: DataService,
-    private userService: UserService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
   public search() {
     this.dataService.setSearchKeyword(this.name);
-    this.dataService.isShowSearch = true;
-    this.dataService.isShowListFriend = false;
-    this.dataService.isShowListChatBox = false;
-    this.dataService.isShowSetting = false;
+
   }
 
   public showSetting() {
@@ -57,5 +55,11 @@ export class HeaderComponent implements OnInit {
   }
   public isShowSetting() {
     return this.dataService.isShowSetting;
+  }
+  public showSearch() {
+    this.dataService.isShowSearch = true;
+    this.dataService.isShowListFriend = false;
+    this.dataService.isShowListChatBox = false;
+    this.dataService.isShowSetting = false;
   }
 }

@@ -12,6 +12,7 @@
           .time-text--container{
             //display: flex;
             align-items: center;
+
           }
         }
         .avatar {
@@ -28,6 +29,7 @@
         align-items: center;
         visibility: hidden;
         border-radius: 10px;
+        width: fit-content;
       }
         .text {
             font-size: 16px;

@@ -24,24 +24,17 @@ export class ContentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.dataService.seach$.subscribe((text) => (this.name = text));
-
-    this.dataService.checkSearch$.subscribe(
-      (check) => (this.checkSearch = check)
-    );
+    this.dataService.search$.subscribe((text) => (this.name = text));
     this.USERLOGIN = JSON.parse(sessionStorage.USERLOGIN);
   }
   public logout() {
     this.wss.logout();
-    // console.log(this.dataService.reLoginCode);
-    // this.wss.relogin();
-
-    // this.wss.getReLoginMessage("doan",this.dataService.reLoginCode);
-    // this.wss.sendMessage1();
-    // this.wss.receiveMessage();
   }
   public getListSearch() {
     return this.userService.search(this.name);
+  }
+  public isCheckSearch() {
+    return this.name.length!=0;
   }
   public isShowSearch() {
     return this.dataService.isShowSearch;

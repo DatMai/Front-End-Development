@@ -11,31 +11,16 @@ import { WebSocketService } from '../service/web-socket.service';
   styleUrls: ['./main-screen.component.scss']
 })
 export class MainScreenComponent implements OnInit {
-  roomName:string="";
-  message:string='';
-  alert:string='';
+
   constructor(private wss:WebSocketService,private dataService:DataService,private router:Router
               ) { }
   ngOnInit(): void {
     if (sessionStorage.length==0) {
-      this.router.navigateByUrl('login')
+      this.router.navigateByUrl('login');
     }
-    this.dataService.message$.subscribe(
-      value => this.message=value
-    )
-    this.dataService.alert$.subscribe(
-      value => this.alert=value
-    )
+  }
+  public isShowManager(){
+    return this.dataService.isShowManager;
   }
 
-  public createRoomChat() {
-    this.wss.createRoomChat(this.roomName) ;
-  }
-  public joinRoomChat() {
-    this.wss.joinRoomChat(this.roomName) ;
-  }
-  public clear() {
-    this.roomName='';
-    this.message='';
-  }
 }

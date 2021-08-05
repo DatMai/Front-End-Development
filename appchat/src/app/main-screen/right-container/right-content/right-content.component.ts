@@ -91,8 +91,50 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
     // let parent = document.querySelectorAll(".begin");
     // let partner__text = document.querySelector("/p")
   }
+  public getDate(time:string){
+    let rs:string ='';
+    let thatday = new Date(time);
+    let today = new Date();
+    let timers:string = '';
+
+    timers+=thatday.getHours()+':'+(thatday.getUTCMinutes()>10?thatday.getUTCMinutes():'0'+thatday.getUTCMinutes());
+    //Thời gian xa ,định dạng mm/dd/yyyy hh:mm
+    rs = thatday.toLocaleDateString() +' ' + timers;
 
 
+    //số ngày trong mỗi tháng
+    var dayOfMonth = [31,28,31,30,31,30,31,31,30,31,30,31];
+    //xét trường hợp năm nhuận
+    if (today.getFullYear()%400==0){
+        dayOfMonth = [31,29,31,30,31,30,31,31,30,31,30,31];
+    }else{
+      if (today.getFullYear()%4==0) {
+        dayOfMonth = [31,29,31,30,31,30,31,31,30,31,30,31];
+      }
+    }
+
+    //Thời gian gần (trong 1 tuần) , định dạng : Thứ .. giờ:phút
+    var days = ['Chủ nhật', 'Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7'];
+
+    if (thatday.getFullYear()==today.getFullYear()) {
+      //cùng tuần cùng tháng
+      if (thatday.getMonth()==today.getMonth()){
+        if ((today.getDate()-thatday.getDate())<7) {
+            rs=days[thatday.getDay()]+' '+timers;
+        }
+      }
+      //cùng tuần khác tháng
+        if ((today.getMonth()-thatday.getMonth())==1){
+          let todayDate = dayOfMonth[thatday.getMonth()]+today.getDate();
+          // let thatDate = dayOfMonth[thatday.getMonth()]+thatday.getDate();
+          if (todayDate-thatday.getDate()<7) {
+            rs=days[thatday.getDay()]+' '+timers;
+        }
+      }
+    }
+    return rs;
+
+  }
 
 
 }
