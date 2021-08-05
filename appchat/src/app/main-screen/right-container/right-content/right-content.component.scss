@@ -17,6 +17,7 @@
         .avatar {
             border-radius: 50%;
             width: 40px;
+            // visibility: hidden;
         }
       .send-time{
         color: wheat !important;
@@ -56,6 +57,7 @@
                 margin-left: 13px;
               }
             }
+
             .partner__text:hover {
               background-color:blue;
           }
@@ -82,7 +84,6 @@
     }
 
     .partner-chat+.my-chat {
-
         margin-top: 30px;
     }
 
@@ -91,9 +92,10 @@
     }
 
     .partner-chat+.partner-chat {
-      .avatar{
-        visibility: hidden;
-      }
+
+      .avatar:last-child{
+     visibility:visible;
+
     }
 
     .between {
