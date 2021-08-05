@@ -8,18 +8,38 @@
             p {
                 margin: 0px;
             }
+
+          .time-text--container{
+            //display: flex;
+            align-items: center;
+          }
         }
         .avatar {
             border-radius: 50%;
             width: 40px;
             // visibility: hidden;
         }
+      .send-time{
+        color: wheat !important;
+        padding: 2px;
+        position: absolute;
+        z-index: 999;
+        background-color: #221c1f;
+        align-items: center;
+        visibility: hidden;
+        border-radius: 10px;
+      }
         .text {
             font-size: 16px;
             padding: 10px;
             word-wrap: break-word;
             border-radius: 30px;
+
         }
+      .text:hover .send-time{
+        transition: linear 0.2ms;
+        visibility: visible;
+      }
         .partner-chat {
             position: relative;
             z-index: 2;
@@ -33,6 +53,9 @@
                 max-width: 70vh;
                 color: rgb(255, 255, 255);
                 background-image: linear-gradient(#d32a4c, #eb522c);
+              .send-time{
+                margin-left: 13px;
+              }
             }
 
             .partner__text:hover {
@@ -53,6 +76,9 @@
                 float: right;
                 color: black;
                 background-color: gray;
+              .send-time{
+                margin-left: -55px;
+              }
             }
         }
     }
@@ -66,9 +92,10 @@
     }
 
     .partner-chat+.partner-chat {
-      // .avatar:last-child{
-      //   visibility:visible;
-      // }
+
+      .avatar:last-child{
+     visibility:visible;
+
     }
 
     .between {
