@@ -10,7 +10,7 @@
             font-size: 16px;
             padding: 0.5vw;
             word-wrap: break-word;
-            border-radius: 1vw;
+
         }
         .text--wrapper {}
         .partner-chat {
@@ -28,6 +28,7 @@
                 color: rgb(255, 255, 255);
                 background-image: linear-gradient(#d32a4c, #eb522c);
             }
+      
             .partner__text:hover {
               background-color:blue;
           }

@@ -9,6 +9,7 @@ import { ChatService } from './chat.service';
 import { EmojisModel } from '../model/emojisModel';
 import userData  from '../data/userData.json';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,11 +19,8 @@ export class DataService implements OnInit  {
     ''
   );
   seach$: Observable<string> = this.searchSubject.asObservable();
-  private userSearchSubject: BehaviorSubject<UserModel[]> = new BehaviorSubject<
-    UserModel[]
-    >([]);
-    private checkSearchSubject: BehaviorSubject<boolean> =
-    new BehaviorSubject<boolean>(false);
+  private userSearchSubject: BehaviorSubject<UserModel[]> = new BehaviorSubject<UserModel[]>([]);
+  private checkSearchSubject: BehaviorSubject<boolean> =new BehaviorSubject<boolean>(false);
     checkSearch$: Observable<boolean> = this.checkSearchSubject.asObservable();
   userSearch$: Observable<UserModel[]> = this.userSearchSubject.asObservable();
   USERLOGIN :UserModel={};
