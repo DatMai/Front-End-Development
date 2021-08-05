@@ -25,6 +25,7 @@ import { RightTypingComponent } from './main-screen/right-container/right-typing
 import { RightHeaderComponent } from './main-screen/right-container/right-header/right-header.component';
 import { MainScreenComponent } from './main-screen/main-screen.component';
 import { RightManagerComponent } from './right-container/right-manager/right-manager.component';
+import { RoomModalComponent } from './main-screen/room-modal/room-modal.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { RightManagerComponent } from './right-container/right-manager/right-man
     RightContentComponent,
     RightTypingComponent,
     RightManagerComponent,
+    RoomModalComponent,
 
   ],
   imports: [BrowserModule, AppRoutingModule,FormsModule,ReactiveFormsModule],

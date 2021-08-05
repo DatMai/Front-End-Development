@@ -37,6 +37,7 @@ export class DataService implements OnInit  {
   isShowListChatBox:boolean=true;
   isShowSetting: boolean = false;
   isShowSearch: boolean = false;
+  isShowManager: boolean = false;
   chatContentUserName:string='';
   userList  :UserModel[]=userData;
   constructor() {
