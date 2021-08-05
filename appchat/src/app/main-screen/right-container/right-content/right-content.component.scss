@@ -12,6 +12,7 @@
         .avatar {
             border-radius: 50%;
             width: 40px;
+            // visibility: hidden;
         }
         .text {
             font-size: 16px;
@@ -33,6 +34,7 @@
                 color: rgb(255, 255, 255);
                 background-image: linear-gradient(#d32a4c, #eb522c);
             }
+
             .partner__text:hover {
               background-color:blue;
           }
@@ -56,7 +58,6 @@
     }
 
     .partner-chat+.my-chat {
-
         margin-top: 30px;
     }
 
@@ -64,7 +65,11 @@
         margin-top: 30px;
     }
 
-    .partner-chat+.partner-chat {}
+    .partner-chat+.partner-chat {
+      // .avatar:last-child{
+      //   visibility:visible;
+      // }
+    }
 
     .between {
         .partner__text {
