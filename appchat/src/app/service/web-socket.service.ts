@@ -531,11 +531,12 @@ export class WebSocketService {
   public getSendChatResponse(data: any) {
     if (data.event == 'SEND_CHAT') {
       if (data.status == 'success') {
+        let createAt = new Date().toLocaleString();
         let mes = {
           message: data.data.mes,
           userName: data.data.name,
           mine: false,
-          createAt: data.data.createAt,
+          createAt: createAt,
           description: 'mes',
         };
         if (data.data.type == '1') {
@@ -551,7 +552,7 @@ export class WebSocketService {
         } else {
           let chatContentWithThisUsermodel =
             this.dataService.chatContentExample.find(
-              (element) => element.userList == data.data.name
+              (element) =>(element.userList == data.data.name)&&(!element.isGroup)
             )|| {};
           if (chatContentWithThisUsermodel.name == undefined) {
             let u= this.userService.findByUserName(data.data.name);

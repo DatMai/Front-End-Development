@@ -22,23 +22,19 @@ export class ChatService {
   ) {
 
   }
-  public getNewMessage(chatContent:ChatContent):string{
-    let listMessages=chatContent.messages||[{message:"Chưa có tin nhắn mới",userName:"Chưa có tin nhắn mới",mine:false}];
-    let lastMessage=listMessages[listMessages.length-1]||{message:"Chưa có tin nhắn mới",userName:"Chưa có tin nhắn mới",mine:false};
-    let rs :string;
-    if (lastMessage.message=="Chưa có tin nhắn mới") {
-      rs="Chưa có tin nhắn mới";
-    }else if(lastMessage.mine){
-      rs= "You : "+lastMessage.message;
-
+  public getLastMessage(chatContent:ChatContent):any{
+    let listMessages=chatContent.messages||[];
+    let rs :any;
+    if (listMessages.length==0) {
+      rs= "Chưa có tin nhắn mới";
     }else{
-      rs= lastMessage.userName+ " : "+lastMessage.message;
-    };
+      let lastMessage=listMessages[listMessages.length-1];
+      rs =lastMessage;
+    }
     return rs;
   }
   public sendTo(message:string) {
     let createAt=  new Date().toLocaleString();
-
     let chatContentWithThisUsermodel;
     if (message!='') {
       if(this.dataService.selectedChatContent.isGroup){

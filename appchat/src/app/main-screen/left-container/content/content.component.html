@@ -3,7 +3,7 @@
     <div class="friend" *ngFor="let f of this.getChatContentExample()" (click)="setSelectedChatContent(f)">
       <img class="friend__avatar avatar--circle avatar--small" src="../../../../assets/image/avatar.jpg" alt="">
       <h4 class="friend__infor">{{f.name}}
-        <span class="text--small" [ngClass]="{is_not_seen: !f.isSeen}"><br>{{this.getNewMessage(f)}}</span>
+        <span class="text--small" [ngClass]="{is_not_seen: !f.isSeen}"><br>{{this.getStringLastMessage(f)}}   {{this.getLastTime(f)}}</span>
       </h4>
     </div>
   </div>

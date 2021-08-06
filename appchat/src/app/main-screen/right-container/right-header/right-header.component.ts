@@ -19,4 +19,5 @@ export class RightHeaderComponent implements OnInit {
   public showManager(){
     this.dataService.isShowManager=!this.dataService.isShowManager;
   }
+  
 }
