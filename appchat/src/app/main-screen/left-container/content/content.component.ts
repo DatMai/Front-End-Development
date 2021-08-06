@@ -178,29 +178,70 @@ export class ContentComponent implements OnInit {
           } else {
             rs = distanceMonth - 1 + ' tháng';
           }
-        } else if (distanceMonth == 1) {
-          if (distanceDate >= 0) {
-            rs = '1 tháng';
-          } else {
-            rs = dayOfMonth[thatday.getMonth()] + distanceDate + 'ngày';
-          }
         } else {
-          let second =
-            today.getDate() * 24 * 60 * 60 +
-            today.getHours() * 60 * 60 +
-            today.getMinutes() * 60 -
-            (thatday.getDate() * 24 * 60 * 60 +
-            thatday.getHours() * 60 * 60 +
-            thatday.getMinutes() * 60);
-            let minutes = second/60>0?(second-second%60)/60:1;
-            let hours =(minutes-minutes%60)/60;
-            let days = (hours-hours%24)/24;
-            if(days>0) return rs = days + ' ngày';
-            if(hours>0) return rs = hours + ' giờ';
-            if(minutes>0) return rs = minutes + ' phút';
+          if (distanceMonth==1) {
+            if (distanceDate >= 0) {
+              rs = distanceMonth + ' tháng';
+            } else {
+              rs = dayOfMonth[today.getMonth()]+distanceDate + ' ngày';
+            }
+          } else {
+            let distanceHours = today.getHours() - thatday.getHours();
+            if (distanceDate > 1) {
+              if (distanceHours >= 0) {
+                rs = distanceDate + ' ngày';
+              } else{
+                rs = distanceDate-1 + ' ngày';
+              }
+            }else{
+              if (distanceDate==1) {
+                if (distanceHours>=0) {
+                  rs = '1 ngày';
+                } else {
+                  rs = 24+distanceHours+' giờ';
+                }
+              }else{
+                let distanceMinutes = today.getMinutes() - thatday.getMinutes();
+                if (distanceHours > 1) {
+                  if (distanceMinutes>=0) {
+                    rs =distanceHours+' giờ';
+                  }else{
+                    rs =distanceHours-1+' giờ';
+                  }
+                }else{
+                  if (distanceHours == 1) {
+                    if (distanceMinutes>=0) {
+                      rs ='1 giờ';
+                    }else{
+                      rs =60+distanceMinutes+' phút';
+                    }
+                  }else{
+                    if (distanceMinutes>0) {
+                      rs =distanceMinutes+' phút';
+                    }else{
+                      rs =1+' phút';
+                    }
+                  }
+                }
+              }
+            }
           }
+
+        }
       }
-    } else rs = distanceYear + ' năm';
+    } else {
+      let distanceMonth = today.getMonth() - thatday.getMonth();
+      if (distanceMonth > 0) {
+        rs = distanceYear + ' năm';
+      } else if (distanceMonth == 0) {
+        let distanceDate = today.getDate() - thatday.getDate();
+        if (distanceDate >= 0) {
+          rs = distanceYear + ' năm';
+        } else {
+          rs = distanceYear - 1 + ' năm';
+        }
+      } else rs = distanceYear - 1 + ' năm';
+    }
     return rs;
   }
 }
