@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {DataService} from "../../../service/data.service";
-import { WOW } from 'wowjs';
+
+import { DataService } from 'src/app/service/data.service';
+
 @Component({
   selector: 'app-right-manager',
   templateUrl: './right-manager.component.html',
@@ -10,9 +11,11 @@ export class RightManagerComponent implements OnInit {
   isShowChatSetting:boolean = false;
   isShowChatSharing:boolean = false;
   isShowChatPrivate:boolean = false;
-  constructor() { }
+  constructor(private dataService:DataService
+    ) { }
 
   ngOnInit(): void {
+
   }
 
   public isActive(bol :boolean){
@@ -26,8 +29,12 @@ export class RightManagerComponent implements OnInit {
   public clickEffect(){
   }
 
-
-
+  public getSelectedChatContent() {
+    return this.dataService.getSelectedChatContent();
+  }
+  public isShowUserList() {
+    return this.getSelectedChatContent().isGroup;
+  }
 
   public showChatSetting(){
     this.isShowChatSetting = !this.isShowChatSetting

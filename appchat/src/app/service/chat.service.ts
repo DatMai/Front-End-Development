@@ -19,7 +19,6 @@ export class ChatService {
           private wss:WebSocketService,
           private dataService:DataService,
           private router:Router,
-          private userService:UserService,
   ) {
 
   }
@@ -38,6 +37,8 @@ export class ChatService {
     return rs;
   }
   public sendTo(message:string) {
+    let createAt=  new Date().toLocaleString();
+
     let chatContentWithThisUsermodel;
     if (message!='') {
       if(this.dataService.selectedChatContent.isGroup){
@@ -55,13 +56,13 @@ export class ChatService {
         this.dataService.chatContentExample.push({
           "name":this.dataService.selectedChatContent.name,
           "userList":this.dataService.selectedChatContent.userList,
-          "messages":[{message: message, userName:this.dataService.USERLOGIN.username||"",mine: true,createAt:"now",description:"mes"}],
+          "messages":[{message: message, userName:this.dataService.USERLOGIN.username||"",mine: true,createAt:createAt,description:"mes"}],
           "isGroup":false,
           "isSeen":true
         });
         // this.dataService.loadSelectedChatContent(this.dataService.selectedChatContent);
       }else{
-        chatContentWithThisUsermodel[0].messages?.push({message: message, userName: this.dataService.USERLOGIN.username, mine: true,createAt:"now",description:"mes"});
+        chatContentWithThisUsermodel[0].messages?.push({message: message, userName: this.dataService.USERLOGIN.username, mine: true,createAt:createAt,description:"mes"});
       }
       this.dataService.chatContent$.next(
         this.dataService.chatContentExample
@@ -73,10 +74,8 @@ export class ChatService {
     return this.dataService.getSelectedChatContent().name!=undefined;
   }
   public goToBottom(){
-    window.onclick=function(){
       let bottomPoint = document.getElementById("chatContent")||document.body;
       bottomPoint.scrollTop = bottomPoint.scrollHeight;
-    }
   }
   public setSelectedChatContent(chatContent:ChatContent){
     chatContent.isSeen=true;

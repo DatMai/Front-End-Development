@@ -8,6 +8,7 @@ import { UserService } from './user.service';
 import { environment } from 'src/environments/environment';
 import { UserModel } from '../model/userModel';
 import { AudioService } from './audio.service';
+import { O_WRONLY } from 'constants';
 
 @Injectable({
   providedIn: 'root',
@@ -345,7 +346,8 @@ export class WebSocketService {
         this.dataService.USERLOGIN = JSON.parse(sessionStorage.USERLOGIN);
         this.loadUserLoginData();
       } else {
-        console.log('Lỗi RELOGIN '+ data);
+        console.log('Lỗi RELOGIN :');
+        console.log(data);
 
       }
     }
@@ -406,7 +408,7 @@ export class WebSocketService {
         });
         let groupChatContain =
           this.dataService.chatContentExample.find(
-            (element) => element.name == name
+            (element) => (element.name == name)&&(element.isGroup)
           ) || {};
         if (groupChatContain.name == undefined) {
           this.dataService.chatContentExample = [
@@ -515,7 +517,7 @@ export class WebSocketService {
       groupChatContain.messages = messages1.concat(
         groupChatContain.messages || []
       );
-      groupChatContain.userList = data.data.userList;
+      groupChatContain.userList =data.data.userList;
       this.dataService.chatContent$.next(this.dataService.chatContentExample);
       let page = groupChatContain.totalPage || 1;
       if (messages1.length == 50) {

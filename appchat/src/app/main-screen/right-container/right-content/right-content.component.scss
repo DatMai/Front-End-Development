@@ -110,7 +110,11 @@
             border-top-right-radius: 5px;
         }
     }
-
+    .single{
+      .avatar--wrapper{
+        margin-block-start: 25px;
+      }
+    }
     .begin {
         .partner__text {
             border-bottom-left-radius: 5px;
