@@ -46,7 +46,7 @@ export class DataService implements OnInit  {
     this.searchSubject.next(text);
   }
 
-  public resetData(){
+  public clear(){
     this.isShowListFriend=false;
     this.isShowListChatBox=true;
     this.isShowSetting=false;

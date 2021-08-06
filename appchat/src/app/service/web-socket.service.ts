@@ -326,7 +326,7 @@ export class WebSocketService {
   public getLogoutResponse(data: any) {
     if (data.event == 'LOGOUT') {
       if (data.status == 'success') {
-        this.dataService.resetData();
+        this.dataService.clear();
         sessionStorage.clear();
         this.router.navigateByUrl('login');
         this.dataService.alert$.next('success');
@@ -349,7 +349,10 @@ export class WebSocketService {
       } else {
         console.log('Lỗi RELOGIN :');
         console.log(data);
-
+        sessionStorage.clear();
+        this.dataService.clear();
+        this.router.navigateByUrl('login');
+        alert('Đã có người đăng nhập tài khoản này');
       }
     }
   }
