@@ -35,12 +35,14 @@
                         ],
                         "styles": [
                             "src/styles.css",
-                            "src/css/emojionearea.min.css"
+                            "src/css/emojionearea.min.css",
+                          "node_modules/wowjs/css/libs/animate.css"
                         ],
                         "scripts": [
 
                           "node_modules/jquery/dist/jquery.min.js",
-                          "src/js/emojionearea.min.js"
+                          "src/js/emojionearea.min.js",
+                          "node_modules/wowjs/dist/wow.js"
                         ]
                     },
                     "configurations": {

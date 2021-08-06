@@ -2,29 +2,113 @@
   width: 100%;
   height: 100%;
   background-color: white;
-  .title{
+  .header{
     padding-top: 25px;
     padding-bottom: 25px;
     width: 100%;
     text-align: center;
-    .title__name{}
+
+    .header__name{    font-size: 2vw;}
   }
-  .manager__chat-setting{
+  .manager__item{
     width: 100%;
-    .chat-setting__title{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    float: left;
+    cursor: pointer;
+
+    .title {
+      padding-left: 10px;
+      font-size: 1.3vw;
+      margin-top: 1vh;
       width: 100%;
-      background-color: transparent;
       border: none;
       outline: none;
-      float: left;
-      cursor: pointer;
+      border-radius: 10rem;
+      background-color: #fff;
 
-    }
-    .chat-setting__list{
-      .list__item{
-        list-style: none;
-        cursor: pointer;
+      &:hover{
+        transition: linear .2s;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      background-color: #a5a5a5;
+      }
+      &:active{
+        background-color: #e8e8e8;
+        transform: translateY(-1px);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      }
+      &:active .title__icon{
+        transition: all .2s;
+        transform: rotate(180deg);
       }
     }
+     .title__info{
+       float: left;
+     }
+      .title__icon{
+        margin-right: 30px;
+        float: right;
+      }
+    }
+    .active{
+      background-color: #a5a5a5;
+      transform: translateY(-1px);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      .title__icon{
+        transform: rotate(180deg);
+      }
+    }
+    .list{
+      padding:0;
+
+      margin:0;
+      &__item {
+        $color:white;
+        width: 100%;
+        margin-top: 0.5vh;
+        padding-left: 30px;
+        border-radius: 10rem;
+        color: black;
+        text-transform: uppercase;
+        font-size: 1vw;
+        transition: all .3s;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        &:after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: $color;
+          border-radius: 10rem;
+          z-index: -2;
+        }
+        &:before {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 0%;
+          height: 100%;
+          background-color: darken($color, 30%);
+          transition: all .3s;
+          border-radius: 10rem;
+          z-index: -1;
+        }
+        &:hover {
+          color: #fff;
+          &:before {
+            width: 100%;
+          }
+        }
+
+      }
+    }
+
   }
-}
+
