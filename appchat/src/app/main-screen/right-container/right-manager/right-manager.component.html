@@ -1,21 +1,23 @@
 <div id="right-manager">
 <!--  <img src="assets/image/avatar.jpg">-->
-  <div class="title">
-<!--    <img src="../../../../assets/image/avatar.jpg" class="title__avatar">-->
-    <h4 class="title__name">Tùy Chỉnh</h4>
+  <div class="header">
+    <h4 class="header__name">Tùy Chỉnh</h4>
   </div>
-  <div class="manager__chat-setting">
-    <h6 (click)="showChatSetting()" class="chat-setting__title">Tùy chỉnh đoạn chat</h6>
-  <ul *ngIf="isShowChatSetting" class="chat-setting__list">
+  <div class="manager__chat-setting manager__item">
+    <button [ngClass]="isActive(isShowChatSetting)" (click)="showChatSetting()" class="chat-setting__title title"><span class="title__info">Tùy chỉnh đoạn chat</span>
+      <span class="title__icon"><i class="fas fa-angle-down"></i></span>
+    </button>
+  <ul  *ngIf="isShowChatSetting" class="chat-setting__list list">
     <li class="list__item"> Item 1 </li>
     <li class="list__item"> Item 2 </li>
     <li class="list__item"> Item 3 </li>
     <li class="list__item"> Item 4 </li>
   </ul>
   </div>
-  <div class="manager__chat-private">
-    <h6 (click)="showChatPrivate()" class="chat-setting__title">Quyền riêng tư và hỗ trợ</h6>
-    <ul *ngIf="isShowChatPrivate" class="chat-setting__list">
+  <div class="manager__chat-private manager__item">
+    <button [ngClass]="isActive(isShowChatPrivate)" (click)="showChatPrivate()" class="chat-private__title title"> <span class="title__info"> Quyền riêng tư và hỗ trợ</span>
+      <span class="title__icon"><i class="fas fa-angle-down"></i></span></button>
+    <ul *ngIf="isShowChatPrivate" class="chat-private__list list">
       <li class="list__item"> Item 1 </li>
       <li class="list__item"> Item 2 </li>
       <li class="list__item"> Item 3 </li>
@@ -23,10 +25,15 @@
     </ul>
   </div>
 
-  <div class="manager__chat-sharing" *ngIf="this.isShowUserList()">
-    <h6 (click)="showChatSharing()" class="chat-setting__title">Thành viên trong nhóm</h6>
-    <ul *ngIf="isShowChatSharing" class="chat-setting__list">
-      <li class="list__item" *ngFor="let u of this.getSelectedChatContent().userList">{{u.name}}</li>
+
+  <div class="manager__chat-sharing manager__item">
+    <button [ngClass]="isActive(isShowChatSharing)" (click)="showChatSharing()" class="chat-sharing__title title"><span class="title__info">Tệp được chia sẻ</span>
+      <span class="title__icon"><i class="fas fa-angle-down"></i></span></button>
+    <ul *ngIf="isShowChatSharing" class="chat-sharing__list list">
+      <li class="list__item"> Item 1 </li>
+      <li class="list__item"> Item 2 </li>
+      <li class="list__item"> Item 3 </li>
+      <li class="list__item"> Item 4 </li>
 
     </ul>
   </div>
