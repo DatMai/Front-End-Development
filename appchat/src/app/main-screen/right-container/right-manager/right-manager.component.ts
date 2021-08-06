@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import {DataService} from "../../../service/data.service";
+import { WOW } from 'wowjs';
 @Component({
   selector: 'app-right-manager',
   templateUrl: './right-manager.component.html',
@@ -14,9 +15,19 @@ export class RightManagerComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public isActive(){
-
+  public isActive(bol :boolean){
+    if(bol == true){
+      return "active";
+    }else{
+      return "deactive";
+    }
   }
+
+  public clickEffect(){
+  }
+
+
+
 
   public showChatSetting(){
     this.isShowChatSetting = !this.isShowChatSetting
