@@ -238,6 +238,7 @@ export class WebSocketService {
   public loadListFriend() {
     let rs = this.dataService.getListUser();
     let i = 0;
+    // this.createWebsocket(environment.WESOCKET_URL);
     setInterval(() => {
       if (i < rs.length && this.dataService.USERLOGIN.username != undefined) {
         this.checkUser(rs[i]);
