@@ -23,13 +23,11 @@
     </ul>
   </div>
 
-  <div class="manager__chat-sharing">
-    <h6 (click)="showChatSharing()" class="chat-setting__title">Tệp được chia sẻ</h6>
+  <div class="manager__chat-sharing" *ngIf="this.isShowUserList()">
+    <h6 (click)="showChatSharing()" class="chat-setting__title">Thành viên trong nhóm</h6>
     <ul *ngIf="isShowChatSharing" class="chat-setting__list">
-      <li class="list__item"> Item 1 </li>
-      <li class="list__item"> Item 2 </li>
-      <li class="list__item"> Item 3 </li>
-      <li class="list__item"> Item 4 </li>
+      <li class="list__item" *ngFor="let u of this.getSelectedChatContent().userList">{{u.name}}</li>
+
     </ul>
   </div>
 

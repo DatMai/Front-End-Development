@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/service/data.service';
 
 @Component({
   selector: 'app-right-manager',
@@ -9,15 +10,22 @@ export class RightManagerComponent implements OnInit {
   isShowChatSetting:boolean = false;
   isShowChatSharing:boolean = false;
   isShowChatPrivate:boolean = false;
-  constructor() { }
+  constructor(private dataService:DataService
+    ) { }
 
   ngOnInit(): void {
+
   }
 
   public isActive(){
 
   }
-
+  public getSelectedChatContent() {
+    return this.dataService.getSelectedChatContent();
+  }
+  public isShowUserList() {
+    return this.getSelectedChatContent().isGroup;
+  }
   public showChatSetting(){
     this.isShowChatSetting = !this.isShowChatSetting
   }
