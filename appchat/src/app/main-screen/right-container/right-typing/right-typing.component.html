@@ -6,13 +6,16 @@
       *ngIf="this.isGroupSelected()"
        [(ngModel)]="this.message"
         aria-describedby="helpId" placeholder="Type a message..." /> -->
-    <input type="text" class="input-text col-10" id="emotions" (keydown.enter)="sendTo()" *ngIf="this.isChatBoxSelected()" [(ngModel)]="this.message" aria-describedby="helpId" placeholder="Type a message..." />
-    <div class="typing__actions col-2 row">
+    <input [ngClass]="inputWidthIfManagerActive()" type="text" class="input-text" id="emotions" (keydown.enter)="sendTo()" *ngIf="this.isChatBoxSelected()" [(ngModel)]="this.message" aria-describedby="helpId" placeholder="Type a message..." />
+    <div [ngClass]="actionWidthIfManagerActive()" class="typing__actions col-2 row">
         <button class="button images"><i class="fas fa-image"></i></button>
       <button class="button gif" (click)="gifClick()"><i class="fa-solid fa-gif"></i>GIF</button>
         <button class="button emotions"  (click)="emojisClick()">
       <i class="fas fa-smile"></i>
     </button>
+      <button class="button emotions">
+        <i class="fas fa-thumbs-up"></i>
+      </button>
         <!-- <button class="btn sending-text" (click)="sendTo()" *ngIf="this.isChatBoxSelected()">
       <i class="fa fa-paper-plane"></i>
     </button> -->
