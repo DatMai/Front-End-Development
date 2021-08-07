@@ -4,56 +4,6 @@
     "username":"doan",
     "password":"12345",
     "email":"thanhdoan1612@gmail.com",
-    "chatContents":[
-      {
-        "name":"Mai Huỳnh Phước Đạt",
-        "userList":"dat1",
-        "messages": [],
-        "isGroup":false,
-        "isSeen":true
-      },
-      {
-        "name":"Phạm Huy Phước",
-        "userList":"Phuoc",
-        "messages": [],
-        "isGroup":false,
-        "isSeen":true
-      },
-      {
-        "name":"Minhnhat",
-        "userList":"Minhnhat",
-        "messages": [],
-        "isGroup":false,
-        "isSeen":true
-      },
-      {
-        "name":"TEST",
-        "userList":"TEST",
-        "messages": [],
-        "isGroup":false,
-        "isSeen":true
-      },{
-        "name":"Ton",
-        "userList":"Ton",
-        "messages": [],
-        "isGroup":false,
-        "isSeen":true
-      },{
-        "name":"DOANTEST",
-        "userList":"",
-        "messages":[],
-        "isGroup":true,
-        "isSeen":false,
-        "totalPage":1
-      },{
-        "name":"Alo",
-        "userList":"",
-        "messages":[],
-        "isGroup":true,
-        "isSeen":false,
-        "totalPage":1
-      }
-    ],
     "status":""
   },
   {
@@ -68,15 +18,6 @@
     "username":"TEST",
     "password":"12345",
     "email":"test@gmail.com",
-    "chatContents":[
-      {
-        "name":"doan",
-        "userList":"doan",
-        "messages": [],
-        "isGroup":false,
-        "isSeen":false
-      }
-    ],
     "status":""
 
   }, {
@@ -84,35 +25,30 @@
     "username":"long",
     "password":"12345",
     "email":"dinhlong@gmail.com",
-    "chatContents":[],
     "status":""
   }, {
     "fullname":"Phạm Huy Phước",
     "username":"Phuoc",
     "password":"123456",
     "email":"",
-    "chatContents":[],
     "status":""
   }, {
     "fullname":"Trần Quang Minh Nhật",
     "username":"Minhnhat",
     "password":"123456",
     "email":"dinhlong@gmail.com",
-    "chatContents":[],
     "status":""
   }, {
     "fullname":"Lê Phan Thanh Tôn",
     "username":"Ton",
     "password":"123456",
-    "email":"",
-    "chatContents":[]
+    "email":""
   },
   {
     "fullname":"nhat",
     "username":"nhat",
     "password":"123456",
-    "email":"",
-    "chatContents":[]
+    "email":""
   }
 ]
 

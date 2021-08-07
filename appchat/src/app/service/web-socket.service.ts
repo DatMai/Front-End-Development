@@ -220,19 +220,23 @@ export class WebSocketService {
       })
     );
   }
-
+  public sendGetListChatBox(){
+    this.ws.send(JSON.stringify({
+      "action": "onchat",
+      "data": {
+        "event": "GET_USER_LIST"
+      }
+    }));
+  }
   //load dữ liệu chat
-  public loadListChatBox(user: UserModel) {
-    let rs = this.userService.getListChatBox(user);
-    rs.forEach((element) => {
+  public loadListChatBox() {
+    console.log(this.dataService.getChatContentExample());
+    this.dataService.getChatContentExample().forEach((element) => {
       if (element.isGroup)
         this.getRoomChat(element.name || '', element.totalPage || 1);
       else this.getPeopleChat(element.userList || '', element.totalPage || 1);
-      this.dataService.chatContentExample.push(element);
     });
-    sessionStorage.setItem('CHATBOX', JSON.stringify(rs));
-    this.dataService.chatContentExample = rs;
-    this.dataService.USERLOGIN.chatContents = rs;
+    this.dataService.USERLOGIN.chatContents = this.dataService.chatContentExample;
     this.dataService.chatContent$.next(this.dataService.chatContentExample);
   }
   public loadListFriend() {
@@ -250,9 +254,11 @@ export class WebSocketService {
   }
   public loadUserLoginData() {
     let user = this.dataService.USERLOGIN;
+    this.sendGetListChatBox();
+
     user.status = 'Đang hoạt động';
     this.loadListFriend();
-    this.loadListChatBox(user);
+    setTimeout(() =>this.loadListChatBox(),1000);
   }
 
   //xử lý dữ liệu nhận từ server
@@ -267,6 +273,7 @@ export class WebSocketService {
     this.getLogoutResponse(data);
     this.getRegisterResponse(data);
     this.getSendChatResponse(data);
+    this.getListUserResponse(data);
   }
   public getCheckUserResponse(data: any) {
     if (data.event == 'CHECK_USER') {
@@ -581,6 +588,26 @@ export class WebSocketService {
       }
     }
 
+  }
+  public getListUserResponse(data: any){
+    if (data.event== "GET_USER_LIST") {
+      if(data.status == 'success'){
+        let listChatContent = data.data;
+        listChatContent.forEach(element => {
+          this.dataService.chatContentExample.push({
+            name: element.name,
+            userList: element.name,
+            messages: [],
+            isGroup: element.type==0?false:true,
+            isSeen: false,
+          });
+        });
+        this.dataService.chatContent$.next(this.dataService.chatContentExample)
+      }else{
+        console.log('lỗi get list user :');
+        console.log(data);
+      }
+    }
   }
 
 }

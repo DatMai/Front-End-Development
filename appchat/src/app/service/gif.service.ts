@@ -13,7 +13,7 @@ export class GifService {
 
   }
   getTrendingGifs(){
-    return this.http.get(`https://api.giphy.com/v1/gifs/trending?api_key=${environment.giphyApiKey}&limit=25&rating=g`);
+    return this.http.get(`https://api.giphy.com/v1/gifs/trending?api_key=${environment.giphyApiKey}`);
   }
   searchGifs(searchTerm:string){
     return this.http.get(`https://api.giphy.com/v1/gifs/search?api_key=${environment.giphyApiKey}&q=${searchTerm}"&limit=25&offset=0&rating=g&lang=en`)
