@@ -4,6 +4,7 @@ import { GroupChat } from 'src/app/model/GroupChat';
 import { UserModel } from 'src/app/model/userModel';
 import { ChatService } from 'src/app/service/chat.service';
 import { DataService } from 'src/app/service/data.service';
+import { GifService } from 'src/app/service/gif.service';
 import { UserService } from 'src/app/service/user.service';
 import { WebSocketService } from 'src/app/service/web-socket.service';
 
@@ -20,7 +21,8 @@ export class ContentComponent implements OnInit {
     private dataService: DataService,
     private userService: UserService,
     private wss: WebSocketService,
-    private chatService: ChatService
+    private chatService: ChatService,
+    private gifService: GifService
   ) {}
 
   ngOnInit(): void {
@@ -81,67 +83,26 @@ export class ContentComponent implements OnInit {
     let messages = this.chatService.getLastMessage(chatContent);
     let rs = messages;
     if (rs != 'Chưa có tin nhắn mới') {
-      if (messages.mine) {
-        rs = 'Bạn: ' + messages.message;
-      } else {
-        if (chatContent.isGroup) {
-          rs = messages.userName + ':' + messages.message;
+      if (this.gifService.isGif(messages.message)) {
+        if (messages.mine) {
+          rs= 'Bạn đã gửi 1 gif';
         } else {
-          rs = messages.message;
+          rs = messages.userName + ' đã gửi 1 gif';
+        }
+      }else{
+          if (messages.mine) {
+            rs = 'Bạn: ' + messages.message;
+          } else {
+            if (chatContent.isGroup) {
+              rs = messages.userName + ':' + messages.message;
+            } else {
+              rs = messages.message;
+            }
+          }
         }
       }
-    }
     return rs;
   }
-
-  // public getLastTime(chatContent: ChatContent) {
-  //   let messages = this.chatService.getLastMessage(chatContent);
-  //   let today = new Date();
-  //   let thatday = new Date(messages.createAt);
-  //   var dayOfMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-  //   //xét trường hợp năm nhuận
-  //   if (today.getFullYear() % 400 == 0) {
-  //     dayOfMonth = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-  //   } else {
-  //     if (today.getFullYear() % 4 == 0) {
-  //       dayOfMonth = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-  //     }
-  //   }
-  //   let rs: string;
-  //   //chuyển ngày tháng năm giờ phút sang giây
-  //   let distanceYear = today.getFullYear() - thatday.getFullYear();
-  //   if (distanceYear <= 1) {
-  //     let distanceMonth = distanceYear * 12 + today.getMonth() - thatday.getMonth();
-  //     let sub =0;
-  //     if (distanceMonth>12) {
-  //       rs= 1 + ' năm';
-  //     } else {
-  //       for (let i = thatday.getMonth(); i < thatday.getMonth()+distanceMonth; i++) {
-  //         sub += dayOfMonth[i%12] * 24 * 60 * 60;
-  //       }
-  //       sub = sub - thatday.getDate()*24*60*60-thatday.getHours()*60*60-thatday.getMinutes()*60;
-  //       sub = sub + today.getDate()*24*60*60+today.getHours()*60*60+today.getMinutes()*60;
-  //       let minutes = Math.round(sub / 60) > 0 ? Math.round(sub / 60) : 1;
-  //       let hours = (minutes - (minutes % 60)) / 60;
-  //       let days = (hours - (hours % 24)) / 24;
-  //       let month =
-  //         (days - (days % dayOfMonth[thatday.getMonth()])) /
-  //         dayOfMonth[thatday.getMonth()];
-  //       if (month > 0) {
-  //         rs = month + ' tháng';
-  //       } else if (days > 0) {
-  //         rs = days + ' ngày';
-  //       } else if (hours > 0) {
-  //         rs = hours + ' giờ';
-  //       } else {
-  //         rs = minutes + ' phút';
-  //       }
-  //     }
-
-  //   } else rs = distanceYear + ' năm';
-
-  //   return rs;
-  // }
   public getLastTime(chatContent: ChatContent) {
     let messages = this.chatService.getLastMessage(chatContent);
     // let mes = this.roomName.split(' ');

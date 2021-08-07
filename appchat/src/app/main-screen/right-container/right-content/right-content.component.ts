@@ -4,6 +4,7 @@ import { ChatService } from 'src/app/service/chat.service';
 import { DataService } from 'src/app/service/data.service';
 import {ChatContent} from "../../../model/ChatContent";
 import {stringify} from "querystring";
+import { GifService } from 'src/app/service/gif.service';
 
 declare var $:any;
 @Component({
@@ -16,7 +17,7 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
 
   constructor(
     private dataService:DataService,
-    private chatService:ChatService
+    private chatService:ChatService,  private gifService:GifService
     ){
     }
 
@@ -137,7 +138,9 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
 
   }
 
-
+  public isGif(message:string){
+    return this.gifService.isGif(message);
+  }
 
 
 }
