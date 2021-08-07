@@ -43,6 +43,20 @@ export class RightTypingComponent implements OnInit {
   public gifClick(){
     this.checkGifShow = !this.checkGifShow;
   }
+  public inputWidthIfManagerActive(){
+    if(this.dataService.isShowManager){
+      return "col-9";
+    }else{
+      return "col-10";
+    }
+  }
+  public actionWidthIfManagerActive(){
+    if(this.dataService.isShowManager){
+      return "col-3";
+    }else{
+      return "col-2";
+    }
+  }
 
   public isChatBoxSelected() {
     return this.chatService.isChatBoxSelected();

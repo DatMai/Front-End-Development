@@ -2,13 +2,16 @@
     //z-index: -9;
     background-color: transparent;
     //width: 105%;
-    margin-left: -1vw;
+    //margin-left: -1vw;
     padding-left: 2vw;
     padding-top: 1.5vw;
   &__actions{
+    margin-left: 2px;
+    padding: 0 !important;
     align-items: center;
   }
     .input-text {
+      padding: 0 !important;
       align-items: center;
         outline: none;
         font-size: 1vw;
