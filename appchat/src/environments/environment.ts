@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   wsEndpoint: "",
-  WESOCKET_URL:"ws://203.113.148.132:23023/chat/chat"
+  WESOCKET_URL:"ws://203.113.148.132:23023/chat/chat",
+  giphyApiKey :'y5rPCmy1UJWRf5njToSRD8onMx5Tc1pE'
 };
 
 

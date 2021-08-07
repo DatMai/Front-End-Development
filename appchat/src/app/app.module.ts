@@ -26,7 +26,8 @@ import { RightHeaderComponent } from './main-screen/right-container/right-header
 import { MainScreenComponent } from './main-screen/main-screen.component';
 import { RightManagerComponent } from './main-screen/right-container/right-manager/right-manager.component';
 import { RoomModalComponent } from './main-screen/room-modal/room-modal.component';
-
+import { SendGifComponent } from './main-screen/right-container/right-typing/send-gif/send-gif.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -47,9 +48,10 @@ import { RoomModalComponent } from './main-screen/room-modal/room-modal.componen
     RightTypingComponent,
     RightManagerComponent,
     RoomModalComponent,
+    SendGifComponent,
 
   ],
-  imports: [BrowserModule, AppRoutingModule,FormsModule,ReactiveFormsModule],
+  imports: [BrowserModule, AppRoutingModule,FormsModule,ReactiveFormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })

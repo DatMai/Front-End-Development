@@ -15,6 +15,7 @@ export class RightTypingComponent implements OnInit {
   selectedGroup: GroupChat = {};
   selectedEmoji: EmojisModel = {};
   checkEmojisShow: boolean = false;
+  checkGifShow:boolean = false;
   emojisList: {
     emoji?: string;
     name?: string;
@@ -38,6 +39,11 @@ export class RightTypingComponent implements OnInit {
     );
 
   }
+
+  public gifClick(){
+    this.checkGifShow = !this.checkGifShow;
+  }
+
   public isChatBoxSelected() {
     return this.chatService.isChatBoxSelected();
   }
