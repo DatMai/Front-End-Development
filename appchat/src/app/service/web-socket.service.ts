@@ -9,6 +9,9 @@ import { environment } from 'src/environments/environment';
 import { UserModel } from '../model/userModel';
 import { AudioService } from './audio.service';
 import { O_WRONLY } from 'constants';
+import { MessagesModel } from '../model/messageModel';
+import { MessageService } from './message.service';
+import { time } from 'console';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +25,8 @@ export class WebSocketService {
     private dataService: DataService,
     private userService: UserService,
     private audioService: AudioService,
-    private router: Router
+    private router: Router,
+    private messageService: MessageService
   ) {}
   public createWebsocket(url: string) {
     this.ws = new WebSocket(url);
@@ -255,7 +259,6 @@ export class WebSocketService {
   public loadUserLoginData() {
     let user = this.dataService.USERLOGIN;
     this.sendGetListChatBox();
-
     user.status = 'Đang hoạt động';
     this.loadListFriend();
     setTimeout(() =>this.loadListChatBox(),1000);
@@ -289,7 +292,6 @@ export class WebSocketService {
             (element) => element.username == newU.username
           ) || {};
         u = newU;
-        // this.dataService.checkUserList$.next(this.checkUserList||false);
       } else {
         console.log('Lỗi websocket');
       }
@@ -366,18 +368,18 @@ export class WebSocketService {
   public getCreateRoomResponse(data: any) {
     if (data.event == 'CREATE_ROOM') {
       if (data.status == 'success') {
+        let m:MessagesModel=new MessagesModel();
+        m.id=0;
+        m.message='Bạn đã tạo nhóm ' + data.data.name;
+        m.userName='Hệ thống';
+        m.mine= false;
+        m.createAt= data.data.createAt;
+
+        m.setNotification();
         this.dataService.chatContentExample.push({
           name: data.data.name,
           userList: data.data.userList,
-          messages: [
-            {
-              message: 'Bạn đã tạo nhóm ' + data.data.name,
-              userName: 'Hệ thống',
-              mine: false,
-              createAt: data.data.createAt,
-              description: 'NOTIFICATION',
-            },
-          ],
+          // messages:[m];
           isGroup: true,
           isSeen: false,
         });
@@ -394,34 +396,26 @@ export class WebSocketService {
     if (data.event == 'JOIN_ROOM') {
       if (data.status == 'success') {
         let name = data.data.name;
-        let messages1: {
-          message: string;
-          userName: string;
-          mine: boolean;
-          createAt: string;
-          description: string;
-        }[] = [];
+        let messages1:MessagesModel[] = [];
         let chatData = data.data.chatData;
         chatData.sort((a, b) => a.id - b.id);
         chatData.forEach((e: any) => {
-          let mine = false;
           let USERLOGIN = JSON.parse(sessionStorage.USERLOGIN);
-          if (e.name == USERLOGIN.username) {
-            mine = true;
-          }
-          messages1.push({
-            message: e.mes,
-            userName: e.name,
-            mine: mine,
-            createAt: e.createAt,
-            description: 'mes',
-          });
+          let m :MessagesModel=new MessagesModel();
+          m.id=e.id;
+          m.userName=e.name;
+          m.message= e.mes;
+          m.createAt= e.createAt;
+          m.mine=e.name == USERLOGIN.username?true:false
+          m.setMes();
+          messages1.push(m);
         });
         let groupChatContain =
           this.dataService.chatContentExample.find(
             (element) => (element.name == name)&&(element.isGroup)
           ) || {};
         if (groupChatContain.name == undefined) {
+
           this.dataService.chatContentExample = [
             {
               name: name,
@@ -460,30 +454,29 @@ export class WebSocketService {
             : chatData[0].to;
         let chatContent =
           this.dataService.chatContentExample.find(
-            (value) => value.userList == user
+            (value) => value.userList == user&&!value.isGroup
           ) || {};
-        let messages1: {
-          message: string;
-          userName: string;
-          mine: boolean;
-          createAt: string;
-          description: string;
-        }[] = [];
+        let messages1:MessagesModel[] = [];
         chatData.sort((a, b) => a.id - b.id);
-        chatData.forEach((e: any) => {
-          let mine = false;
+        chatData.forEach((e: any,index:number,array) => {
           let USERLOGIN = JSON.parse(sessionStorage.USERLOGIN);
-          let createAt = e.createAt;
-          if (e.name == USERLOGIN.username) {
-            mine = true;
+          let m :MessagesModel=new MessagesModel();
+          m.id=e.id;
+          m.userName=e.name;
+          m.message= e.mes;
+          m.createAt= e.createAt;
+          m.mine=e.name == USERLOGIN.username?true:false
+          m.setMes();
+          messages1.push(m);
+          if (index<chatData.length-1) {
+            let timeNofication=this.messageService.getTimeNofication(array[index].createAt,array[index+1].createAt);
+            if (timeNofication!='') {
+              let timeMesssage :MessagesModel=new MessagesModel();
+              timeMesssage.setTimeNotificationMessage(timeNofication);
+              messages1.push(timeMesssage);
+            }
           }
-          messages1.push({
-            message: e.mes,
-            userName: e.name,
-            mine: mine,
-            createAt: createAt,
-            description: 'mes',
-          });
+
         });
         chatContent.messages = messages1.concat(chatContent.messages || []);
         this.dataService.chatContent$.next(this.dataService.chatContentExample);
@@ -497,33 +490,32 @@ export class WebSocketService {
   public getRoomChatMessageResponse(data: any) {
     if (data.event == 'GET_ROOM_CHAT_MES' && data.status == 'success') {
       let name = data.data.name;
-      let groupChatContain =
-        this.dataService.chatContentExample.find(
-          (element) => element.name == name
-        ) || {};
-      let messages1: {
-        message: string;
-        userName: string;
-        mine: boolean;
-        createAt: string;
-        description: string;
-      }[] = [];
       let chatData = data.data.chatData;
+      let groupChatContain =
+      this.dataService.chatContentExample.find(
+        (element) => element.name == name&&element.isGroup
+      ) || {};
+      if (chatData.length >0) {
+      let messages1:MessagesModel[]=[];
       chatData.sort((a, b) => a.id - b.id);
-      chatData.forEach((e: any) => {
-        let mine = false;
+      chatData.forEach((e: any,index:number,array) => {
         let USERLOGIN = JSON.parse(sessionStorage.USERLOGIN);
-        let createAt = e.createAt;
-        if (e.name == USERLOGIN.username) {
-          mine = true;
+        let m :MessagesModel=new MessagesModel();
+        m.id=e.id;
+        m.userName=e.name;
+        m.message= e.mes;
+        m.createAt= e.createAt;
+        m.mine=e.name == USERLOGIN.username?true:false
+        m.setMes();
+        messages1.push(m);
+        if (index<chatData.length-1) {
+          let timeNofication=this.messageService.getTimeNofication(array[index].createAt,array[index+1].createAt);
+          if (timeNofication!='') {
+            let timeMesssage :MessagesModel=new MessagesModel();
+            timeMesssage.setTimeNotificationMessage(timeNofication);
+            messages1.push(timeMesssage);
+          }
         }
-        messages1.push({
-          message: e.mes,
-          userName: e.name,
-          mine: mine,
-          createAt: createAt,
-          description: 'mes',
-        });
       });
       groupChatContain.messages = messages1.concat(
         groupChatContain.messages || []
@@ -531,10 +523,19 @@ export class WebSocketService {
       groupChatContain.userList =data.data.userList;
       this.dataService.chatContent$.next(this.dataService.chatContentExample);
       let page = groupChatContain.totalPage || 1;
-      if (messages1.length == 50) {
+
         page++;
         this.getRoomChat(name, page);
         groupChatContain.totalPage = page;
+      }else{
+        let m :MessagesModel=new MessagesModel();
+        m.id=0;
+        m.userName='Hệ thống';
+        m.message= data.data.own +' đã tạo nhóm ' + data.data.name;
+        m.createAt= data.data.createAt;
+        m.mine=false;
+        m.setNotification();
+        groupChatContain.messages=[m].concat(groupChatContain.messages||[]);
       }
     }
   }
@@ -542,13 +543,12 @@ export class WebSocketService {
     if (data.event == 'SEND_CHAT') {
       if (data.status == 'success') {
         let createAt = new Date().toLocaleString();
-        let mes = {
-          message: data.data.mes,
-          userName: data.data.name,
-          mine: false,
-          createAt: createAt,
-          description: 'mes',
-        };
+        let mes : MessagesModel =new MessagesModel();
+          mes.message= data.data.mes;
+          mes.userName= data.data.name;
+          mes.mine= false;
+          mes.createAt= createAt;
+          mes.description= 'MES';
         if (data.data.type == '1') {
           let groupChatContentWithNameroom =
             this.dataService.chatContentExample.filter(
@@ -584,7 +584,6 @@ export class WebSocketService {
         this.audioService.playAudio();
       } else {
         console.log('Lỗi send_chat_to_people '+data.mes);
-
       }
     }
 

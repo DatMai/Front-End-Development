@@ -8,6 +8,7 @@ import { DataService } from './data.service';
 import { WebSocketService } from './web-socket.service';
 import * as $ from 'jquery';
 import { UserService } from './user.service';
+import { MessagesModel } from '../model/messageModel';
 @Injectable({
   providedIn: 'root'
 })
@@ -49,16 +50,22 @@ export class ChatService {
       );
     }
       if (chatContentWithThisUsermodel.length==0) {
+        let m:MessagesModel=new MessagesModel();
+        m.message=message;
+        m.userName=this.dataService.USERLOGIN.username||"";
+        m.mine= true;
+        m.createAt=createAt,
+        m.description="MES";
         this.dataService.chatContentExample.push({
           "name":this.dataService.selectedChatContent.name,
           "userList":this.dataService.selectedChatContent.userList,
-          "messages":[{message: message, userName:this.dataService.USERLOGIN.username||"",mine: true,createAt:createAt,description:"mes"}],
+          "messages":[m],
           "isGroup":false,
           "isSeen":true
         });
         // this.dataService.loadSelectedChatContent(this.dataService.selectedChatContent);
       }else{
-        chatContentWithThisUsermodel[0].messages?.push({message: message, userName: this.dataService.USERLOGIN.username, mine: true,createAt:createAt,description:"mes"});
+        chatContentWithThisUsermodel[0].messages?.push({message: message, userName: this.dataService.USERLOGIN.username, mine: true,createAt:createAt,description:"MES"});
       }
       this.dataService.chatContent$.next(
         this.dataService.chatContentExample
@@ -105,6 +112,11 @@ export class ChatService {
       this.setSelectedChatContent(rs);
     }
   }
-
+  public isNofication(messages:any){
+    return messages.description=="NOTIFICATION";
+  }
+  public isMes(messages:any){
+    return messages.description=="MES";
+  }
 }
 

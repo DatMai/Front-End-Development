@@ -141,6 +141,11 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
   public isGif(message:string){
     return this.gifService.isGif(message);
   }
-
+  public isNofication(messages:any){
+    return this.chatService.isNofication(messages);
+  }
+  public isMes(messages:any){
+    return this.chatService.isMes(messages);
+  }
 
 }
