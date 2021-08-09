@@ -28,8 +28,11 @@ import { RightManagerComponent } from './main-screen/right-container/right-manag
 import { RoomModalComponent } from './main-screen/room-modal/room-modal.component';
 import { SendGifComponent } from './main-screen/right-container/right-typing/send-gif/send-gif.component';
 import {HttpClientModule} from "@angular/common/http";
+
 import {AngularFireStorageModule} from "@angular/fire/storage";
 import {AngularFireModule} from "@angular/fire"
+
+
 
 @NgModule({
   declarations: [

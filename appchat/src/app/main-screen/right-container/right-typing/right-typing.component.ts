@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { EmojisModel } from 'src/app/model/emojisModel';
 import { GroupChat } from 'src/app/model/GroupChat';
 import { UserModel } from 'src/app/model/userModel';
@@ -10,12 +10,16 @@ import {AngularFireStorage} from "@angular/fire/storage";
 import Callback = JQuery.Deferred.Callback;
 
 
+
+
+declare var $: any;
+
 @Component({
   selector: 'app-right-typing',
   templateUrl: './right-typing.component.html',
   styleUrls: ['./right-typing.component.scss'],
 })
-export class RightTypingComponent implements OnInit {
+export class RightTypingComponent implements OnInit,AfterViewInit {
   @Input() selectedUser: UserModel = {};
   selectedGroup: GroupChat = {};
   selectedEmoji: EmojisModel = {};
@@ -32,7 +36,18 @@ export class RightTypingComponent implements OnInit {
   }[] = emojis;
 
 
+
   refImage:string ="";
+
+  // emojisList: {
+  //   [key: string]: {
+  //       unicode: string[];
+  //       fname: string;
+  //       uc: string;
+  //       isCanonical: boolean;
+  //   }
+  // }= emojione.emojioneList;
+
   message: string = '';
 
   constructor(
@@ -41,11 +56,15 @@ export class RightTypingComponent implements OnInit {
     private http : HttpClient,
     private af : AngularFireStorage
   ) {}
+  ngAfterViewInit(): void {
+
+  }
 
   ngOnInit(): void {
     this.dataService.selectedEmoji$.subscribe(
       (value) => (this.selectedEmoji = value)
     );
+
     }
 
     public async sendImage(event:any){
@@ -92,8 +111,22 @@ export class RightTypingComponent implements OnInit {
     console.log(this.selectEmoji);
     this.message = this.message + this.selectedEmoji.emoji;
   }
-  public emojisClick() {
-    this.checkEmojisShow = !this.checkEmojisShow;
+  public showEmoji() {
+    $("#emotions").emojioneArea({
+      // standalone:true,
+      pickerPosition: "top",
+      toneStyle:"bullet",
+    });
+    var el = $("#emotions").emojioneArea();
+    var message  = $("#emotions").val();
+    el[0].emojioneArea.on("emojibtn.click", function(btn) {
+      console.log(btn.html());
+      // message+=btn.data().name;
+      $("#chatContent").html(btn.html());
+
+    });
+    // console.log(1);
+    // this.checkEmojisShow = !this.checkEmojisShow;
   }
 
   public sendTo() {

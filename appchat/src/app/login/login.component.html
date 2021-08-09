@@ -56,7 +56,7 @@
                 <div class="alert alert-{{this.alert}}" role="alert" *ngIf="this.alert!=''">
                     {{this.message}}
                 </div>
-                <input type="text" placeholder="Tên đăng nhập" formControlName="username" />
+                <input type="text" placeholder="Tên đăng nhập" formControlName="username" id="username" />
                 <input type="password" placeholder="Mật khẩu" formControlName="password" />
                 <a href="#">Quên mật khẩu?</a>
                 <button type="submit" class="btn" (onclick)="login()">Đăng nhập</button>
