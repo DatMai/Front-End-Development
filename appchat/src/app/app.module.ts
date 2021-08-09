@@ -28,6 +28,8 @@ import { RightManagerComponent } from './main-screen/right-container/right-manag
 import { RoomModalComponent } from './main-screen/room-modal/room-modal.component';
 import { SendGifComponent } from './main-screen/right-container/right-typing/send-gif/send-gif.component';
 import {HttpClientModule} from "@angular/common/http";
+import {AngularFireStorageModule} from "@angular/fire/storage";
+import {AngularFireModule} from "@angular/fire"
 
 @NgModule({
   declarations: [
@@ -51,7 +53,24 @@ import {HttpClientModule} from "@angular/common/http";
     SendGifComponent,
 
   ],
-  imports: [BrowserModule, AppRoutingModule,FormsModule,ReactiveFormsModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    AngularFireModule.initializeApp(
+      { apiKey: "AIzaSyC9VvuQpx6CeK-d5fGlHvZMXB9vaKXDEyE",
+        authDomain: "appchat-b16ea.firebaseapp.com",
+        projectId: "appchat-b16ea",
+        storageBucket: "appchat-b16ea.appspot.com",
+        messagingSenderId: "670484367540",
+        appId: "1:670484367540:web:974cb56f0ec12a1d882fe1",
+        measurementId: "G-9HCDS41QR9"
+      }),
+    AngularFireStorageModule
+
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
