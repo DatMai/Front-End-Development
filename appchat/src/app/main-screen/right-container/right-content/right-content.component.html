@@ -11,7 +11,7 @@
                 <div class="text--wrapper">
                     <h6 class="partner__name" *ngIf="isShowName(indexOfelement)">{{mes.userName}}</h6>
                     <p class="partner__text text " *ngIf="!this.isGif(mes.message)"  >{{mes.message}}  <span class="send-time">{{this.getDate(mes.createAt)}}</span></p>
-                    <img class="partner_image"  [src]="(mes.message)" alt="Image" *ngIf="this.isGif(mes.message)">
+                    <img class="partner_image image"  [src]="(mes.message)" alt="Image" *ngIf="this.isGif(mes.message)">
                 </div>
             </div>
         </div>
@@ -23,7 +23,7 @@
         <div [ngClass]="this.typeOfMes(indexOfelement)" class="my-chat container-fluid row" *ngIf="mes.mine&&this.isMes(mes)">
             <div class="wrapper text--wrapper col-12">
                 <p class=" my__text text" *ngIf="!this.isGif(mes.message)"> <span class="send-time">{{this.getDate(mes.createAt)}}</span>{{mes.message}} </p>
-                <img class="my_image"  [src]="(mes.message)" alt="Image" *ngIf="this.isGif(mes.message)">
+                <img class="my_image image"  [src]="(mes.message)" alt="Image" *ngIf="this.isGif(mes.message)">
               </div>
             </div>
         <!-- End my chat -->

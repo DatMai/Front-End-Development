@@ -6,9 +6,16 @@
       *ngIf="this.isGroupSelected()"
        [(ngModel)]="this.message"
         aria-describedby="helpId" placeholder="Type a message..." /> -->
-    <input [ngClass]="inputWidthIfManagerActive()" id="emotions" type="text" class="input-text"  (keydown.enter)="sendTo()" *ngIf="this.isChatBoxSelected()" [(ngModel)]="this.message" aria-describedby="helpId" placeholder="Type a message..." />
-    <div [ngClass]="actionWidthIfManagerActive()" class="typing__actions col-2 row">
-        <button class="button images"><i class="fas fa-image"></i></button>
+    <input [ngClass]="checkShowManager() ? 'col-9':'col-10'" type="text" class="input-text" id="emotions" (keydown.enter)="sendTo()" *ngIf="this.isChatBoxSelected()" [(ngModel)]="this.message" aria-describedby="helpId" placeholder="Type a message..." />
+    <div [ngClass]="checkShowManager() ? 'col-3':'col-2'" class="typing__actions col-2 row">
+<!--        <button class="button images"><i class="fas fa-image"></i></button>-->
+      <input type="file" id="file" (change)="sendImage($event)">
+      <label for="file" class="file__label">
+        <div class="button images">
+          <i class=" fas fa-image"></i>
+        </div>
+      </label>
+
       <button class="button gif" (click)="gifClick()"><i class="fa-solid fa-gif"></i>GIF</button>
         <button class="button emotions"  (click)="  this.showEmoji()">
       <i class="fas fa-smile"></i>

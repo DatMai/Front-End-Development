@@ -5,8 +5,15 @@ import { UserModel } from 'src/app/model/userModel';
 import { ChatService } from 'src/app/service/chat.service';
 import { DataService } from 'src/app/service/data.service';
 import emojis from "../../.././data/emojis.json";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {AngularFireStorage} from "@angular/fire/storage";
+import Callback = JQuery.Deferred.Callback;
+
+
+
 
 declare var $: any;
+
 @Component({
   selector: 'app-right-typing',
   templateUrl: './right-typing.component.html',
@@ -27,6 +34,11 @@ export class RightTypingComponent implements OnInit,AfterViewInit {
     category?: string;
     order?: string;
   }[] = emojis;
+
+
+
+  refImage:string ="";
+
   // emojisList: {
   //   [key: string]: {
   //       unicode: string[];
@@ -35,41 +47,61 @@ export class RightTypingComponent implements OnInit,AfterViewInit {
   //       isCanonical: boolean;
   //   }
   // }= emojione.emojioneList;
+
   message: string = '';
 
   constructor(
     private dataService: DataService,
-    private chatService: ChatService
+    private chatService: ChatService,
+    private http : HttpClient,
+    private af : AngularFireStorage
   ) {}
   ngAfterViewInit(): void {
-  
+
   }
 
   ngOnInit(): void {
     this.dataService.selectedEmoji$.subscribe(
       (value) => (this.selectedEmoji = value)
     );
-    // console.log( $("#emotions"));
+
+    }
+
+    public async sendImage(event:any){
+      await this.fileUpload(event);
+      this.callback();
+    }
+
+    public async fileUpload(event:any){
+    let selectedFiles:string = event.target.files[0];
+     let storage = this.af.storage;
+     let fileName :string = "/image"+Math.random()+".jpg"
+      let downloadURL = "gs://appchat-b16ea.appspot.com"+fileName
+
+     await this.af.upload(fileName,selectedFiles);
+      this.refImage = downloadURL
+
+
+    }
+
+
+  public callback () {
+    let gsReference = this.af.storage.refFromURL(this.refImage);
+    gsReference.getDownloadURL().then((url)=>{
+      this.chatService.sendTo(url);
+    })
+   }
+
+
+
+
+  checkShowManager(){
+    return this.dataService.isShowManager;
   }
 
   public gifClick(){
     this.checkGifShow = !this.checkGifShow;
   }
-  public inputWidthIfManagerActive(){
-    if(this.dataService.isShowManager){
-      return "col-9";
-    }else{
-      return "col-10";
-    }
-  }
-  public actionWidthIfManagerActive(){
-    if(this.dataService.isShowManager){
-      return "col-3";
-    }else{
-      return "col-2";
-    }
-  }
-
   public isChatBoxSelected() {
     return this.chatService.isChatBoxSelected();
   }
