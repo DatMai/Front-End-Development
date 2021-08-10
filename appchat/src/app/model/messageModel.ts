@@ -7,7 +7,8 @@ export class MessagesModel{
   userName!: string;
   mine!: boolean;
   createAt!:string;
-  description!:string;
+  description!: string;
+  highlight!: boolean;
   constructor(){
 
   }

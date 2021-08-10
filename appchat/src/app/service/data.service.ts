@@ -17,6 +17,8 @@ import {HttpClient} from "@angular/common/http";
 export class DataService implements OnInit  {
   private searchSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
   search$: Observable<string> = this.searchSubject.asObservable();
+  private searchMessageSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  searchMessage$: Observable<string> = this.searchMessageSubject.asObservable();
   USERLOGIN :UserModel={};
   userIsChecking :UserModel={};
   selectedEmoji$ = new BehaviorSubject<EmojisModel>({});
@@ -26,12 +28,14 @@ export class DataService implements OnInit  {
   message$= new BehaviorSubject<string>("");
   alert$= new BehaviorSubject<string>("");
   chatContentExample: ChatContent[]=[];
-  selectedChatContent: ChatContent= {};
+  selectedChatContent: ChatContent = {};
+  searchKeyWord: string[] = [];
   isShowListFriend:boolean=false;
   isShowListChatBox:boolean=true;
   isShowSetting: boolean = false;
   isShowSearch: boolean = false;
   isShowManager: boolean = false;
+  isShowSearchMessage: boolean = false;
   chatContentUserName:string='';
   userList  :UserModel[]=userData;
   constructor(private http:HttpClient) {
@@ -42,7 +46,9 @@ export class DataService implements OnInit  {
   }
 
 
-
+  setSearchKeywordMessage(text: string) {
+    this.searchMessageSubject.next(text);
+  }
   setSearchKeyword(text: string) {
     this.searchSubject.next(text);
   }
