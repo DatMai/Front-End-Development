@@ -5,12 +5,21 @@ import { DataService } from 'src/app/service/data.service';
 import {ChatContent} from "../../../model/ChatContent";
 import {stringify} from "querystring";
 import { GifService } from 'src/app/service/gif.service';
+import {animate, style, transition, trigger} from "@angular/animations";
 
 declare var $:any;
 @Component({
   selector: 'app-right-content',
   templateUrl: './right-content.component.html',
-  styleUrls: ['./right-content.component.scss']
+  styleUrls: ['./right-content.component.scss'],
+  animations:[
+    trigger('messagesAnimation',[
+      transition(':enter',[
+        style({opacity:0, transform : "translateY(-30px)"}),
+        animate("0.3s",style({opacity:1, transform:"translateY(0)"}))
+      ])
+    ])
+  ]
 })
 export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
   USERLOGIN:UserModel={ };

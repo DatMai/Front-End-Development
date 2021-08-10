@@ -7,11 +7,25 @@ import { DataService } from 'src/app/service/data.service';
 import { GifService } from 'src/app/service/gif.service';
 import { UserService } from 'src/app/service/user.service';
 import { WebSocketService } from 'src/app/service/web-socket.service';
+import {animate, keyframes, query, stagger, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-content',
   templateUrl: './content.component.html',
   styleUrls: ['./content.component.scss'],
+  animations: [
+    trigger("listAnimation",[
+      transition('* => *',[
+        query(':enter', style({opacity:0}),{optional:true}),
+        query(':enter', stagger('50ms',[
+          animate('0.3s', keyframes([
+            style({opacity:0, transform: "translateX(-75px)",offset: 0}),
+            style({opacity:1, transform: "translateX(0px)",offset: 1}),
+          ]))
+        ]),{optional:true})
+      ])
+    ])
+  ],
 })
 export class ContentComponent implements OnInit {
   USERLOGIN: UserModel = {};

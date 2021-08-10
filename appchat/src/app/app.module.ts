@@ -31,7 +31,7 @@ import {HttpClientModule} from "@angular/common/http";
 
 import {AngularFireStorageModule} from "@angular/fire/storage";
 import {AngularFireModule} from "@angular/fire"
-
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 @NgModule({
@@ -71,7 +71,8 @@ import {AngularFireModule} from "@angular/fire"
         appId: "1:670484367540:web:974cb56f0ec12a1d882fe1",
         measurementId: "G-9HCDS41QR9"
       }),
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    BrowserAnimationsModule
 
   ],
   providers: [],
