@@ -1,14 +1,14 @@
 <div class="container-fluid main-chat" id="chatContent">
     <!-- Partner chat -->
-    <ng-container *ngFor="let mes of this.getSelectedChatContent().messages; let indexOfelement=index">
-        <div [ngClass]="this.typeOfMes(indexOfelement)" class="partner-chat  container-fluid row" *ngIf="!mes.mine&&this.isMes(mes)">
+    <ng-container  *ngFor="let mes of this.getSelectedChatContent().messages; let indexOfelement=index">
+        <div  [ngClass]="this.typeOfMes(indexOfelement)" class="partner-chat  container-fluid row" *ngIf="!mes.mine&&this.isMes(mes)">
             <div class="wrapper col-12 row">
                 <div class="avatar--wrapper">
                     <img *ngIf="this.isShowAvatar(indexOfelement)" class=" partner__avatar avatar " src="../../../../assets/image/avatar.jpg">
                     <img *ngIf="!this.isShowAvatar(indexOfelement)" class=" partner__avatar avatar " src="../../../../assets/image/avatar.jpg" style="visibility: hidden;">
                     <!-- <img class=" partner__avatar avatar "  src="../../../../assets/image/avatar.jpg" > -->
                   </div>
-                <div class="text--wrapper">
+                <div @messagesAnimation class="text--wrapper">
                     <h6 class="partner__name" *ngIf="isShowName(indexOfelement)">{{mes.userName}}</h6>
                     <p class="partner__text text " *ngIf="!this.isGif(mes.message)"  >{{mes.message}}  <span class="send-time">{{this.getDate(mes.createAt)}}</span></p>
                     <img class="partner_image image"  [src]="(mes.message)" alt="Image" *ngIf="this.isGif(mes.message)">
@@ -20,8 +20,8 @@
 
         <!-- End parter chat -->
         <!-- My chat -->
-        <div [ngClass]="this.typeOfMes(indexOfelement)" class="my-chat container-fluid row" *ngIf="mes.mine&&this.isMes(mes)">
-            <div class="wrapper text--wrapper col-12">
+        <div  [ngClass]="this.typeOfMes(indexOfelement)" class="my-chat container-fluid row" *ngIf="mes.mine&&this.isMes(mes)">
+            <div @messagesAnimation class="wrapper text--wrapper col-12">
                 <p class=" my__text text" *ngIf="!this.isGif(mes.message)"> <span class="send-time">{{this.getDate(mes.createAt)}}</span>{{mes.message}} </p>
                 <img class="my_image image"  [src]="(mes.message)" alt="Image" *ngIf="this.isGif(mes.message)">
               </div>

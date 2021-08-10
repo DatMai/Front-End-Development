@@ -7,7 +7,7 @@
     <button [ngClass]="isActive(isShowChatSetting)" (click)="showChatSetting()" class="chat-setting__title title"><span class="title__info">Tùy chỉnh đoạn chat</span>
       <span class="title__icon"><i class="fas fa-angle-down"></i></span>
     </button>
-  <ul  *ngIf="isShowChatSetting" class="chat-setting__list list">
+  <ul @listAnimation *ngIf="isShowChatSetting"  class="chat-setting__list list">
     <li class="list__item"> Item 1 </li>
     <li class="list__item"> Item 2 </li>
     <li class="list__item"> Item 3 </li>
@@ -17,7 +17,7 @@
   <div class="manager__chat-private manager__item">
     <button [ngClass]="isActive(isShowChatPrivate)" (click)="showChatPrivate()" class="chat-private__title title"> <span class="title__info"> Quyền riêng tư và hỗ trợ</span>
       <span class="title__icon"><i class="fas fa-angle-down"></i></span></button>
-    <ul *ngIf="isShowChatPrivate" class="chat-private__list list">
+    <ul @listAnimation *ngIf="isShowChatPrivate"  class="chat-private__list list">
       <li class="list__item"> Item 1 </li>
       <li class="list__item"> Item 2 </li>
       <li class="list__item"> Item 3 </li>
@@ -29,7 +29,7 @@
   <div class="manager__chat-sharing manager__item" *ngIf="this.isShowUserList()">
     <button [ngClass]="isActive(isShowChatSharing)" (click)="showChatSharing()" class="chat-sharing__title title"><span class="title__info">Thành viên trong nhóm chat</span>
       <span class="title__icon"><i class="fas fa-angle-down"></i></span></button>
-    <ul *ngIf="isShowChatSharing" class="chat-sharing__list list">
+    <ul @listAnimation *ngIf="isShowChatSharing" class="chat-sharing__list list">
       <li class="list__item" *ngFor="let u of this.getSelectedChatContent().userList"> {{u.name}} </li>
     </ul>
   </div>

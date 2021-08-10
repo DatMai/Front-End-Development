@@ -7,10 +7,10 @@
         <button class="btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class=" header__bell-icon fa fa-plus" aria-hidden="true"></i></button>
     </div>
     <div class="container action row">
-        <button class="btn" (click)="this.showListChatBox()"><i class="action__comments far fa-comments " [ngClass]="{active: this.isShowListChatBox()}"></i></button>
-        <button class="btn" (click)="this.showListFriend()"><i class="action__friends fas fa-user-friends" [ngClass]="{active: this.isShowListFriend()}"></i></button>
-        <button class="btn"><i class="action__list fas fa-list " ></i></button>
-        <button class="btn" (click)="this.showSetting()"><i class="action__setting fas fa-cog " [ngClass]="{active: this.isShowSetting()}"></i></button>
+        <button class="action__item" (click)="this.showListChatBox()"><i class="action__comments far fa-comments " [ngClass]="{active: this.isShowListChatBox()}"></i></button>
+        <button class="action__item" (click)="this.showListFriend()"><i class="action__friends fas fa-user-friends" [ngClass]="{active: this.isShowListFriend()}"></i></button>
+        <button class="action__item"><i class="action__list fas fa-list " ></i></button>
+        <button class="action__item" (click)="this.showSetting()"><i class="action__setting fas fa-cog " [ngClass]="{active: this.isShowSetting()}"></i></button>
     </div>
     <div class="searching-bar flex container">
         <div class="row">
