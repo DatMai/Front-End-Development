@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/service/data.service';
 import {animate, style, transition, trigger} from "@angular/animations";
+import { ChatService } from 'src/app/service/chat.service';
 
 @Component({
   selector: 'app-right-header',
@@ -43,10 +44,19 @@ import {animate, style, transition, trigger} from "@angular/animations";
 })
 export class RightHeaderComponent implements OnInit {
 
-
-  constructor(private dataService:DataService) { }
+  keyWord: string = '';
+  constructor(private dataService:DataService, private chatService:ChatService) { }
 
   ngOnInit(): void {
+  }
+  public getKeyWordToSearch() {
+    this.dataService.setSearchKeywordMessage(this.keyWord);
+    this.chatService.searchMessage(this.keyWord);
+    this.dataService.searchKeyWord.splice(0,this.dataService.searchKeyWord.length);
+    this.dataService.isShowSearchMessage = true;
+  }
+  public getKeyWord(event: any) {
+    this.keyWord = event.target.value;
   }
   public getSelectedChatContent() {
     return this.dataService.getSelectedChatContent();
