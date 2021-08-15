@@ -61,7 +61,7 @@
         transform: translateY(-50%);
         left: 31px;
         user-select: none;
-        color: #999;
+        color: rgb(32, 32, 32);
         pointer-events: none;
         font-size: 17px;
         transition: 0.25s ease;
@@ -73,5 +73,8 @@
         display: inline-block;
         background-color: white;
         color: #ee0400;
+    }
+    .done {
+        background-image: linear-gradient(#d32a4c, #eb522c);
     }
 }

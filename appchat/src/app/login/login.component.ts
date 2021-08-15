@@ -42,16 +42,16 @@ export class LoginComponent implements OnInit {
   {
   }
   ngOnInit(): void {
-    if(sessionStorage.length>1){
-      this.router.navigateByUrl('home');
-    }
+    // if(sessionStorage.length>1){
+    //   this.router.navigateByUrl('home');
+    // }
 
-    this.dataService.message$.subscribe(value=>
-      this.message=value
-    )
-    this.dataService.alert$.subscribe(value=>
-      this.alert=value
-    )
+    // this.dataService.message$.subscribe(value=>
+    //   this.message=value
+    // )
+    // this.dataService.alert$.subscribe(value=>
+    //   this.alert=value
+    // )
   }
 
   createLoginForm():FormGroup{
