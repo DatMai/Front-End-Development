@@ -25,7 +25,8 @@ export class RightTypingComponent implements OnInit,AfterViewInit {
   selectedEmoji: EmojisModel = {};
   checkEmojisShow: boolean = false;
   checkGifShow: boolean = false;
-  background: string = '#222323';
+  background: string = 'black';
+  backgroundInput:string="#222323"
   emojisList: {
     emoji?: string;
     name?: string;
