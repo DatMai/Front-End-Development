@@ -1,8 +1,8 @@
-<div class="container-fluid main-chat" id="chatContent">
+<div class="container-fluid main-chat" id="chatContent" [style.background]="this.darkMode() ? this.background : ''">
     <!-- Partner chat -->
     <div class="searchMessageArea" *ngIf="isShowSearchMessage()">
         <div class="notifiSearch">
-            <div class="message">Từ khóa được tìm kiếm là: "{{ this.keyWord }}""</div>
+            <div class="message">Từ khóa được tìm kiếm là: "{{ this.keyWord }}"</div>
             <div class="message">
                 Có {{ this.getResultSearchMessageCount() }} kết quả được tìm thấy
             </div>
@@ -14,6 +14,12 @@
         <div class="btnSearchClose">
             <div><i class="fas fa-times" (click)="close()"></i></div>
         </div>
+    </div>
+    <div class="drops">
+        <div class="drop"></div>
+        <div class="drop"></div>
+        <div class="drop"></div>
+        <div class="drop"></div>
     </div>
     <ng-container *ngFor="
       let mes of this.getSelectedChatContent().messages;

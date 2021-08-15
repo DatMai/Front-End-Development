@@ -36,6 +36,7 @@ export class DataService implements OnInit  {
   isShowSearch: boolean = false;
   isShowManager: boolean = false;
   isShowSearchMessage: boolean = false;
+  isDarkMode: boolean = false;
   chatContentUserName:string='';
   userList  :UserModel[]=userData;
   constructor(private http:HttpClient) {
