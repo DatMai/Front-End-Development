@@ -81,10 +81,9 @@ export class RightTypingComponent implements OnInit,AfterViewInit {
      let storage = this.af.storage;
      let fileName :string = "/image"+Math.random()+".jpg"
       let downloadURL = "gs://appchat-b16ea.appspot.com"+fileName
-
      await this.af.upload(fileName,selectedFiles);
       this.refImage = downloadURL
-
+      console.log(storage);
 
     }
 
