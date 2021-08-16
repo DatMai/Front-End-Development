@@ -24,7 +24,9 @@ export class RightTypingComponent implements OnInit,AfterViewInit {
   selectedGroup: GroupChat = {};
   selectedEmoji: EmojisModel = {};
   checkEmojisShow: boolean = false;
-  checkGifShow:boolean = false;
+  checkGifShow: boolean = false;
+  background: string = 'black';
+  backgroundInput:string="#222323"
   emojisList: {
     emoji?: string;
     name?: string;
@@ -59,7 +61,9 @@ export class RightTypingComponent implements OnInit,AfterViewInit {
   ngAfterViewInit(): void {
 
   }
-
+  public darkMode() {
+    return this.dataService.isDarkMode;
+  }
   ngOnInit(): void {
     this.dataService.selectedEmoji$.subscribe(
       (value) => (this.selectedEmoji = value)
