@@ -1,6 +1,6 @@
 .header {
     display: flex;
-    height: 10vh;
+    height: 70px;
     align-items: center;
     background-color: white;
     // position: fixed;
@@ -9,36 +9,47 @@
         display: flex;
         padding-left: 0px !important;
         padding-right: 0px !important;
+      width: 50%;
+
         .header__avatar {
             margin-left: 10vh;
             border-radius: 50%;
-            width: 3vw;
+            width: 50px;
         }
         .header__title {
             margin: 0;
-            margin-left: 5vh;
-            font-size: 1vw;
+            margin-left: 30px;
+            font-size: 20px;
             font-weight: bold;
+          text-overflow: ellipsis;
             .header__title--small {
-                font-size: 0.8vw;
+                font-size: 14px;
                 font-weight: normal;
             }
         }
     }
     .header__actions {
+      width: 50%;
         cursor: pointer;
         background-color: transparent;
-        display: flex;
+        //display: flex;
+      padding: 0 !important;
+.actions-container{
+  float: right;
+
+
         .fas {
-            float: right;
-            font-size: 2vw;
+          margin-right: 50px;
+            font-size: 24px;
         }
         .far {
             margin-right: 50px;
-            float: right;
-            font-size: 2vw;
-            margin-left: 100px;
-        }
+            font-size: 24px;
+
+            //margin-left: 100px;
+
+      }
+}
     }
     .form-input {
         border: 2px solid #eee;
@@ -74,4 +85,38 @@
         background-color: white;
         color: #ee0400;
     }
+}
+@media only screen and (max-width: 564px) {
+  .header {
+    display: flex;
+    height: 70px;
+    align-items: center;
+    background-color: white;
+    // position: fixed;
+    .header__infor {
+      align-items: center;
+      display: flex;
+      padding-left: 0px !important;
+      padding-right: 0px !important;
+      width: 50%;
+
+      .header__avatar {
+        margin-left: 10vh;
+        border-radius: 50%;
+        width: 50px;
+      }
+
+      .header__title {
+        width: 100px;
+        overflow-x: hidden;
+        overflow-y:hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+
+        .header__title--small {
+          display: none;
+        }
+      }
+    }
+  }
 }

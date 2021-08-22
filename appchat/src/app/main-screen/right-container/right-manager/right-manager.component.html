@@ -1,7 +1,8 @@
+
 <div id="right-manager">
 <!--  <img src="assets/image/avatar.jpg">-->
   <div class="header">
-    <h4 class="header__name">Tùy Chỉnh</h4>
+    <h4 class="header__name">Tùy Chỉnh <span class="close-icon" (click)="hideManager()"><i class="fas fa-arrow-right"></i></span></h4>
   </div>
   <div class="manager__chat-setting manager__item">
     <button [ngClass]="isActive(isShowChatSetting)" (click)="showChatSetting()" class="chat-setting__title title"><span class="title__info">Tùy chỉnh đoạn chat</span>

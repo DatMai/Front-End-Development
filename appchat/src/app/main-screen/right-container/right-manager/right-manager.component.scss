@@ -1,5 +1,5 @@
 #right-manager{
-  width: 100%;
+  width: 350px;
   height: 100%;
   background-color: white;
   .header{
@@ -8,7 +8,23 @@
     width: 100%;
     text-align: center;
 
-    .header__name{    font-size: 2vw;}
+    .header__name{
+      font-size: 30px;
+      .close-icon{
+        display: flex;
+        align-items: center;
+        font-size: 45px;
+        float: right;
+        width: 45px;
+        height: 45px;
+        cursor: pointer;
+        &:hover{
+          transition: all 0.3s;
+          color: red;
+
+        }
+      }
+    }
   }
   .manager__item{
     width: 100%;
@@ -20,8 +36,8 @@
 
     .title {
       padding-left: 10px;
-      font-size: 1.3vw;
-      margin-top: 1vh;
+      font-size: 24px;
+      margin-top: 10px;
       width: 100%;
       border: none;
       outline: none;
@@ -67,12 +83,12 @@
       &__item {
         $color:white;
         width: 100%;
-        margin-top: 0.5vh;
+        margin-top: 5px;
         padding-left: 30px;
         border-radius: 10rem;
         color: black;
         // text-transform: uppercase;
-        font-size: 1vw;
+        font-size: 16px;
         transition: all .3s;
         position: relative;
         overflow: hidden;
@@ -111,4 +127,11 @@
     }
 
   }
+@media only screen and (max-width: 992px) {
+  .close-icon{
+    .far{
+    display: block;
+    }
+  }
+}
 

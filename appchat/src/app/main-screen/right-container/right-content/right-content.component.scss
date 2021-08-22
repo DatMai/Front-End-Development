@@ -1,7 +1,7 @@
     .main-chat {
         overflow-x: hidden;
         overflow-y: scroll;
-        height: 80vh;
+        height: calc(100vh - 70px - 40px);
         .searchMessageArea {
             height: 100px;
             width: 400px;
@@ -98,7 +98,7 @@
             .partner__text {
                 align-items: center;
                 width: fit-content;
-                max-width: 70vh;
+                max-width: 500px;
                 color: rgb(255, 255, 255);
                 background-image: linear-gradient(#d32a4c, #eb522c);
                 .send-time {
@@ -132,21 +132,21 @@
             }
         }
     }
-    
+
     .partner-chat+.my-chat {
         margin-top: 30px;
     }
-    
+
     .my-chat+.partner-chat {
         margin-top: 30px;
     }
-    
+
     .partner-chat+.partner-chat {
         .avatar:last-child {
             visibility: visible;
         }
     }
-    
+
     .between {
         .partner__text {
             border-bottom-left-radius: 5px;
@@ -157,13 +157,13 @@
             border-top-right-radius: 5px;
         }
     }
-    
+
     .single {
         .avatar--wrapper {
             margin-block-start: 25px;
         }
     }
-    
+
     .begin {
         .partner__text {
             border-bottom-left-radius: 5px;
@@ -174,7 +174,7 @@
             border-top-right-radius: 30px;
         }
     }
-    
+
     .end {
         .partner__text {
             border-bottom-left-radius: 30px;
@@ -185,7 +185,31 @@
             border-top-right-radius: 5px;
         }
     }
-    
+    @media only screen and (max-width: 564px) {
+      .main-chat{
+        height: calc(100vh - 70px - 80px);
+        .partner-chat {
+          .partner__text {
+            max-width: 50vw;
+            .send-time {
+              margin-left: 13px;
+            }
+          }
+      }
+        .my-chat{
+          .my__text{
+            max-width: 50vw;
+          }
+        }
+        .image{
+          width: 50vw;
+        }
+      }
+
+
+    }
+
+
     // .main-chat::-webkit-scrollbar-track {
     //     border-radius: 10px;
     //     background-color: transparent;
