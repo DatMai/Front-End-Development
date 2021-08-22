@@ -4,6 +4,7 @@ import { ChatService } from '../service/chat.service';
 import { DataService } from '../service/data.service';
 import { UserService } from '../service/user.service';
 import { WebSocketService } from '../service/web-socket.service';
+import {platform} from "os";
 
 @Component({
   selector: 'app-main-screen',
@@ -12,6 +13,7 @@ import { WebSocketService } from '../service/web-socket.service';
 })
 export class MainScreenComponent implements OnInit {
 
+
   constructor(private wss:WebSocketService,private dataService:DataService,private router:Router
               ) { }
   ngOnInit(): void {
@@ -19,6 +21,9 @@ export class MainScreenComponent implements OnInit {
       this.router.navigateByUrl('login');
     }
   }
+
+
+
 
 
 }
