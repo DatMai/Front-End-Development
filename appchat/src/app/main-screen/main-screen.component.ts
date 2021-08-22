@@ -17,9 +17,9 @@ export class MainScreenComponent implements OnInit {
   constructor(private wss:WebSocketService,private dataService:DataService,private router:Router
               ) { }
   ngOnInit(): void {
-    // if (sessionStorage.length==0) {
-    //   this.router.navigateByUrl('login');
-    // }
+    if (sessionStorage.length==0) {
+      this.router.navigateByUrl('login');
+    }
   }
 
 
