@@ -8,6 +8,7 @@ import emojis from "../../.././data/emojis.json";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {AngularFireStorage} from "@angular/fire/storage";
 import Callback = JQuery.Deferred.Callback;
+import {ResponsiveService} from "../../../service/responsive.service";
 
 
 
@@ -56,7 +57,8 @@ export class RightTypingComponent implements OnInit,AfterViewInit {
     private dataService: DataService,
     private chatService: ChatService,
     private http : HttpClient,
-    private af : AngularFireStorage
+    private af : AngularFireStorage,
+    private res : ResponsiveService
   ) {}
   ngAfterViewInit(): void {
 
@@ -74,6 +76,9 @@ export class RightTypingComponent implements OnInit,AfterViewInit {
     public async sendImage(event:any){
       await this.fileUpload(event);
       this.callback();
+    }
+    public isShowTypingMobile(){
+    return this.res.isMobileRes(564);
     }
 
     public async fileUpload(event:any){
@@ -136,4 +141,6 @@ export class RightTypingComponent implements OnInit,AfterViewInit {
     this.chatService.sendTo(this.message);
     this.message = '';
   }
+
+
 }
