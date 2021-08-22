@@ -1,4 +1,12 @@
 [{
+        "name": "default",
+        "mainColor": "",
+        "data": [{
+            "background": "",
+            "color": "#fff",
+            "image": ""
+        }]
+    }, {
         "name": "love",
         "mainColor": "#fb046c",
         "data": [{

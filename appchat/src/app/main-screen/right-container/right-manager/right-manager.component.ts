@@ -83,6 +83,7 @@ export class RightManagerComponent implements OnInit {
     this.dataService.setBackground(backgroundText);
     this.dataService.setColor(colorText);
     this.dataService.isTheme = true;
+
     console.log(  this.backgroundText);
     console.log( this.colorText);
   }
