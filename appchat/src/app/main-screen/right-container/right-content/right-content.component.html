@@ -36,7 +36,8 @@
                     <h6 class="partner__name" *ngIf="isShowName(indexOfelement)">
                         {{ mes.userName }}
                     </h6>
-                    <p [id]="getId(mes.id, mes.highlight)" [ngClass]="mes.highlight ? 'highlight' : ''" class="partner__text text" [style.background]="mes.highlight ? 'blue' : ''" *ngIf="!this.isGif(mes.message)">
+                    <p [id]="getId(mes.id, mes.highlight)" [ngClass]="mes.highlight ? 'highlight' : ''" class="partner__text text" [style.background]="mes.highlight ? 'blue' : ''" *ngIf="!this.isGif(mes.message)" [style.background]="this.isTheme()? this.backgroundText:''"
+                        [style.color]="this.isTheme()?this.colorText:''">
                         {{ mes.message }}
                         <span class="send-time">{{ this.getDate(mes.createAt) }}</span>
                     </p>

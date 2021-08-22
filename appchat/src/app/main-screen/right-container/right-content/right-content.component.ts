@@ -34,6 +34,8 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
   arrayKeyWord: string[] = [];
   index: number = 0;
   keyWord: string = '';
+  backgroundText: string = '';
+  colorText: string = "";
   constructor(
     private dataService: DataService,
     private chatService: ChatService,
@@ -45,12 +47,18 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
   }
   ngOnChanges(changes: SimpleChanges): void {}
   ngOnInit(): void {
+    this.dataService.background$.subscribe((text) => (this.backgroundText = text));
+    this.dataService.color$.subscribe((text) => (this.colorText = text));
+
     // this.USERLOGIN=JSON.parse(sessionStorage.USERLOGIN);
     console.log('ready UI');
     this.dataService.searchMessage$.subscribe((text) => (this.keyWord = text));
   }
   public darkMode() {
     return this.dataService.isDarkMode;
+  }
+  public isTheme() {
+    return this.dataService.isTheme;
   }
   public getId(id: any, highlight: boolean): string {
     let getTextId = 'text' + id;

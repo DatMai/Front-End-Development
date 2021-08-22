@@ -1,8 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 
 import { DataService } from 'src/app/service/data.service';
-import {animate, keyframes, query, stagger, state, style, transition, trigger} from "@angular/animations";
-
+import {
+  animate,
+  keyframes,
+  query,
+  stagger,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
+import { ThemeModel } from 'src/app/model/ThemeModel';
+import theme from '../../../data/theme.json';
 @Component({
   selector: 'app-right-manager',
   templateUrl: './right-manager.component.html',
@@ -31,40 +41,74 @@ import {animate, keyframes, query, stagger, state, style, transition, trigger} f
   //     ])
   //   ])
   // ]
-  animations:[
-    trigger("listAnimation",[
-
-      transition(':enter',[
-        query('.list__item', style({opacity:0}),{optional:true}),
-        query('.list__item', stagger('50ms',[
-          animate('0.3s', keyframes([
-            style({opacity:0, transform: "translateX(75px)",offset: 0}),
-            style({opacity:1, transform: "translateX(0px)",offset: 1}),
-          ]))
-        ]),{optional:true})
+  animations: [
+    trigger('listAnimation', [
+      transition(':enter', [
+        query('.list__item', style({ opacity: 0 }), { optional: true }),
+        query(
+          '.list__item',
+          stagger('50ms', [
+            animate(
+              '0.3s',
+              keyframes([
+                style({ opacity: 0, transform: 'translateX(75px)', offset: 0 }),
+                style({ opacity: 1, transform: 'translateX(0px)', offset: 1 }),
+              ])
+            ),
+          ]),
+          { optional: true }
+        ),
       ]),
-      transition(':leave',[
-        query('.list__item', style({opacity:1}),{optional:true}),
-        query('.list__item', stagger('50ms',[
-          animate('0.3s', keyframes([
-            style({opacity:1, transform: "translateX(0px)",offset: 0}),
-            style({opacity:0, transform: "translateX(75px)",offset: 1}),
-          ]))
-        ]),{optional:true})
-      ])
+      transition(':leave', [
+        query('.list__item', style({ opacity: 1 }), { optional: true }),
+        query(
+          '.list__item',
+          stagger('50ms', [
+            animate(
+              '0.3s',
+              keyframes([
+                style({ opacity: 1, transform: 'translateX(0px)', offset: 0 }),
+                style({ opacity: 0, transform: 'translateX(75px)', offset: 1 }),
+              ])
+            ),
+          ]),
+          { optional: true }
+        ),
+      ]),
     ]),
-    ],
+  ],
 })
 export class RightManagerComponent implements OnInit {
-  isShowChatSetting:boolean = false;
-  isShowChatSharing:boolean = false;
+  isShowChatSetting: boolean = false;
+  isShowChatSharing: boolean = false;
   isShowChatPrivate: boolean = false;
-  background: string = "222323";
-  constructor(private dataService:DataService
-    ) { }
+  themeList: {
+    name?: string;
+    mainColor?: string;
+    data: [
+      {
+        background?: string;
+        color?: string;
+        image?: string;
+      }
+    ];
+  }[] = theme;
+  background: string = '222323';
+  backgroundText: string = '';
+  colorText: string = '';
+  constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
+    this.dataService.background$.subscribe((text) => (this.backgroundText = text));
+    this.dataService.color$.subscribe((text) => (this.colorText = text));
 
+  }
+  public testTheme(colorText: any, backgroundText: any) {
+    this.dataService.setBackground(backgroundText);
+    this.dataService.setColor(colorText);
+    this.dataService.isTheme = true;
+    console.log(  this.backgroundText);
+    console.log( this.colorText);
   }
   public darkMode() {
     this.dataService.isDarkMode = !this.dataService.isDarkMode;
@@ -72,20 +116,19 @@ export class RightManagerComponent implements OnInit {
   public getDarkMode() {
     return this.dataService.isDarkMode;
   }
- public listState(flag:boolean){
-    return flag? 'show':'hide';
+  public listState(flag: boolean) {
+    return flag ? 'show' : 'hide';
   }
 
-  public isActive(bol :boolean){
-    if(bol == true){
-      return "active";
-    }else{
-      return "deactive";
+  public isActive(bol: boolean) {
+    if (bol == true) {
+      return 'active';
+    } else {
+      return 'deactive';
     }
   }
 
-  public clickEffect(){
-  }
+  public clickEffect() {}
 
   public getSelectedChatContent() {
     return this.dataService.getSelectedChatContent();
@@ -94,14 +137,13 @@ export class RightManagerComponent implements OnInit {
     return this.getSelectedChatContent().isGroup;
   }
 
-  public showChatSetting(){
-    this.isShowChatSetting = !this.isShowChatSetting
+  public showChatSetting() {
+    this.isShowChatSetting = !this.isShowChatSetting;
   }
-  public showChatSharing(){
-    this.isShowChatSharing = !this.isShowChatSharing
+  public showChatSharing() {
+    this.isShowChatSharing = !this.isShowChatSharing;
   }
-  public showChatPrivate(){
-    this.isShowChatPrivate = !this.isShowChatPrivate
+  public showChatPrivate() {
+    this.isShowChatPrivate = !this.isShowChatPrivate;
   }
-
 }

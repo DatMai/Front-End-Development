@@ -23,10 +23,13 @@
       <span class="title__icon"><i class="fas fa-angle-down"></i></span>
     </button>
         <ul @listAnimation *ngIf="isShowChatPrivate" class="chat-private__list list">
-            <li class="list__item">Item 1</li>
-            <li class="list__item">Item 2</li>
-            <li class="list__item">Item 3</li>
-            <li class="list__item">Item 4</li>
+            <li class="list__item" *ngFor="let theme of themeList ">
+                <div *ngFor="let data of theme.data">
+                    <div (click)="testTheme(data.color, data.background)"> {{theme.name}}</div>
+                </div>
+
+            </li>
+
         </ul>
     </div>
 
