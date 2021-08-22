@@ -72,7 +72,7 @@
         transform: translateY(-50%);
         left: 31px;
         user-select: none;
-        color: #999;
+        color: rgb(32, 32, 32);
         pointer-events: none;
         font-size: 17px;
         transition: 0.25s ease;
@@ -85,6 +85,7 @@
         background-color: white;
         color: #ee0400;
     }
+
 }
 @media only screen and (max-width: 564px) {
   .header {
@@ -119,4 +120,9 @@
       }
     }
   }
+
+    .done {
+        background-image: linear-gradient(#d32a4c, #eb522c);
+    }
+
 }

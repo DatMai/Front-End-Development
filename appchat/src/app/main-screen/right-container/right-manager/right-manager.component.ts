@@ -58,14 +58,20 @@ import {animate, keyframes, query, stagger, state, style, transition, trigger} f
 export class RightManagerComponent implements OnInit {
   isShowChatSetting:boolean = false;
   isShowChatSharing:boolean = false;
-  isShowChatPrivate:boolean = false;
+  isShowChatPrivate: boolean = false;
+  background: string = "222323";
   constructor(private dataService:DataService
     ) { }
 
   ngOnInit(): void {
 
   }
-
+  public darkMode() {
+    this.dataService.isDarkMode = !this.dataService.isDarkMode;
+  }
+  public getDarkMode() {
+    return this.dataService.isDarkMode;
+  }
  public listState(flag:boolean){
     return flag? 'show':'hide';
   }

@@ -25,7 +25,9 @@ export class RightTypingComponent implements OnInit,AfterViewInit {
   selectedGroup: GroupChat = {};
   selectedEmoji: EmojisModel = {};
   checkEmojisShow: boolean = false;
-  checkGifShow:boolean = false;
+  checkGifShow: boolean = false;
+  background: string = 'black';
+  backgroundInput:string="#222323"
   emojisList: {
     emoji?: string;
     name?: string;
@@ -61,7 +63,9 @@ export class RightTypingComponent implements OnInit,AfterViewInit {
   ngAfterViewInit(): void {
 
   }
-
+  public darkMode() {
+    return this.dataService.isDarkMode;
+  }
   ngOnInit(): void {
     this.dataService.selectedEmoji$.subscribe(
       (value) => (this.selectedEmoji = value)
@@ -82,10 +86,9 @@ export class RightTypingComponent implements OnInit,AfterViewInit {
      let storage = this.af.storage;
      let fileName :string = "/image"+Math.random()+".jpg"
       let downloadURL = "gs://appchat-b16ea.appspot.com"+fileName
-
      await this.af.upload(fileName,selectedFiles);
       this.refImage = downloadURL
-
+      console.log(storage);
 
     }
 

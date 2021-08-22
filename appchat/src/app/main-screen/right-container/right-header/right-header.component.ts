@@ -43,11 +43,16 @@ import { ChatService } from 'src/app/service/chat.service';
   ]
 })
 export class RightHeaderComponent implements OnInit {
-
+  background: string = "#222323";
+  color: string = "#aaaaaa";
   keyWord: string = '';
+  managerButtonDark: boolean = false;
   constructor(private dataService:DataService, private chatService:ChatService) { }
 
   ngOnInit(): void {
+  }
+  public darkMode() {
+    return this.dataService.isDarkMode;
   }
   public getKeyWordToSearch() {
     this.dataService.setSearchKeywordMessage(this.keyWord);
@@ -61,7 +66,8 @@ export class RightHeaderComponent implements OnInit {
   public getSelectedChatContent() {
     return this.dataService.getSelectedChatContent();
   }
-  public showManager(){
+  public showManager() {
+    this.managerButtonDark = !this.managerButtonDark;
     this.dataService.isShowManager=!this.dataService.isShowManager;
   }
 
