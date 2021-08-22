@@ -123,10 +123,9 @@ export class RightTypingComponent implements OnInit,AfterViewInit {
     var el = $("#emotions").emojioneArea();
     var message  = $("#emotions").val();
     el[0].emojioneArea.on("emojibtn.click", function(btn) {
-      console.log(btn.html());
+      console.log(btn.data().name);
       // message+=btn.data().name;
-      $("#chatContent").html(btn.html());
-
+      message+=btn.data().name+"emotion";
     });
     // console.log(1);
     // this.checkEmojisShow = !this.checkEmojisShow;
