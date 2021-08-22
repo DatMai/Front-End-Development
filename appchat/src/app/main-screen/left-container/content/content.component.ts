@@ -8,6 +8,7 @@ import { GifService } from 'src/app/service/gif.service';
 import { UserService } from 'src/app/service/user.service';
 import { WebSocketService } from 'src/app/service/web-socket.service';
 import {animate, keyframes, query, stagger, style, transition, trigger} from "@angular/animations";
+import { ImageService } from 'src/app/service/image.service';
 
 @Component({
   selector: 'app-content',
@@ -36,13 +37,27 @@ export class ContentComponent implements OnInit {
     private userService: UserService,
     private wss: WebSocketService,
     private chatService: ChatService,
-    private gifService: GifService
+    private gifService: GifService,
+    private imageService: ImageService
   ) {}
 
   ngOnInit(): void {
     this.dataService.search$.subscribe((text) => (this.name = text));
     this.USERLOGIN = JSON.parse(sessionStorage.USERLOGIN);
   }
+
+  public selected(index :number){
+    let listActive : any = document.getElementsByClassName("active");
+    for(let i = 0; i < listActive.length; i++){
+      listActive.item(i).classList.remove("active");
+    }
+    let className:string = "user-"+index;
+    let listElements : any = document.getElementsByClassName(className);
+    for(let i = 0; i < listElements.length; i++){
+      listElements.item(i).classList.add("active");
+    }
+  }
+
   public logout() {
     this.wss.logout();
   }
@@ -77,6 +92,8 @@ export class ContentComponent implements OnInit {
     return this.dataService.getChatContentExample();
   }
 
+
+
   public setSelectedChatContent(chatContent: ChatContent) {
     // this.userService.getAudio();
     this.dataService.isShowSearchMessage = false;
@@ -87,13 +104,14 @@ export class ContentComponent implements OnInit {
 
     this.chatService.setSelectedChatContent(chatContent);
   }
-  public setSelectedChatContentByUserModel(usermodel: UserModel) {
+  public setSelectedChatContentByUserModel(usermodel: UserModel, index:number) {
     this.checkUser(usermodel);
     this.dataService.isShowSearchMessage = false;
     this.dataService.selectedChatContent.messages?.forEach(f => {
       f.highlight = false;
     })
     this.chatService.setSelectedChatContentByUserModel(usermodel);
+    this.selected(index);
   }
 
   public goToBottom() {
@@ -105,7 +123,13 @@ export class ContentComponent implements OnInit {
     let messages = this.chatService.getLastMessage(chatContent);
     let rs = messages;
     if (rs != 'Chưa có tin nhắn mới') {
-      if (this.gifService.isGif(messages.message)) {
+      if (this.imageService.isImage(messages.message)) {
+        if (messages.mine) {
+          rs= 'Bạn đã gửi 1 ảnh';
+        } else {
+          rs = messages.userName + ' đã gửi 1 ảnh';
+        }
+      }else if (this.gifService.isGif(messages.message)) {
         if (messages.mine) {
           rs= 'Bạn đã gửi 1 gif';
         } else {
@@ -116,7 +140,7 @@ export class ContentComponent implements OnInit {
             rs = 'Bạn: ' + messages.message;
           } else {
             if (chatContent.isGroup) {
-              rs = messages.userName + ':' + messages.message;
+              rs = messages.userName + ': ' + messages.message;
             } else {
               rs = messages.message;
             }

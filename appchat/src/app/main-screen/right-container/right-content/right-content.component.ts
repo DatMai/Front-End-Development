@@ -12,6 +12,8 @@ import { ChatContent } from '../../../model/ChatContent';
 import { stringify } from 'querystring';
 import { GifService } from 'src/app/service/gif.service';
 import { animate, style, transition, trigger } from '@angular/animations';
+import {ResponsiveService} from "../../../service/responsive.service";
+import { ImageService } from 'src/app/service/image.service';
 
 declare var $: any;
 @Component({
@@ -34,12 +36,12 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
   arrayKeyWord: string[] = [];
   index: number = 0;
   keyWord: string = '';
-  backgroundText: string = '';
-  colorText: string = "";
   constructor(
     private dataService: DataService,
     private chatService: ChatService,
-    private gifService: GifService
+    private gifService: GifService,
+    private imageService: ImageService,
+    private res : ResponsiveService,
   ) {}
 
   ngAfterViewInit(): void {
@@ -47,18 +49,12 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
   }
   ngOnChanges(changes: SimpleChanges): void {}
   ngOnInit(): void {
-    this.dataService.background$.subscribe((text) => (this.backgroundText = text));
-    this.dataService.color$.subscribe((text) => (this.colorText = text));
-
     // this.USERLOGIN=JSON.parse(sessionStorage.USERLOGIN);
     console.log('ready UI');
     this.dataService.searchMessage$.subscribe((text) => (this.keyWord = text));
   }
   public darkMode() {
     return this.dataService.isDarkMode;
-  }
-  public isTheme() {
-    return this.dataService.isTheme;
   }
   public getId(id: any, highlight: boolean): string {
     let getTextId = 'text' + id;
@@ -247,6 +243,9 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
 
   public isGif(message: string) {
     return this.gifService.isGif(message);
+  }
+  public isImage(message: string) {
+    return this.imageService.isImage(message);
   }
   public isNofication(messages: any) {
     return this.chatService.isNofication(messages);
