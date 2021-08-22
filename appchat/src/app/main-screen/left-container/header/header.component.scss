@@ -1,29 +1,26 @@
 .header--wrapper {
     z-index: 1;
-  height: 30vh;
 }
 
 .header {
-    height: 30%;
+    height: 10vh;
     // background-color: #c9273c;
     width: 100%;
-    //padding-top: 1vh;
-    //padding-left: 1vh;
-    //padding-bottom: 2vh;
+    padding-top: 1vh;
+    padding-left: 1vh;
+    padding-bottom: 2vh;
     display: flex;
-
-  align-items: center;
     justify-content: space-between;
     .header__avatar {
-        margin-left: 10px;
+        margin-left: 1vw;
         width: 30%;
     }
     .avatar--circle {
         border-radius: 50%;
     }
     .avatar--medium {
-        width: 60px;
-        height: 60px;
+        width: 4vw;
+        height: 4vw;
     }
     .title--wrapper {
         width: 60%;
@@ -33,7 +30,7 @@
     .header__title {
         color: #d3d3d3;
         width: 100%;
-        margin-left: 10px;
+        margin-left: 1vw;
         max-width: 100%;
         font-size: 18px;
         .title__status {
@@ -44,37 +41,34 @@
     .header__bell-icon {
         color: #d3d3d3;
         width: 10%;
-        margin-left: 10px;
+        margin-left: 1vw;
         display: flex;
         align-items: center;
-        font-size: 24px;
+        font-size: 1.5vw;
     }
 }
 
 .searching-bar {
-  display: flex;
-  align-items: center;
-  height:30%;
-    padding-left: 50px;
+    padding-left: 2vw;
+    margin-bottom: 2vh;
     width: 100%;
     .input--border {
         background-color: #000000;
         border-radius: 10px;
-        height: 20px;
+        height: 2vw;
         padding: 0;
         border-width: 1px;
-        font-size: 18px;
+        font-size: 1vw;
         background-color: transparent;
         border: 0px solid;
         color: rgb(255, 255, 255);
         outline: none;
-        width: 300px;
     }
     .submit--btn {
         display: flex;
         align-items: center;
         color: #d3d3d3;
-      font-size: 24px;
+        font-size: 1.5vw;
         border: none;
         background: none;
         outline: none;
@@ -82,10 +76,11 @@
 }
 
 .action {
-  height: 30%;
-    padding-left: 20px;
+
+    padding-top: 2vw;
+    padding-left: 2vw;
     justify-content: space-between;
-    //padding-bottom: 50px;
+    padding-bottom: 5vh;
 
 
   &__item{
@@ -93,7 +88,7 @@
     background-color: transparent;
     outline: none !important;
     border: none;
-    font-size: 24px;
+    font-size: 1.5vw;
   }
      :hover {
         transition: linear 0.3s;
@@ -113,9 +108,9 @@
 @media only screen and (min-width: 992px) {
     .header {
         .header__title {
-            font-size: 20px;
+            font-size: 1vw;
             .title__status {
-                font-size: 14px;
+                font-size: 0.7vw;
             }
         }
     }
@@ -176,22 +171,3 @@
         }
     }
 }
-@media only screen and (min-width: 1920px) {
-  .header--wrapper {
-    z-index: 1;
-    height: 20vh;
-  }
-}
-@media only screen and (min-width: 2240px) {
-  .header--wrapper {
-    height: 15vh;
-  }
-
-}
-@media only screen and (min-width: 2560px) {
-  .header--wrapper {
-    height: 10vh;
-  }
-
-}
-

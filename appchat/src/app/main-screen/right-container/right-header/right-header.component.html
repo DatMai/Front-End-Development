@@ -1,19 +1,16 @@
-
-<div class="header row" [style.background]="this.darkMode() ? this.background : ''" [style.color]="this.darkMode() ? this.color : ''">
-    <div @headerAnimation class="header__infor">
+<div class="header" [style.background]="this.darkMode() ? this.background : ''" [style.color]="this.darkMode() ? this.color : ''">
+    <div @headerAnimation class="header__infor col-10">
         <img src="../../../../assets/image/avatar.jpg" class="header__avatar" />
         <h6 class="header__title">
             {{ this.getSelectedChatContent().name }} <br />
+            <span class="header__title--small">Chào mọi người. mình là Đoan !!</span>
         </h6>
     </div>
 
-    <div @iconAnimation class="header__actions">
-      <div class="actions-container" >
+    <div @iconAnimation class="header__actions col-2">
         <i class="far fa-eye" data-bs-toggle="modal" data-bs-target="#searchModal" data-bs-whatever="@getbootstrap"></i>
 
-        <i class="fas fa-bars " (click)="this.showManager()" [style.color]="this.managerButtonDark?'#aaaaaa':''"></i>
-      </div>
-
+        <i class="fas fa-ellipsis-v" (click)="this.showManager()" [style.color]="this.managerButtonDark?'#aaaaaa':''"></i>
     </div>
 
     <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
