@@ -8,6 +8,7 @@ import { GifService } from 'src/app/service/gif.service';
 import { UserService } from 'src/app/service/user.service';
 import { WebSocketService } from 'src/app/service/web-socket.service';
 import {animate, keyframes, query, stagger, style, transition, trigger} from "@angular/animations";
+import { ImageService } from 'src/app/service/image.service';
 
 @Component({
   selector: 'app-content',
@@ -36,7 +37,8 @@ export class ContentComponent implements OnInit {
     private userService: UserService,
     private wss: WebSocketService,
     private chatService: ChatService,
-    private gifService: GifService
+    private gifService: GifService,
+    private imageService: ImageService
   ) {}
 
   ngOnInit(): void {
@@ -121,7 +123,13 @@ export class ContentComponent implements OnInit {
     let messages = this.chatService.getLastMessage(chatContent);
     let rs = messages;
     if (rs != 'Chưa có tin nhắn mới') {
-      if (this.gifService.isGif(messages.message)) {
+      if (this.imageService.isImage(messages.message)) {
+        if (messages.mine) {
+          rs= 'Bạn đã gửi 1 ảnh';
+        } else {
+          rs = messages.userName + ' đã gửi 1 ảnh';
+        }
+      }else if (this.gifService.isGif(messages.message)) {
         if (messages.mine) {
           rs= 'Bạn đã gửi 1 gif';
         } else {
@@ -132,7 +140,7 @@ export class ContentComponent implements OnInit {
             rs = 'Bạn: ' + messages.message;
           } else {
             if (chatContent.isGroup) {
-              rs = messages.userName + ':' + messages.message;
+              rs = messages.userName + ': ' + messages.message;
             } else {
               rs = messages.message;
             }

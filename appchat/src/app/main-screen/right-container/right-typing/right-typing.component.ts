@@ -9,6 +9,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {AngularFireStorage} from "@angular/fire/storage";
 import Callback = JQuery.Deferred.Callback;
 import {ResponsiveService} from "../../../service/responsive.service";
+import { ImageService } from 'src/app/service/image.service';
 
 
 
@@ -40,8 +41,6 @@ export class RightTypingComponent implements OnInit,AfterViewInit {
 
 
 
-  refImage:string ="";
-
   // emojisList: {
   //   [key: string]: {
   //       unicode: string[];
@@ -56,12 +55,14 @@ export class RightTypingComponent implements OnInit,AfterViewInit {
   constructor(
     private dataService: DataService,
     private chatService: ChatService,
-    private http : HttpClient,
-    private af : AngularFireStorage,
+    private imageService: ImageService,
     private res : ResponsiveService
   ) {}
   ngAfterViewInit(): void {
 
+  }
+  public sendImage(event:any){
+    this.imageService.sendImage(event);
   }
   public darkMode() {
     return this.dataService.isDarkMode;
@@ -73,35 +74,10 @@ export class RightTypingComponent implements OnInit,AfterViewInit {
 
     }
 
-    public async sendImage(event:any){
-      await this.fileUpload(event);
-      this.callback();
-    }
+
     public isShowTypingMobile(){
     return this.res.isMobileRes(564);
     }
-
-    public async fileUpload(event:any){
-    let selectedFiles:string = event.target.files[0];
-     let storage = this.af.storage;
-     let fileName :string = "/image"+Math.random()+".jpg"
-      let downloadURL = "gs://appchat-b16ea.appspot.com"+fileName
-     await this.af.upload(fileName,selectedFiles);
-      this.refImage = downloadURL
-      console.log(storage);
-
-    }
-
-
-  public callback () {
-    let gsReference = this.af.storage.refFromURL(this.refImage);
-    gsReference.getDownloadURL().then((url)=>{
-      this.chatService.sendTo(url);
-    })
-   }
-
-
-
 
   checkShowManager(){
     return this.dataService.isShowManager;
@@ -120,20 +96,18 @@ export class RightTypingComponent implements OnInit,AfterViewInit {
     this.message = this.message + this.selectedEmoji.emoji;
   }
   public showEmoji() {
-    $("#emotions").emojioneArea({
-      // standalone:true,
-      pickerPosition: "top",
-      toneStyle:"bullet",
-    });
-    var el = $("#emotions").emojioneArea();
-    var message  = $("#emotions").val();
-    el[0].emojioneArea.on("emojibtn.click", function(btn) {
-      console.log(btn.data().name);
-      // message+=btn.data().name;
-      message+=btn.data().name+"emotion";
-    });
-    // console.log(1);
-    // this.checkEmojisShow = !this.checkEmojisShow;
+    // $("#emotions").emojioneArea({
+    //   // standalone:true,
+    //   pickerPosition: "top",
+    //   toneStyle:"bullet",
+    // });
+    // let el = $("#emotions").emojioneArea();
+    // let message  = $("#emotions").val();
+    // el[0].emojioneArea.on("emojibtn.click", function(btn) {
+
+    // });
+    // this.message=message;
+
   }
 
   public sendTo() {

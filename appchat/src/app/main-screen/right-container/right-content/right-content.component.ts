@@ -13,6 +13,7 @@ import { stringify } from 'querystring';
 import { GifService } from 'src/app/service/gif.service';
 import { animate, style, transition, trigger } from '@angular/animations';
 import {ResponsiveService} from "../../../service/responsive.service";
+import { ImageService } from 'src/app/service/image.service';
 
 declare var $: any;
 @Component({
@@ -39,6 +40,7 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
     private dataService: DataService,
     private chatService: ChatService,
     private gifService: GifService,
+    private imageService: ImageService,
     private res : ResponsiveService,
   ) {}
 
@@ -241,6 +243,9 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
 
   public isGif(message: string) {
     return this.gifService.isGif(message);
+  }
+  public isImage(message: string) {
+    return this.imageService.isImage(message);
   }
   public isNofication(messages: any) {
     return this.chatService.isNofication(messages);
