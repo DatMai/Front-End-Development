@@ -1,64 +1,62 @@
-#file1{
-  display: none;
+#file1 {
+    display: none;
 }
-#file2{
-  display: none;
+
+#file2 {
+    display: none;
 }
-.actions-m{
-  width: 100%;
-  text-align: center;
-  &__container{
+
+.actions-m {
+    width: 100%;
+    text-align: center;
+    &__container {
+        display: flex;
+        align-items: center;
+        height: 30px;
+        justify-content: space-around;
+        .file__label {
+            margin-bottom: 0 !important;
+        }
+    }
+}
+
+.button {
+    outline: none !important;
     display: flex;
     align-items: center;
-    height: 30px;
+    font-size: 24px;
+    padding: 0;
+    border: none;
+    background: none;
+    margin-left: 5px;
+    background-image: linear-gradient(#d32a4c, #eb522c);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
 
-    justify-content: space-around;
-    .file__label{
-      margin-bottom: 0 !important;
-    }
-  }
-}
-.button {
-  outline: none !important;
-  display: flex;
-  align-items: center;
-  font-size: 24px;
-  padding: 0;
-  border: none;
-  background: none;
-  margin-left: 5px;
-  background-image: linear-gradient(#d32a4c, #eb522c);
-  -webkit-text-fill-color: transparent;
-  -webkit-background-clip: text;
-}
 .typing {
-  margin-top: 5px;
+    margin-top: 5px;
     //z-index: -9;
     background-color: transparent;
     //width: 105%;
     //margin-left: -1vw;
-
-    margin-left: 30px;
-  &__actions{
-    margin-left: 2px;
-    padding: 0 !important;
-    align-items: center;
-    .file__label{
-      margin-bottom: 0 !important;
+    padding-left: 30px;
+    &__actions {
+        margin-left: 2px;
+        padding: 0 !important;
+        align-items: center;
+        .file__label {
+            margin-bottom: 0 !important;
+        }
     }
-
-  }
     &__input {
-      //padding: 0 !important;
-      padding-left: 10px;
-      align-items: center;
-
+        //padding: 0 !important;
+        padding-left: 10px;
+        align-items: center;
         outline: none;
         font-size: 24px;
         width: 100vh;
-
         border-radius: 5px;
-
         border: none;
     }
     .sending-text {}
@@ -110,25 +108,25 @@
 }
 
 @media only screen and (min-width: 564px) {
-  .action-m {
-    display: none;
-  }
+    .action-m {
+        display: none;
+    }
 }
+
 @media only screen and (max-width: 992px) {
     .emojiArea {
         margin-top: -24vw;
         margin-left: 70vw;
     }
 }
+
 @media only screen and (max-width: 564px) {
-
-  .typing__actions{
-    .button{
-      display: none;
+    .typing__actions {
+        .button {
+            display: none;
+        }
+        .emotion {
+            display: block;
+        }
     }
-    .emotion{
-      display: block;
-    }
-
-  }
 }
