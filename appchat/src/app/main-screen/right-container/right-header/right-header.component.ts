@@ -30,7 +30,7 @@ import { ChatService } from 'src/app/service/chat.service';
       transition(':enter',[
         style({
           opacity:0,
-          transform: 'translateX(16px)'
+          transform: 'translateX(1vw)'
         }),
         animate("0.3s",style({
             opacity:1,

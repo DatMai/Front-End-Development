@@ -1,40 +1,16 @@
 .right-section {
-  //float: right;
+  float: right;
   padding: 0 !important;
+  width: 30%;
 }
 
 .left-section{
   padding-right : 0 !important;
   padding-left : 0 !important;
+  width: 100%;
 
 }
-#overlay{
-  display: none;
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  content: "";
-}
 .row{
-  padding-right: 0 !important;
   margin-left: 0 !important;
   margin-right: 0 !important;
 }
-@media only screen and (max-width: 992px) {
-  .right-section {
-    height: 100vh;
-    background-color: white;
-    position: absolute;
-    z-index: 2;
-    right: 0;
-    box-shadow: #222222 5px 5px 100px 5px;
-  }
-  #overlay{
-    z-index: 2;
-    display: block;
-    background-color: #222222;
-    opacity: 0.5;
-  }
-}
-
-

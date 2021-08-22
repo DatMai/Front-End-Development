@@ -38,7 +38,7 @@ import {animate, keyframes, query, stagger, state, style, transition, trigger} f
         query('.list__item', style({opacity:0}),{optional:true}),
         query('.list__item', stagger('50ms',[
           animate('0.3s', keyframes([
-            style({opacity:0, transform: "translateX(10px)",offset: 0}),
+            style({opacity:0, transform: "translateX(75px)",offset: 0}),
             style({opacity:1, transform: "translateX(0px)",offset: 1}),
           ]))
         ]),{optional:true})
@@ -48,7 +48,7 @@ import {animate, keyframes, query, stagger, state, style, transition, trigger} f
         query('.list__item', stagger('50ms',[
           animate('0.3s', keyframes([
             style({opacity:1, transform: "translateX(0px)",offset: 0}),
-            style({opacity:0, transform: "translateX(10px)",offset: 1}),
+            style({opacity:0, transform: "translateX(75px)",offset: 1}),
           ]))
         ]),{optional:true})
       ])
@@ -85,9 +85,6 @@ export class RightManagerComponent implements OnInit {
   }
 
   public clickEffect(){
-  }
-  public hideManager(){
-    this.dataService.isShowManager = false;
   }
 
   public getSelectedChatContent() {

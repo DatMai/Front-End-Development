@@ -43,19 +43,6 @@ export class ContentComponent implements OnInit {
     this.dataService.search$.subscribe((text) => (this.name = text));
     this.USERLOGIN = JSON.parse(sessionStorage.USERLOGIN);
   }
-
-  public selected(index :number){
-    let listActive : any = document.getElementsByClassName("active");
-    for(let i = 0; i < listActive.length; i++){
-      listActive.item(i).classList.remove("active");
-    }
-    let className:string = "user-"+index;
-    let listElements : any = document.getElementsByClassName(className);
-    for(let i = 0; i < listElements.length; i++){
-      listElements.item(i).classList.add("active");
-    }
-  }
-
   public logout() {
     this.wss.logout();
   }
@@ -90,8 +77,6 @@ export class ContentComponent implements OnInit {
     return this.dataService.getChatContentExample();
   }
 
-
-
   public setSelectedChatContent(chatContent: ChatContent) {
     // this.userService.getAudio();
     this.dataService.isShowSearchMessage = false;
@@ -102,14 +87,13 @@ export class ContentComponent implements OnInit {
 
     this.chatService.setSelectedChatContent(chatContent);
   }
-  public setSelectedChatContentByUserModel(usermodel: UserModel, index:number) {
+  public setSelectedChatContentByUserModel(usermodel: UserModel) {
     this.checkUser(usermodel);
     this.dataService.isShowSearchMessage = false;
     this.dataService.selectedChatContent.messages?.forEach(f => {
       f.highlight = false;
     })
     this.chatService.setSelectedChatContentByUserModel(usermodel);
-    this.selected(index);
   }
 
   public goToBottom() {

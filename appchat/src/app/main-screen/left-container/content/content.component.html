@@ -8,7 +8,7 @@
     </div>
   </div>
   <div @listAnimation class="list-friends list" *ngIf="this.isShowListFriend()">
-    <div class="friend" *ngFor="let f of this.getListUser(), index as index" (click)="setSelectedChatContentByUserModel(f,index)" [ngClass]="'user-'+index">
+    <div class="friend" *ngFor="let f of this.getListUser()" (click)="setSelectedChatContentByUserModel(f)">
       <img class="friend__avatar avatar--circle avatar--small" src="../../../../assets/image/avatar.jpg" alt="" />
       <h4 class="friend__infor">
         {{ f.fullname }} <span class="text--small"><br />{{ f.status }}</span>
@@ -17,7 +17,7 @@
   </div>
   <div @listAnimation  class="list-search list" *ngIf="this.isShowSearch()">
     <div class="checkSearch" *ngIf="this.isCheckSearch()"> <i>Tìm kiếm cho từ khoá : "{{this.name}}"</i> </div>
-    <div class="friend" *ngFor="let f of this.getListSearch(), index as index" (click)="setSelectedChatContentByUserModel(f,index)">
+    <div class="friend" *ngFor="let f of this.getListSearch()" (click)="setSelectedChatContentByUserModel(f)">
       <img class="friend__avatar avatar--circle avatar--small" src="../../../../assets/image/avatar.jpg" alt="" />
       <h4 class="friend__infor">
         {{ f.fullname }} <span class="text--small"><br />{{ f.status }}</span>
