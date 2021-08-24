@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/service/data.service';
 import {animate, keyframes, query, stagger, state, style, transition, trigger} from "@angular/animations";
 import theme from "../../../data/theme.json";
+import { ThemeModel } from 'src/app/model/ThemeModel';
 @Component({
   selector: 'app-right-manager',
   templateUrl: './right-manager.component.html',
@@ -62,31 +63,14 @@ export class RightManagerComponent implements OnInit {
   background: string = "222323";
   backgroundText: string = '';
   colorText: string = '';
-  themeList: {
-    name?: string;
-    mainColor?: string;
-    data: [
-      {
-        background?: string;
-        color?: string;
-        image?: string;
-      }
-    ];
-  }[] = theme;
+  themeList:ThemeModel[] = theme;
   constructor(private dataService:DataService
     ) { }
 
   ngOnInit(): void {
 
   }
-  public testTheme(colorText: any, backgroundText: any) {
-    this.dataService.setBackground(backgroundText);
-    this.dataService.setColor(colorText);
-    this.dataService.isTheme = true;
 
-    console.log(  this.backgroundText);
-    console.log( this.colorText);
-  }
   public darkMode() {
     this.dataService.isDarkMode = !this.dataService.isDarkMode;
   }

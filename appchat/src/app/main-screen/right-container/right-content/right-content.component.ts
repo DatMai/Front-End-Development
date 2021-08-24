@@ -14,6 +14,7 @@ import { GifService } from 'src/app/service/gif.service';
 import { animate, style, transition, trigger } from '@angular/animations';
 import {ResponsiveService} from "../../../service/responsive.service";
 import { ImageService } from 'src/app/service/image.service';
+import { ThemeService } from 'src/app/service/theme.service';
 
 declare var $: any;
 @Component({
@@ -43,6 +44,7 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
     private chatService: ChatService,
     private gifService: GifService,
     private imageService: ImageService,
+    private themeService: ThemeService,
     private res : ResponsiveService,
   ) {}
 
@@ -51,8 +53,8 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
   }
   ngOnChanges(changes: SimpleChanges): void {}
   ngOnInit(): void {
-    this.dataService.background$.subscribe((text) => (this.backgroundText = text));
-    this.dataService.color$.subscribe((text) => (this.colorText = text));
+    this.themeService.background$.subscribe((text) => (this.backgroundText = text));
+    this.themeService.color$.subscribe((text) => (this.colorText = text));
     // this.USERLOGIN=JSON.parse(sessionStorage.USERLOGIN);
     console.log('ready UI');
     this.dataService.searchMessage$.subscribe((text) => (this.keyWord = text));
@@ -61,7 +63,7 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
     return this.dataService.isDarkMode;
   }
   public isTheme() {
-    return this.dataService.isTheme;
+    return this.themeService.isTheme;
   }
   public getId(id: any, highlight: boolean): string {
     let getTextId = 'text' + id;

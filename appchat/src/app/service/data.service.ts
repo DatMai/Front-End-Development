@@ -14,13 +14,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class DataService implements OnInit {
-  private colorSubject: BehaviorSubject<string> = new BehaviorSubject<string>(
-    ''
-  );
-  color$: Observable<string> = this.colorSubject.asObservable();
-  private backgroundSubject: BehaviorSubject<string> =
-    new BehaviorSubject<string>('');
-  background$: Observable<string> = this.backgroundSubject.asObservable();
+
   private searchSubject: BehaviorSubject<string> = new BehaviorSubject<string>(
     ''
   );
@@ -46,19 +40,13 @@ export class DataService implements OnInit {
   isShowManager: boolean = false;
   isShowSearchMessage: boolean = false;
   isDarkMode: boolean = false;
-  isTheme: boolean = false;
   chatContentUserName: string = '';
   userList: UserModel[] = userData;
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void { }
 
-  setColor(text: string) {
-    this.colorSubject.next(text);
-  }
-  setBackground(text: string) {
-    this.backgroundSubject.next(text);
-  }
+
   setSearchKeywordMessage(text: string) {
     this.searchMessageSubject.next(text);
   }

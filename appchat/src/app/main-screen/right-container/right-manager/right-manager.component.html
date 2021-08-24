@@ -15,7 +15,7 @@
             <li class="list__item">
                 <div (click)="darkMode()"><i class="fas fa-moon"></i> Dark Mode</div>
             </li>
-            <li class="list__item">Item 2</li>
+            <li class="list__item"  type="button" data-bs-toggle="modal" data-bs-target="#themeModal">Đổi chủ đề</li>
             <li class="list__item">Item 3</li>
             <li class="list__item">Item 4</li>
         </ul>
@@ -26,12 +26,7 @@
       <span class="title__icon"><i class="fas fa-angle-down"></i></span>
     </button>
         <ul @listAnimation *ngIf="isShowChatPrivate" class="chat-private__list list">
-            <li class="list__item" *ngFor="let theme of themeList ">
-                <div *ngFor="let data of theme.data">
-                    <div (click)="testTheme(data.color, data.background)"> {{theme.name}}</div>
-                </div>
-
-            </li>
+            <li class="list__item"></li>
         </ul>
     </div>
 
@@ -47,3 +42,4 @@
         </ul>
     </div>
 </div>
+<app-theme-modal></app-theme-modal>

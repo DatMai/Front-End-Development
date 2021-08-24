@@ -32,6 +32,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {AngularFireStorageModule} from "@angular/fire/storage";
 import {AngularFireModule} from "@angular/fire"
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { ThemeModalComponent } from './main-screen/right-container/right-manager/theme-modal/theme-modal.component';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     RightManagerComponent,
     RoomModalComponent,
     SendGifComponent,
+    ThemeModalComponent,
 
   ],
   imports: [
