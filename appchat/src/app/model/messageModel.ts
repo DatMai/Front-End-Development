@@ -9,7 +9,6 @@ export class MessagesModel{
   createAt!:string;
   description!: string;
   highlight!: boolean;
-  theme!: string;
   constructor(){
 
   }
