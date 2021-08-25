@@ -1,4 +1,5 @@
 import { MessagesModel } from "./messageModel";
+import { ThemeModel } from "./ThemeModel";
 import { UserModel } from "./userModel";
 
 export class ChatContent{
@@ -16,4 +17,5 @@ export class ChatContent{
   isGroup?:boolean;
   isSeen?:boolean;
   totalPage?:number;
+  theme?:ThemeModel;
 }

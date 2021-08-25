@@ -8,7 +8,7 @@
       <div class="modal-body">
         <div class="box-theme" *ngFor="let t of this.getListTheme()" >
           <div class="circle-theme" style.background={{t.mainColor}}
-          (click)="testTheme(t)">
+          (click)="setTheme(t)">
           </div>
         </div>
       </div>

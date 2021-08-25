@@ -53,13 +53,9 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
   }
   ngOnChanges(changes: SimpleChanges): void {}
   ngOnInit(): void {
-    this.themeService.background$.subscribe((text) => (this.backgroundText = text));
-    this.themeService.color$.subscribe((text) => (this.colorText = text));
     this.dataService.searchMessage$.subscribe((text) => (this.keyWord = text));
   }
-  public isTheme() {
-    return this.themeService.isTheme;
-  }
+
   public darkMode() {
     return this.dataService.isDarkMode;
   }
