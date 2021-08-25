@@ -17,9 +17,7 @@ export class ThemeModalComponent implements OnInit {
   public getListTheme(){
     return this.themeService.listTheme;
   }
-  public testTheme(theme:ThemeModel) {
-    this.themeService.setBackground(theme.data?.background||"");
-    this.themeService.setColor(theme.data?.color||"");
-    this.themeService.isTheme = true;
+  public setTheme(theme:ThemeModel) {
+    this.themeService.setTheme(theme);
   }
 }

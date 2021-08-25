@@ -18,10 +18,10 @@ export class ThemeService {
   isTheme: boolean = false;
 
   constructor() { }
-  setColor(text: string) {
-    this.colorSubject.next(text);
+  public setTheme(theme:ThemeModel){
+    this.colorSubject.next(theme.data?.color||"");
+    this.backgroundSubject.next(theme.data?.color||"");
+    this.isTheme=true;
   }
-  setBackground(text: string) {
-    this.backgroundSubject.next(text);
-  }
+
 }
