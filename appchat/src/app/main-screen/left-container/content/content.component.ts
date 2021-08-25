@@ -105,7 +105,9 @@ export class ContentComponent implements OnInit {
 
 
   public setSelectedChatContent(chatContent: ChatContent, index:number) {
+
     this.res.isClickShowLeftContainer = false;
+
     // this.userService.getAudio();
     this.dataService.isShowSearchMessage = false;
     this.dataService.selectedChatContent.messages?.forEach(f => {
