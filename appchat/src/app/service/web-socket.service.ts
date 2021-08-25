@@ -263,7 +263,6 @@ export class WebSocketService {
     this.loadListFriend();
     setTimeout(() =>this.loadListChatBox(),1000);
   }
-
   //xử lý dữ liệu nhận từ server
   public getResponse(data: any) {
     this.getCheckUserResponse(data);

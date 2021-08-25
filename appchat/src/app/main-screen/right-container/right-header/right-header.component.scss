@@ -3,6 +3,8 @@
     height: 70px;
     align-items: center;
     background-color: white;
+
+  width: 100%;
     // position: fixed;
     .header__infor {
         align-items: center;
@@ -10,14 +12,20 @@
         padding-left: 0px !important;
         padding-right: 0px !important;
       width: 50%;
+      .show-friend-list{
+        border: none;
+        background-color: transparent;
+        //margin-left: 40px;
+        font-size: 24px;
+      }
 
         .header__avatar {
-            margin-left: 10vh;
+            margin-left: 50px;
             border-radius: 50%;
             width: 50px;
         }
         .header__title {
-            margin: 0;
+          width: 100%;
             margin-left: 30px;
             font-size: 20px;
             font-weight: bold;
@@ -102,9 +110,8 @@
       width: 50%;
 
       .header__avatar {
-        margin-left: 10vh;
-        border-radius: 50%;
-        width: 50px;
+        margin-left: 5px;
+
       }
 
       .header__title {
@@ -117,6 +124,37 @@
         .header__title--small {
           display: none;
         }
+      }
+    }
+  }
+  @media only screen and (max-width: 992px) {
+    .header {
+      // position: fixed;
+      &__infor {
+        //width: 70%;
+        .show-friend-list{
+          //width: 10%;
+        }
+        .header__avatar {
+          margin-left: 10px;
+          border-radius: 50%;
+          //width: 40px;
+        }
+
+        .header__title {
+          width: 100px;
+          overflow-x: hidden;
+          overflow-y: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+
+          .header__title--small {
+            display: none;
+          }
+        }
+      }
+      &__actions{
+        //width: 30%;
       }
     }
   }

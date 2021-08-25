@@ -1,6 +1,7 @@
 
-<div class="header row" [style.background]="this.darkMode() ? this.background : ''" [style.color]="this.darkMode() ? this.color : ''">
+<div class="header" [style.background]="this.darkMode() ? this.background : ''" [style.color]="this.darkMode() ? this.color : ''">
     <div @headerAnimation class="header__infor">
+      <button *ngIf="showListFriendButton()" (click)="showListFriend()" class="show-friend-list"><i class="fas fa-user-friends"></i></button>
         <img src="../../../../assets/image/avatar.jpg" class="header__avatar" />
         <h6 class="header__title">
             {{ this.getSelectedChatContent().name }} <br />

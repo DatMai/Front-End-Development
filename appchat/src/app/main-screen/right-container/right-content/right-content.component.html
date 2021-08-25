@@ -36,11 +36,16 @@
                     <h6 class="partner__name" *ngIf="isShowName(indexOfelement)">
                         {{ mes.userName }}
                     </h6>
-                    <p [id]="getId(mes.id, mes.highlight)" [ngClass]="mes.highlight ? 'highlight' : ''" class="partner__text text" [style.background]="mes.highlight ? 'blue' : ''" *ngIf="!this.isGif(mes.message)">
+
+                    <p [id]="getId(mes.id, mes.highlight)" [ngClass]="mes.highlight ? 'highlight' : ''" class="partner__text text" [style.border]="mes.highlight ? '5px solid yellow' : ''" *ngIf="!(this.isGif(mes.message)||this.isImage(mes.message))" [style.background]="this.getSelectedChatContent().theme?.name!=undefined? this.getSelectedChatContent().theme?.data?.background:''">
+
+
+
+
                         {{ mes.message }}
                         <span class="send-time">{{ this.getDate(mes.createAt) }}</span>
                     </p>
-                    <img class="partner_image image" [src]="mes.message" alt="Image" *ngIf="this.isGif(mes.message)" />
+                    <img class="partner_image image" [src]="mes.message" alt="Image" *ngIf="this.isGif(mes.message)||this.isImage(mes.message)" />
                 </div>
             </div>
         </div>
@@ -53,7 +58,11 @@
         <!-- My chat -->
         <div [ngClass]="this.typeOfMes(indexOfelement)" class="my-chat container-fluid row" *ngIf="mes.mine && this.isMes(mes)">
             <div @messagesAnimation class="wrapper text--wrapper col-12">
-                <p [id]="getId(mes.id, mes.highlight)" [ngClass]="mes.highlight ? 'highlight' : ''" class="my__text text" [style.background]="mes.highlight ? 'blue' : ''" *ngIf="!this.isGif(mes.message)">
+
+                <p [id]="getId(mes.id, mes.highlight)" [ngClass]="mes.highlight ? 'highlight' : ''" class="my__text text" [style.border]="mes.highlight ? '5px solid yellow' : ''" *ngIf="!(this.isGif(mes.message)||this.isImage(mes.message))">
+
+
+
                     <span class="send-time">{{ this.getDate(mes.createAt) }}</span
           >{{ mes.message }}
         </p>
@@ -61,7 +70,7 @@
           class="my_image image"
           [src]="mes.message"
           alt="Image"
-          *ngIf="this.isGif(mes.message)"
+          *ngIf="this.isGif(mes.message)||this.isImage(mes.message)"
         />
       </div>
     </div>

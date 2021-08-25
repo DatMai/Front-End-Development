@@ -136,7 +136,7 @@
         }
       }
     }
-  .active{
+  .chat-active{
     color : #fff;
     background-image: linear-gradient(#d32a4c, #eb522cc4);
     &:before {
@@ -241,6 +241,16 @@
 @media only screen and (min-width: 2560px) {
   .wrapper {
     height: 90vh;
+  }
+}
+@media only screen and (max-width: 992px) {
+  .wrapper {
+    height: 70vh;
+  }
+}
+@media only screen and (max-width: 564px) {
+  .wrapper {
+    height: 80vh;
   }
 }
 

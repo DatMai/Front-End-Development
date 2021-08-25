@@ -1,0 +1,72 @@
+[{
+        "name": "default",
+        "mainColor": "",
+        "data": {
+            "background": "",
+            "color": "#fff",
+            "image": ""
+        }
+    }, {
+        "name": "love",
+        "mainColor": "#fb046c",
+        "data": {
+            "background": "#fb046c",
+            "color": "#fff",
+            "image": ""
+        }
+    },
+    {
+        "name": "ocean",
+        "mainColor": "#2081df",
+        "data": {
+            "background": "#2081df",
+            "color": "#fff",
+            "image": ""
+        }
+    },
+    {
+        "name": "flame",
+        "mainColor": "#ff3b00",
+        "data": {
+            "background": "#ff3b00",
+            "color": "#fff",
+            "image": ""
+        }
+    },
+    {
+        "name": "gold",
+        "mainColor": "#ab7c28",
+        "data": {
+            "background": "#ab7c28",
+            "color": "#fff",
+            "image": ""
+        }
+    },
+    {
+        "name": "kiwi",
+        "mainColor": "#6edf00",
+        "data": {
+            "background": "#6edf00",
+            "color": "#fff",
+            "image": ""
+        }
+    },
+    {
+        "name": "pinky",
+        "mainColor": "#e588d7",
+        "data": {
+            "background": "#e588d7",
+            "color": "#fff",
+            "image": ""
+        }
+    },
+    {
+        "name": "blueberry",
+        "mainColor": "#4d3ec2",
+        "data": {
+            "background": "#4d3ec2",
+            "color": "#fff",
+            "image": ""
+        }
+    }
+]
