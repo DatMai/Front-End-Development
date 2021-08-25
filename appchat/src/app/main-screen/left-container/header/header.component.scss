@@ -35,10 +35,10 @@
         width: 100%;
         margin-left: 10px;
         max-width: 100%;
-        font-size: 18px;
+        font-size: 14px;
         .title__status {
             font-weight: normal;
-            font-size: 12px;
+            font-size: 8px;
         }
     }
     .header__bell-icon {
@@ -61,7 +61,7 @@
         background-color: #000000;
         border-radius: 10px;
         height: 20px;
-        padding: 0;
+        padding-left: 5px;
         border-width: 1px;
         font-size: 18px;
         background-color: transparent;
@@ -113,58 +113,15 @@
 @media only screen and (min-width: 992px) {
     .header {
         .header__title {
-            font-size: 20px;
+            font-size: 16px;
             .title__status {
-                font-size: 14px;
+                font-size: 10px;
             }
         }
     }
 }
 
-@media only screen and (max-width: 992px) {
-    .header {
-        .header__title {
-            font-size: 35px;
-            .title__status {
-                font-size: 20px;
-            }
-        }
-    }
-    .action {
-        font-size: 18px;
-        padding-left: 10vw;
-         :hover {
-            transition: linear 0.3s;
-            color: #000000;
-            font-size: 22px;
-        }
-        .active {
-            font-size: 22px;
-        }
-    }
-    .searching-bar {
-        margin-left: 30px;
-        .submit--btn {
-            display: flex;
-            align-items: center;
-            font-size: 18px;
-        }
-        .input--border {
-            font-size: 18px;
-            height: 50px;
-        }
-    }
-    .header {
-        height: 25vh;
-        .header__avatar {
-            width: 10vw;
-            height: 10vw;
-        }
-        .header__bell-icon {
-            font-size: 3vw;
-        }
-    }
-}
+
 
 @media only screen and (max-width: 600px) {
     .header {
@@ -193,5 +150,42 @@
     height: 10vh;
   }
 
+}
+@media only screen and (max-width: 992px) {
+  .header--wrapper {
+    z-index: 1;
+    height: 20vh;
+  }
+  .header {
+    height: 30%;
+    .header__avatar {
+      width: 30%;
+    }
+
+    .avatar--medium {
+      width: 50px;
+      height: 50px;
+    }
+    .header__title {
+
+      font-size: 14px;
+      .title__status {
+        font-size: 8px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .header--wrapper {
+    z-index: 1;
+    height: 30vh;
+  }
+}
+@media only screen and (max-width: 564px) {
+  .header--wrapper {
+    z-index: 1;
+    height: 20vh;
+  }
 }
 

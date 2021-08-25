@@ -9,6 +9,7 @@
 .actions-m {
     width: 100%;
     text-align: center;
+  background-color: #b4b4b4;
     &__container {
         display: flex;
         align-items: center;
@@ -17,6 +18,8 @@
         .file__label {
             margin-bottom: 0 !important;
         }
+      .button{
+      }
     }
 }
 
@@ -35,12 +38,10 @@
 }
 
 .typing {
-    // margin-top: 5px;
-    //z-index: -9;
     background-color: transparent;
-    //width: 105%;
-    //margin-left: -1vw;
     padding-left: 30px;
+    //margin-top: -5px;
+  display: flex;
     &__actions {
         margin-left: 2px;
         padding: 0 !important;
@@ -54,8 +55,8 @@
         padding-left: 10px;
         align-items: center;
         outline: none;
-        font-size: 24px;
-        width: 100vh;
+        font-size: 18px;
+        //width: 100vh;
         border-radius: 5px;
         border: none;
     }
@@ -114,10 +115,23 @@
 }
 
 @media only screen and (max-width: 992px) {
-    .emojiArea {
-        margin-top: -24vw;
-        margin-left: 70vw;
+  .emojiArea {
+    margin-top: -24vw;
+    margin-left: 70vw;
+  }
+  .typing {
+    padding-left: 0;
+    width: 100%;
+    display: flex;
+    &__actions {
+      //max-width: 40% !important;
+      //width: 100vw;
     }
+
+    &__input {
+      //max-width: 60% !important;
+    }
+  }
 }
 
 @media only screen and (max-width: 564px) {
