@@ -55,7 +55,6 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
   ngOnInit(): void {
     this.dataService.searchMessage$.subscribe((text) => (this.keyWord = text));
   }
-
   public darkMode() {
     return this.dataService.isDarkMode;
   }

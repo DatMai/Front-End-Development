@@ -8,7 +8,7 @@ export class MessagesModel{
   mine!: boolean;
   createAt!:string;
   description!: string;
-  highlight!: boolean;  
+  highlight!: boolean;
   constructor(){
 
   }
