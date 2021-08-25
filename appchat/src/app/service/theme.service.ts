@@ -21,15 +21,9 @@ export class ThemeService {
   background$: Observable<string> = this.backgroundSubject.asObservable();
   isTheme: boolean = false;
 
-<<<<<<< HEAD
-  constructor() { }
-  public setTheme(theme:ThemeModel){
-    this.colorSubject.next(theme.data?.color||"");
-    this.backgroundSubject.next(theme.data?.color||"");
-    this.isTheme=true;
-  }
 
-=======
+
+
   constructor(
     private wss: WebSocketService,
     private dataService: DataService,
@@ -44,7 +38,11 @@ export class ThemeService {
   setBackground(text: string) {
     this.backgroundSubject.next(text);
   }
-
+  // public setTheme(theme:ThemeModel){
+  //   this.colorSubject.next(theme.data?.color||"");
+  //   this.backgroundSubject.next(theme.data?.color||"");
+  //   this.isTheme=true;
+  // }
   public setTheme(backgroundText: any) {
     let user: any;
     user = this.dataService.selectedChatContent.name;
@@ -60,5 +58,4 @@ export class ThemeService {
     })
 
   }
->>>>>>> main
 }
