@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ResponsiveService {
-  // isMobileRes:boolean =false;
+  isClickShowLeftContainer:boolean = true;
   constructor() { }
 
   public isMobileRes(index:number){
@@ -14,4 +14,20 @@ export class ResponsiveService {
       return false;
     }
   }
+  public isShowLeftContainer(){
+    if(window.innerWidth > 992){
+      return true;
+    }
+    if(window.innerWidth <= 992 && this.isClickShowLeftContainer == true ){
+      return true;
+    }
+    return false;
+  }
+  public isShowOverlayLeft(){
+    if(window.innerWidth <= 992 && this.isClickShowLeftContainer == true ){
+      return true;
+    }else
+    return false;
+  }
+
 }

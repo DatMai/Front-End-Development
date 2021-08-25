@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/service/data.service';
 import {animate, style, transition, trigger} from "@angular/animations";
 import { ChatService } from 'src/app/service/chat.service';
+import {ResponsiveService} from "../../../service/responsive.service";
 
 @Component({
   selector: 'app-right-header',
@@ -47,7 +48,9 @@ export class RightHeaderComponent implements OnInit {
   color: string = "#aaaaaa";
   keyWord: string = '';
   managerButtonDark: boolean = false;
-  constructor(private dataService:DataService, private chatService:ChatService) { }
+  constructor(private dataService:DataService, private chatService:ChatService,
+              private res:ResponsiveService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -69,6 +72,12 @@ export class RightHeaderComponent implements OnInit {
   public showManager() {
     this.managerButtonDark = !this.managerButtonDark;
     this.dataService.isShowManager=!this.dataService.isShowManager;
+  }
+  public showListFriend(){
+    this.res.isClickShowLeftContainer = !this.res.isClickShowLeftContainer;
+  }
+  public showListFriendButton(){
+   return this.res.isMobileRes(992);
   }
 
 }

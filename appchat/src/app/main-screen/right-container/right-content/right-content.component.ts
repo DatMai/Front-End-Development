@@ -57,12 +57,13 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
     this.themeService.color$.subscribe((text) => (this.colorText = text));
     this.dataService.searchMessage$.subscribe((text) => (this.keyWord = text));
   }
-  public darkMode() {
-    return this.dataService.isDarkMode;
-  }
   public isTheme() {
     return this.themeService.isTheme;
   }
+  public darkMode() {
+    return this.dataService.isDarkMode;
+  }
+
   public getId(id: any, highlight: boolean): string {
     let getTextId = 'text' + id;
     let element = document.getElementsByClassName('highlight');

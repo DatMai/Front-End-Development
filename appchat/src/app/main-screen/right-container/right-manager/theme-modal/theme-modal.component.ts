@@ -6,15 +6,13 @@ import { ThemeService } from 'src/app/service/theme.service';
 @Component({
   selector: 'app-theme-modal',
   templateUrl: './theme-modal.component.html',
-  styleUrls: ['./theme-modal.component.css']
+  styleUrls: ['./theme-modal.component.css'],
 })
 export class ThemeModalComponent implements OnInit {
+  constructor(private themeService: ThemeService) {}
 
-  constructor(private themeService:ThemeService) { }
-
-  ngOnInit(): void {
-  }
-  public getListTheme(){
+  ngOnInit(): void {}
+  public getListTheme() {
     return this.themeService.listTheme;
   }
   public setTheme(theme:ThemeModel) {
