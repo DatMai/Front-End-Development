@@ -92,7 +92,7 @@ export class ContentComponent implements OnInit {
 
 
 
-  public setSelectedChatContent(chatContent: ChatContent) {
+  public setSelectedChatContent(chatContent: ChatContent, index:number) {
     // this.userService.getAudio();
     this.dataService.isShowSearchMessage = false;
     this.dataService.selectedChatContent.messages?.forEach(f => {
@@ -101,6 +101,7 @@ export class ContentComponent implements OnInit {
     console.log(this.getLastTime(chatContent));
 
     this.chatService.setSelectedChatContent(chatContent);
+    this.selected(index);
   }
   public setSelectedChatContentByUserModel(usermodel: UserModel, index:number) {
     this.checkUser(usermodel);

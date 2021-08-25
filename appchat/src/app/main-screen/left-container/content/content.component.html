@@ -1,6 +1,6 @@
 <div class="wrapper">
   <div @listAnimation  class="list-chat list" *ngIf="this.isShowListChatBox()">
-    <div  class="friend" *ngFor="let f of this.getChatContentExample()" (click)="setSelectedChatContent(f)">
+    <div  class="friend" *ngFor="let f of this.getChatContentExample(), index as index" (click)="setSelectedChatContent(f,index)" [ngClass]="'user-'+index"s>
       <img class="friend__avatar avatar--circle avatar--small" src="../../../../assets/image/avatar.jpg" alt="">
       <h4 class="friend__infor">{{f.name}}
         <span class="text--small" [ngClass]="{is_not_seen: !f.isSeen}"><br>{{this.getStringLastMessage(f)}}   {{this.getLastTime(f)}}</span>
