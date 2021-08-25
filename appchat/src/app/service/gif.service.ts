@@ -22,10 +22,9 @@ export class GifService {
 
   public isGif(message:string){
     let startUrl="https://media[0-9].giphy.com/media/.";
-    let startImage= "https://firebasestorage.googleapis.com/v0/b/appchat-b16ea.appspot.com/o/image"
-    let ra = new RegExp(startImage);
     let re = new RegExp(startUrl);
-    if (re.test(message) || ra.test(message) ) return true;
+    if (re.test(message) ) return true;
     return false;
-    }
+  }
+
 }

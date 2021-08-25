@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { DataService } from 'src/app/service/data.service';
 import {animate, keyframes, query, stagger, state, style, transition, trigger} from "@angular/animations";
-
+import theme from "../../../data/theme.json";
+import { ThemeModel } from 'src/app/model/ThemeModel';
 @Component({
   selector: 'app-right-manager',
   templateUrl: './right-manager.component.html',
@@ -60,12 +61,16 @@ export class RightManagerComponent implements OnInit {
   isShowChatSharing:boolean = false;
   isShowChatPrivate: boolean = false;
   background: string = "222323";
+  backgroundText: string = '';
+  colorText: string = '';
+  themeList:ThemeModel[] = theme;
   constructor(private dataService:DataService
     ) { }
 
   ngOnInit(): void {
 
   }
+
   public darkMode() {
     this.dataService.isDarkMode = !this.dataService.isDarkMode;
   }

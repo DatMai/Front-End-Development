@@ -23,9 +23,9 @@ export class MainScreenComponent implements OnInit {
               private router:Router
               ) { }
   ngOnInit(): void {
-    // if (sessionStorage.length==0) {
-    //   this.router.navigateByUrl('login');
-    // }
+    if (sessionStorage.length==0) {
+      this.router.navigateByUrl('login');
+    }
   }
 
   isShowLeftContainer(){
