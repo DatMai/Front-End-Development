@@ -19,6 +19,15 @@
              width: 100%;
              height: 100%;
         }
+      .overlay{
+        content: "";
+        width: 100vw;
+        height: 100vh;
+        background-color: #222222;
+        position: absolute;
+        z-index: 2;
+        opacity: 0.7;
+      }
     }
 
     @media only screen and (min-width: 992px) {
@@ -29,11 +38,20 @@
     @media only screen and (max-width: 992px) {
       .main-screen {
         &__left-container {
-          display: none;
+          position: absolute;
+          z-index: 3;
         }
         &__right-container {
           width:100%;
         }
       }
-
+    }
+    @media only screen and (max-width: 564px) {
+      .main-screen {
+        &__left-container {
+          position: absolute;
+          width: 100%;
+          z-index: 3;
+        }
+      }
     }

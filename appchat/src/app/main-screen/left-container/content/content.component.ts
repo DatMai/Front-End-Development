@@ -8,6 +8,7 @@ import { GifService } from 'src/app/service/gif.service';
 import { UserService } from 'src/app/service/user.service';
 import { WebSocketService } from 'src/app/service/web-socket.service';
 import {animate, keyframes, query, stagger, style, transition, trigger} from "@angular/animations";
+import {ResponsiveService} from "../../../service/responsive.service";
 
 @Component({
   selector: 'app-content',
@@ -36,7 +37,8 @@ export class ContentComponent implements OnInit {
     private userService: UserService,
     private wss: WebSocketService,
     private chatService: ChatService,
-    private gifService: GifService
+    private gifService: GifService,
+    private res: ResponsiveService,
   ) {}
 
   ngOnInit(): void {
@@ -45,14 +47,14 @@ export class ContentComponent implements OnInit {
   }
 
   public selected(index :number){
-    let listActive : any = document.getElementsByClassName("active");
+    let listActive : any = document.getElementsByClassName("chat-active");
     for(let i = 0; i < listActive.length; i++){
-      listActive.item(i).classList.remove("active");
+      listActive.item(i).classList.remove("chat-active");
     }
     let className:string = "user-"+index;
     let listElements : any = document.getElementsByClassName(className);
     for(let i = 0; i < listElements.length; i++){
-      listElements.item(i).classList.add("active");
+      listElements.item(i).classList.add("chat-active");
     }
   }
 
@@ -60,6 +62,7 @@ export class ContentComponent implements OnInit {
     this.wss.logout();
   }
   public getListSearch() {
+    this.res.isClickShowLeftContainer = false;
     return this.userService.search(this.name);
   }
   public isCheckSearch() {
@@ -81,6 +84,7 @@ export class ContentComponent implements OnInit {
     return this.dataService.isShowSetting;
   }
   public getListUser() {
+
     return this.dataService.getListUser();
   }
   public getUSERLOGIN() {
@@ -92,7 +96,8 @@ export class ContentComponent implements OnInit {
 
 
 
-  public setSelectedChatContent(chatContent: ChatContent) {
+  public setSelectedChatContent(chatContent: ChatContent, index:number) {
+    this.res.isClickShowLeftContainer = false;
     // this.userService.getAudio();
     this.dataService.isShowSearchMessage = false;
     this.dataService.selectedChatContent.messages?.forEach(f => {
@@ -101,15 +106,18 @@ export class ContentComponent implements OnInit {
     console.log(this.getLastTime(chatContent));
 
     this.chatService.setSelectedChatContent(chatContent);
+    this.selected(index);
   }
   public setSelectedChatContentByUserModel(usermodel: UserModel, index:number) {
+    this.selected(index);
+    this.res.isClickShowLeftContainer = false;
     this.checkUser(usermodel);
     this.dataService.isShowSearchMessage = false;
     this.dataService.selectedChatContent.messages?.forEach(f => {
       f.highlight = false;
     })
     this.chatService.setSelectedChatContentByUserModel(usermodel);
-    this.selected(index);
+
   }
 
   public goToBottom() {
