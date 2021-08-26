@@ -1,4 +1,4 @@
-<div #scrollToBottom class="container-fluid main-chat" id="chatContent" [style.background]="this.darkMode() ? this.background : ''">
+<div #scrollframe class="container-fluid main-chat" id="chatContent" [style.background]="this.darkMode() ? this.background : ''">
     <!-- Partner chat -->
     <div class="searchMessageArea" *ngIf="isShowSearchMessage()">
         <div class="notifiSearch">
@@ -24,7 +24,7 @@
     <ng-container *ngFor="
       let mes of this.getSelectedChatContent().messages;
       let indexOfelement = index
-    ">
+    " #item>
         <div [ngClass]="this.typeOfMes(indexOfelement)" class="partner-chat container-fluid row" *ngIf="!mes.mine && this.isMes(mes)">
             <div class="wrapper col-12 row">
                 <div class="avatar--wrapper">

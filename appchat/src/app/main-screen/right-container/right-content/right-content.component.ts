@@ -2,8 +2,8 @@ import {
   AfterViewInit,
   Component, ElementRef,
   OnChanges,
-  OnInit,
-  SimpleChanges, ViewChild,
+  OnInit, QueryList,
+  SimpleChanges, ViewChild, ViewChildren,
 } from '@angular/core';
 import { UserModel } from 'src/app/model/userModel';
 import { ChatService } from 'src/app/service/chat.service';
@@ -31,7 +31,9 @@ declare var $: any;
   ],
 })
 export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
-  @ViewChild('scrollToBottom') private myScrollContainer?: ElementRef;
+  @ViewChild('scrollframe', {static: false}) scrollFrame?: ElementRef;
+  @ViewChildren('item') itemElements?: QueryList<any>;
+  private scrollContainer: any;
   background: string = 'black';
   isDarkMode: boolean = true;
   USERLOGIN: UserModel = {};
@@ -40,6 +42,7 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
   keyWord: string = '';
   backgroundText: string = '';
   colorText: string = "";
+  autoScroll : boolean = true;
   constructor(
     private dataService: DataService,
     private chatService: ChatService,
@@ -49,30 +52,29 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
     private res : ResponsiveService,
   ) {}
 
-  ngAfterViewInit(): void {
-    this.addCss();
+  ngAfterViewInit(){
+    this.scrollContainer = this.scrollFrame?.nativeElement;
+    this.itemElements?.changes.subscribe(_ => this.onItemElementsChanged());
+  }
+  private onItemElementsChanged(): void {
+    this.scrollToBottom();
   }
   ngOnChanges(changes: SimpleChanges): void {
-    this.scrollToElement();
+
   }
-  ngOnInit(): void {
+   ngOnInit(): void {
     this.dataService.searchMessage$.subscribe((text) => (this.keyWord = text));
-    this.scrollToElement();
+
   }
-  ngAfterViewChecked() {
-    this.scrollToElement();
+
+  public checkScroll(){
+    this.autoScroll = false;
   }
+
   public darkMode() {
     return this.dataService.isDarkMode;
   }
 
-  scrollToElement(): void {
-    this.myScrollContainer?.nativeElement.scroll({
-      top: this.myScrollContainer.nativeElement.scrollHeight,
-      left: 0,
-      behavior: 'auto'
-    });
-  }
 
 
   public getId(id: any, highlight: boolean): string {
@@ -124,9 +126,12 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
     return this.dataService.getSelectedChatContent();
   }
 
-  public goToBottom() {
-    let bottomPoint = document.getElementById('chatContent') || document.body;
-    bottomPoint.scrollTo(0, bottomPoint.scrollHeight);
+  private scrollToBottom(): void {
+    this.scrollContainer.scroll({
+      top: this.scrollContainer.scrollHeight,
+      left: 0,
+      behavior: 'auto'
+    });
   }
 
   public typeOfMes(index: number): string {
@@ -198,10 +203,7 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
     }
     return false;
   }
-  public addCss() {
-    // let parent = document.querySelectorAll(".begin");
-    // let partner__text = document.querySelector("/p")
-  }
+
   public getDate(time: string) {
     // console.log(time);
     let rs: string = '';
