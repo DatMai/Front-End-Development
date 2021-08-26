@@ -1,9 +1,9 @@
 import {
   AfterViewInit,
-  Component,
+  Component, ElementRef,
   OnChanges,
   OnInit,
-  SimpleChanges,
+  SimpleChanges, ViewChild,
 } from '@angular/core';
 import { UserModel } from 'src/app/model/userModel';
 import { ChatService } from 'src/app/service/chat.service';
@@ -11,7 +11,7 @@ import { DataService } from 'src/app/service/data.service';
 import { ChatContent } from '../../../model/ChatContent';
 import { stringify } from 'querystring';
 import { GifService } from 'src/app/service/gif.service';
-import { animate, style, transition, trigger } from '@angular/animations';
+import {animate, query, style, transition, trigger} from '@angular/animations';
 import {ResponsiveService} from "../../../service/responsive.service";
 import { ImageService } from 'src/app/service/image.service';
 import { ThemeService } from 'src/app/service/theme.service';
@@ -31,6 +31,7 @@ declare var $: any;
   ],
 })
 export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
+  @ViewChild('scrollToBottom') private myScrollContainer?: ElementRef;
   background: string = 'black';
   isDarkMode: boolean = true;
   USERLOGIN: UserModel = {};
@@ -51,13 +52,28 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
   ngAfterViewInit(): void {
     this.addCss();
   }
-  ngOnChanges(changes: SimpleChanges): void {}
+  ngOnChanges(changes: SimpleChanges): void {
+    this.scrollToElement();
+  }
   ngOnInit(): void {
     this.dataService.searchMessage$.subscribe((text) => (this.keyWord = text));
+    this.scrollToElement();
+  }
+  ngAfterViewChecked() {
+    this.scrollToElement();
   }
   public darkMode() {
     return this.dataService.isDarkMode;
   }
+
+  scrollToElement(): void {
+    this.myScrollContainer?.nativeElement.scroll({
+      top: this.myScrollContainer.nativeElement.scrollHeight,
+      left: 0,
+      behavior: 'auto'
+    });
+  }
+
 
   public getId(id: any, highlight: boolean): string {
     let getTextId = 'text' + id;
