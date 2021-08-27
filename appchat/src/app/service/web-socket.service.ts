@@ -12,6 +12,7 @@ import { O_WRONLY } from 'constants';
 import { MessagesModel } from '../model/messageModel';
 import { MessageService } from './message.service';
 import { time } from 'console';
+import { ThemeService } from './theme.service';
 
 @Injectable({
   providedIn: 'root',
@@ -27,6 +28,7 @@ export class WebSocketService {
     private audioService: AudioService,
     private router: Router,
     private messageService: MessageService
+    // private themeService: ThemeService
   ) {}
   public createWebsocket(url: string) {
     this.ws = new WebSocket(url);
@@ -466,6 +468,13 @@ export class WebSocketService {
           m.createAt= e.createAt;
           m.mine=e.name == USERLOGIN.username?true:false
           m.setMes();
+          if(this.messageService.isThemeNotification(m)){
+            let name = m.message.replace("appchat-b16ea-admin-notification-theme : ","");
+            let theme=this.dataService.findThemeByName(name);
+            chatContent.theme=theme;
+            m=this.messageService.getThemeNofication(m);
+            console.log(theme);
+          }
           messages1.push(m);
           if (index<chatData.length-1) {
             let timeNofication=this.messageService.getTimeNofication(array[index].createAt,array[index+1].createAt);
@@ -474,6 +483,7 @@ export class WebSocketService {
               timeMesssage.setTimeNotificationMessage(timeNofication);
               messages1.push(timeMesssage);
             }
+
           }
 
         });
@@ -506,6 +516,13 @@ export class WebSocketService {
         m.createAt= e.createAt;
         m.mine=e.name == USERLOGIN.username?true:false
         m.setMes();
+        if(this.messageService.isThemeNotification(m)){
+          let name = m.message.replace("appchat-b16ea-admin-notification-theme : ","");
+          let theme=this.dataService.findThemeByName(name);
+          groupChatContain.theme=theme;
+          m=this.messageService.getThemeNofication(m);
+          console.log(theme);
+        }
         messages1.push(m);
         if (index<chatData.length-1) {
           let timeNofication=this.messageService.getTimeNofication(array[index].createAt,array[index+1].createAt);
@@ -553,6 +570,13 @@ export class WebSocketService {
             this.dataService.chatContentExample.filter(
               (element) => element.name == data.data.to
             );
+            if(this.messageService.isThemeNotification(mes)){
+              let name = mes.message.replace("appchat-b16ea-admin-notification-theme : ","");
+              let theme=this.dataService.findThemeByName(name);
+              groupChatContentWithNameroom[0].theme=theme;
+              mes=this.messageService.getThemeNofication(mes);
+              console.log(theme);
+            }
           groupChatContentWithNameroom[0].messages?.push(mes);
           groupChatContentWithNameroom[0].isSeen = false;
           this.dataService.chatContent$.next(
@@ -563,6 +587,13 @@ export class WebSocketService {
             this.dataService.chatContentExample.find(
               (element) =>(element.userList == data.data.name)&&(!element.isGroup)
             )|| {};
+            if(this.messageService.isThemeNotification(mes)){
+              let name = mes.message.replace("appchat-b16ea-admin-notification-theme : ","");
+              let theme=this.dataService.findThemeByName(name);
+              chatContentWithThisUsermodel.theme=theme;
+              mes=this.messageService.getThemeNofication(mes);
+              console.log(theme);
+            }
           if (chatContentWithThisUsermodel.name == undefined) {
             let u= this.userService.findByUserName(data.data.name);
             this.dataService.chatContentExample.push({

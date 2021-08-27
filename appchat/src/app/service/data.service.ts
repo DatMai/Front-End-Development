@@ -9,7 +9,8 @@ import { ChatService } from './chat.service';
 import { EmojisModel } from '../model/emojisModel';
 import userData from '../data/userData.json';
 import { HttpClient } from '@angular/common/http';
-
+import listTheme from '../data/theme.json';
+import { ThemeModel } from '../model/ThemeModel';
 @Injectable({
   providedIn: 'root',
 })
@@ -42,10 +43,17 @@ export class DataService implements OnInit {
   isDarkMode: boolean = false;
   chatContentUserName: string = '';
   userList: UserModel[] = userData;
+  listTheme: ThemeModel[] = listTheme;
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void { }
 
+  public findThemeByName(name:string){
+    let rs: ThemeModel= listTheme.find((value:ThemeModel)=>
+      value.name==name
+    )
+    return rs;
+  }
 
   setSearchKeywordMessage(text: string) {
     this.searchMessageSubject.next(text);

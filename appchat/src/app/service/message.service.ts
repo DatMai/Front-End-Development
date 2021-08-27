@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { MessagesModel } from '../model/messageModel';
+import { ThemeModel } from '../model/ThemeModel';
 
 @Injectable({
   providedIn: 'root'
@@ -165,5 +167,23 @@ export class MessageService {
     }else{
       return this.getDate(thisTime);
     }
+  }
+  public isThemeNotification(messages:MessagesModel){
+    if(messages.message.startsWith("appchat-b16ea-admin-notification-theme : ")){
+      return true;
+    }
+    return false;
+  }
+
+  public getThemeNofication(messages:MessagesModel){
+    let mesString=  messages.message;
+    if(mesString.startsWith("appchat-b16ea-admin-notification-theme : ")){
+      let name = mesString.replace("appchat-b16ea-admin-notification-theme : ","");
+      messages.description="NOTIFICATION";
+      if(messages.mine) messages.message= "Bạn đã đổi chủ đề thành " +name;
+      else messages.message= messages.userName +" đã đổi chủ đề thành " +name;
+      messages.mine=false;
+    }
+    return messages;
   }
 }

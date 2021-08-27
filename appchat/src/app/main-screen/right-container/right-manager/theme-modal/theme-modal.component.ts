@@ -20,4 +20,10 @@ export class ThemeModalComponent implements OnInit {
   public setTheme(theme:ThemeModel) {
     this.themeService.setTheme(theme);
   }
+  public close() {
+    this.themeService.clear();
+  }
+  public save() {
+    this.themeService.saveTheme();
+  }
 }

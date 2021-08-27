@@ -10,6 +10,8 @@ import * as $ from 'jquery';
 import { UserService } from './user.service';
 import { MessagesModel } from '../model/messageModel';
 import { GifService } from './gif.service';
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+import { MessageService } from './message.service';
 @Injectable({
   providedIn: 'root',
 })
@@ -20,9 +22,10 @@ export class ChatService {
     private wss: WebSocketService,
     private dataService: DataService,
     private router: Router,
-    private gif: GifService
+    private gif: GifService,
+    private messageService:MessageService
   ) {}
-  public getLastMessage(chatContent: ChatContent): any {
+  public getLastMessage(chatContent: ChatContent): MessagesModel {
     let listMessages = chatContent.messages || [];
     let rs: any;
     if (listMessages.length == 0) {
@@ -64,6 +67,7 @@ export class ChatService {
         m.userName = this.dataService.USERLOGIN.username || '';
         m.mine = true;
         (m.createAt = createAt), (m.description = 'MES');
+        m=this.messageService.getThemeNofication(m);
         this.dataService.chatContentExample.push({
           name: this.dataService.selectedChatContent.name,
           userList: this.dataService.selectedChatContent.userList,
@@ -73,13 +77,14 @@ export class ChatService {
         });
         // this.dataService.loadSelectedChatContent(this.dataService.selectedChatContent);
       } else {
-        chatContentWithThisUsermodel[0].messages?.push({
-          message: message,
-          userName: this.dataService.USERLOGIN.username,
-          mine: true,
-          createAt: createAt,
-          description: 'MES',
-        });
+        let m:MessagesModel=new MessagesModel();
+          m.message= message;
+          m.userName= this.dataService.USERLOGIN.username|| '';
+          m.mine= true;
+          m.createAt= createAt;
+          m.description= 'MES';
+        m=this.messageService.getThemeNofication(m);
+        chatContentWithThisUsermodel[0].messages?.push(m);
       }
       this.dataService.chatContent$.next(this.dataService.chatContentExample);
     }

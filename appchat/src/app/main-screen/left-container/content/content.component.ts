@@ -137,7 +137,10 @@ export class ContentComponent implements OnInit {
 
   public getStringLastMessage(chatContent: ChatContent): string {
     let messages = this.chatService.getLastMessage(chatContent);
-    let rs = messages;
+    let rs = messages.message;
+    if (messages.description=="NOTIFICATION") {
+      return rs;
+    }
     if (rs != 'Chưa có tin nhắn mới') {
       if (this.imageService.isImage(messages.message)) {
         if (messages.mine) {

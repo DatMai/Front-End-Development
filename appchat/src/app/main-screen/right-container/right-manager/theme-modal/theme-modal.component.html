@@ -13,7 +13,9 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" (click)="this.close()" data-bs-dismiss="modal">Đóng</button>
+        <button type="button" class="btn btn-secondary" (click)="this.save()" data-bs-dismiss="modal">Lưu</button>
+
       </div>
     </div>
   </div>
