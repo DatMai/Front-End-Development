@@ -38,12 +38,14 @@
 }
 
 .typing {
+  padding-bottom: 14px;
     background-color: transparent;
     padding-left: 30px;
     //margin-top: -5px;
   display: flex;
     &__actions {
-        margin-left: 2px;
+        margin-left: 0px;
+      margin-right: 2px;
         padding: 0 !important;
         align-items: center;
         .file__label {
