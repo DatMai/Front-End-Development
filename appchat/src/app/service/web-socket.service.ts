@@ -13,6 +13,7 @@ import { MessagesModel } from '../model/messageModel';
 import { MessageService } from './message.service';
 import { time } from 'console';
 import { ThemeService } from './theme.service';
+import { ChatContent } from '../model/ChatContent';
 
 @Injectable({
   providedIn: 'root',
@@ -606,11 +607,22 @@ export class WebSocketService {
           } else {
             chatContentWithThisUsermodel.messages?.push(mes);
             chatContentWithThisUsermodel.isSeen = false;
+            // Nhóm vừa nhận được tin nhắn thì lên đầu
+            let i = this.dataService.chatContentExample.findIndex(value=>
+              value==chatContentWithThisUsermodel
+            )
+            for(let index = i ;index>0;index--){
+              this.dataService.chatContentExample[index]=this.dataService.chatContentExample[index-1];
+            }
+            this.dataService.chatContentExample[0]=chatContentWithThisUsermodel;
           }
+            // end
           this.dataService.chatContent$.next(
             this.dataService.chatContentExample
           );
+
         }
+
         this.audioService.playAudio();
       } else {
         console.log('Lỗi send_chat_to_people '+data.mes);
