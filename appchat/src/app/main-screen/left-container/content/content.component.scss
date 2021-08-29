@@ -17,7 +17,7 @@
 //     background-image: linear-gradient(#d32a4c, #eb522cc4);
 // }
 .wrapper {
-  width: 350px;
+    width: 350px;
     position: relative;
     bottom: 0;
     height: 70vh;
@@ -34,15 +34,12 @@
         //    cursor: pointer;
         //    color: rgb(252, 228, 255);
         //}
-
          :hover.setting-item {
             transition: linear 0.2s;
             background-color: white;
             color: black;
         }
-      .friend{
-
-      }
+        .friend {}
     }
     // .image-logo {
     //     height: 5vh;
@@ -55,8 +52,8 @@
         font-size: large;
     }
     .friend {
-      //opacity: 0;
-      cursor: pointer;
+        //opacity: 0;
+        cursor: pointer;
         // border-radius: 1vw;
         color: rgb(170, 170, 170);
         background: transparent;
@@ -94,62 +91,61 @@
             font-size: smaller;
         }
         .is_not_seen {
-            color: #d02e4e;
+            color: #bbbbbb;
             font-weight: bold;
             font-size: inherit;
         }
-
-      transition: all .3s;
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
-      &:after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: transparent;
-        //border-bottom-right-radius: 10rem;
-        //border-top-right-radius: 10rem;
-        z-index: -2;
-      }
-      &:before {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 0%;
-        height: 100%;
-        background-image: linear-gradient(#d32a4c, #eb522cc4);
         transition: all .3s;
-        //border-bottom-right-radius: 10rem;
-        //border-top-right-radius: 10rem;
-        z-index: -1;
-      }
-      &:hover {
-        color: #fff;
-        &:before {
-          width: 100%;
-          left: 0;
-          right:auto;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        &:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            //border-bottom-right-radius: 10rem;
+            //border-top-right-radius: 10rem;
+            z-index: -2;
         }
-      }
+        &:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background-image: linear-gradient(#d32a4c, #eb522cc4);
+            transition: all .3s;
+            //border-bottom-right-radius: 10rem;
+            //border-top-right-radius: 10rem;
+            z-index: -1;
+        }
+        &:hover {
+            color: #fff;
+            &:before {
+                width: 100%;
+                left: 0;
+                right: auto;
+            }
+        }
     }
-  .chat-active{
-    color : #fff;
-    background-image: linear-gradient(#d32a4c, #eb522cc4);
-    &:before {
-      content: '';
-      position: absolute;
-      height: 100%;
-      bottom: 0;
-      left: 0;
-      //background-image: linear-gradient(#d32a4c, #eb522cc4);
-      width: 100%;
+    .chat-active {
+        color: #fff;
+        background-image: linear-gradient(#d32a4c, #eb522cc4);
+        &:before {
+            content: '';
+            position: absolute;
+            height: 100%;
+            bottom: 0;
+            left: 0;
+            //background-image: linear-gradient(#d32a4c, #eb522cc4);
+            width: 100%;
+        }
     }
-  }
     .setting {
         margin-top: 30px;
         .setting-item {
@@ -229,30 +225,33 @@
         background-color: transparent;
     }
 }
+
 @media only screen and (min-width: 1920px) {
-  .wrapper {
-    height: 80vh;
-  }
+    .wrapper {
+        height: 80vh;
+    }
 }
+
 @media only screen and (min-width: 2240px) {
-  .wrapper {
-    height: 85vh;
-  }
+    .wrapper {
+        height: 85vh;
+    }
 }
+
 @media only screen and (min-width: 2560px) {
-  .wrapper {
-    height: 90vh;
-  }
+    .wrapper {
+        height: 90vh;
+    }
 }
+
 @media only screen and (max-width: 992px) {
-  .wrapper {
-    height: 70vh;
-  }
+    .wrapper {
+        height: 70vh;
+    }
 }
+
 @media only screen and (max-width: 564px) {
-  .wrapper {
-    height: 80vh;
-  }
+    .wrapper {
+        height: 80vh;
+    }
 }
-
-
