@@ -136,23 +136,5 @@ export class ChatService {
     return messages.description == 'MES';
   }
 
-  public searchMessage(keyWord: string): string[] {
-    let arraySearch: string[] = [];
-    this.dataService.selectedChatContent.messages?.forEach((f) => {
-      if (!this.gif.isGif(f.message) && !this.isNofication(f.message))
-        arraySearch.push(f.message);
-    });
-    arraySearch = arraySearch.filter((res) => {
-      return res.toLocaleLowerCase().match(keyWord.toLocaleLowerCase());
-    });
-    this.dataService.selectedChatContent.messages?.forEach((f) => {
-      f.highlight = false;
-      arraySearch.forEach((s) => {
-        if (f.message == s) {
-          f.highlight = true;
-        }
-      });
-    });
-    return arraySearch;
-  }
+
 }

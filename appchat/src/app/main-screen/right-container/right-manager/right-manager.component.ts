@@ -60,9 +60,9 @@ export class RightManagerComponent implements OnInit {
   isShowChatSetting:boolean = false;
   isShowChatSharing:boolean = false;
   isShowChatPrivate: boolean = false;
-  background: string = "222323";
+  background: string = "#221c1f";
   backgroundText: string = '';
-  colorText: string = '';
+  colorText: string = '#a5a5a5';
   themeList:ThemeModel[] = theme;
   constructor(private dataService:DataService
     ) { }
