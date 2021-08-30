@@ -1,7 +1,8 @@
 #right-manager {
     width: 350px;
     height: 100%;
-    background-color: white;
+    background-color: #221c1f;
+    color: #a5a5a5;
     .header {
         padding-top: 25px;
         padding-bottom: 25px;
@@ -39,12 +40,13 @@
             border: none;
             outline: none;
             border-radius: 10rem;
-            background-color: #fff;
+            background-color: transparent;
+            color: #a5a5a5;
             &:hover {
                 transition: linear .2s;
                 transform: translateY(-3px);
                 box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-                background-color: #a5a5a5;
+                background-color: #000000;
             }
             &:active {
                 background-color: #e8e8e8;

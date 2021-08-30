@@ -33,7 +33,7 @@
                     <!-- <img class=" partner__avatar avatar "  src="../../../../assets/image/avatar.jpg" > -->
                 </div>
                 <div @messagesAnimation class="text--wrapper">
-                    <h6 class="partner__name" *ngIf="isShowName(indexOfelement)">
+                    <h6 class="partner__name" [style.color]="this.darkMode()?this.colorText:''" *ngIf="isShowName(indexOfelement)">
                         {{ mes.userName }}
                     </h6>
 
@@ -50,7 +50,7 @@
             </div>
         </div>
 
-        <h6 class="nofitication" *ngIf="this.isNofication(mes)">
+        <h6 class="nofitication" [style.color]="this.darkMode()?this.colorText:''" *ngIf="this.isNofication(mes)">
             {{ mes.message }}
         </h6>
 
