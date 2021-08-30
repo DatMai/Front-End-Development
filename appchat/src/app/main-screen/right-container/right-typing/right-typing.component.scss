@@ -41,7 +41,6 @@
   padding-bottom: 14px;
     background-color: transparent;
     padding-left: 30px;
-    //margin-top: -5px;
   display: flex;
     &__actions {
         margin-left: 0px;
@@ -53,12 +52,10 @@
         }
     }
     &__input {
-        //padding: 0 !important;
         padding-left: 10px;
         align-items: center;
         outline: none;
         font-size: 18px;
-        //width: 100vh;
         border-radius: 5px;
         border: none;
     }
@@ -126,12 +123,9 @@
     width: 100%;
     display: flex;
     &__actions {
-      //max-width: 40% !important;
-      //width: 100vw;
     }
 
     &__input {
-      //max-width: 60% !important;
     }
   }
 }

@@ -5,7 +5,6 @@ import { UserModel } from 'src/app/model/userModel';
 import { ChatService } from 'src/app/service/chat.service';
 import { DataService } from 'src/app/service/data.service';
 import emojis from "../../.././data/emojis.json";
-import Callback = JQuery.Deferred.Callback;
 import {ResponsiveService} from "../../../service/responsive.service";
 import { ImageService } from 'src/app/service/image.service';
 

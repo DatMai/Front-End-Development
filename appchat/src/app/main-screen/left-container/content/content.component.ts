@@ -70,7 +70,7 @@ export class ContentComponent implements OnInit {
     this.wss.logout();
   }
   public getListSearch() {
-    this.res.isClickShowLeftContainer = false;
+    // this.res.isClickShowLeftContainer = false;
     return this.userService.search(this.name);
   }
   public isCheckSearch() {

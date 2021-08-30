@@ -28,8 +28,10 @@
        [(ngModel)]="this.message"
         aria-describedby="helpId" placeholder="Type a message..." /> -->
 
-    <input [style.background]="this.darkMode() ? this.backgroundInput : ''" [ngClass]="checkShowManager() ? 'col-9':'col-10'" type="text" class="typing__input" id="emotions" (keydown.enter)="sendTo()" *ngIf="this.isChatBoxSelected()" [(ngModel)]="this.message" aria-describedby="helpId" placeholder="Type a message..." />
-    <div [ngClass]="checkShowManager() ? 'col-3':'col-2'" class="typing__actions col-2 row">
+<!--    <input [style.background]="this.darkMode() ? this.backgroundInput : ''" [ngClass]="checkShowManager() ? 'col-9':'col-10'" type="text" class="typing__input" id="emotions" (keydown.enter)="sendTo()" *ngIf="this.isChatBoxSelected()" [(ngModel)]="this.message" aria-describedby="helpId" placeholder="Type a message..." />-->
+<!--    <div [ngClass]="checkShowManager() ? 'col-3':'col-2'" class="typing__actions col-2 row">-->
+      <input [style.background]="this.darkMode() ? this.backgroundInput : ''"  type="text" class="typing__input col-10" id="emotions" (keydown.enter)="sendTo()" *ngIf="this.isChatBoxSelected()" [(ngModel)]="this.message" aria-describedby="helpId" placeholder="Type a message..." />
+      <div  class="typing__actions col-2 row">
 <!--        <button class="button images"><i class="fas fa-image"></i></button>-->
       <input type="file" id="file2" (change)="sendImage($event)">
       <label for="file2" class="file__label">
