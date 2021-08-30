@@ -34,6 +34,7 @@ export class ChatService {
       let lastMessage = listMessages[listMessages.length - 1];
       rs = lastMessage;
     }
+ 
     return rs;
   }
   public sendTo(message: string) {
