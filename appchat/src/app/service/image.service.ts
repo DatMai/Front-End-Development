@@ -9,7 +9,8 @@ import { ChatService } from './chat.service';
 export class ImageService {
 
   refImage:string ="";
-
+  selectedImgSrc="";
+  isShowImageModal=false;
   constructor(
     private http : HttpClient,
     private af : AngularFireStorage,

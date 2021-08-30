@@ -38,14 +38,10 @@
                     </h6>
 
                     <p [id]="getId(mes.id, mes.highlight)" [ngClass]="mes.highlight ? 'highlight' : ''" class="partner__text text" [style.border]="mes.highlight ? '5px solid yellow' : ''" *ngIf="!(this.isGif(mes.message)||this.isImage(mes.message))" [style.background]="this.getSelectedChatContent().theme?.name!=undefined? this.getSelectedChatContent().theme?.data?.background:''">
-
-
-
-
                         {{ mes.message }}
                         <span class="send-time">{{ this.getDate(mes.createAt) }}</span>
                     </p>
-                    <img class="partner_image image" [src]="mes.message" alt="Image" *ngIf="this.isGif(mes.message)||this.isImage(mes.message)" />
+                    <img class="partner_image image" (click)="this.zoomImage($event)" data-src="{{mes.message}}" alt="Image" *ngIf="this.isGif(mes.message)||this.isImage(mes.message)" />
                 </div>
             </div>
         </div>
@@ -58,20 +54,20 @@
         <!-- My chat -->
         <div [ngClass]="this.typeOfMes(indexOfelement)" class="my-chat container-fluid row" *ngIf="mes.mine && this.isMes(mes)">
             <div @messagesAnimation class="wrapper text--wrapper col-12">
-
+              <!-- <div id ="moji"> -->
                 <p [id]="getId(mes.id, mes.highlight)" [ngClass]="mes.highlight ? 'highlight' : ''" class="my__text text" [style.border]="mes.highlight ? '5px solid yellow' : ''" *ngIf="!(this.isGif(mes.message)||this.isImage(mes.message))">
-
-
-
                     <span class="send-time">{{ this.getDate(mes.createAt) }}</span
           >{{ mes.message }}
         </p>
+      <!-- </div> -->
         <img
           class="my_image image"
-          [src]="mes.message"
           alt="Image"
+          data-src="{{mes.message}}"
+          (click)="this.zoomImage($event)"
           *ngIf="this.isGif(mes.message)||this.isImage(mes.message)"
         />
+        <app-image-modal></app-image-modal>
       </div>
     </div>
     <!-- End my chat -->

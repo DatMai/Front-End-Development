@@ -45,7 +45,7 @@ export class RightTypingComponent implements OnInit,AfterViewInit {
   //   }
   // }= emojione.emojioneList;
 
-  message: string = '';
+   message: string = '';
 
   constructor(
     private dataService: DataService,
@@ -96,6 +96,16 @@ export class RightTypingComponent implements OnInit,AfterViewInit {
       pickerPosition: "top",
       toneStyle:"bullet",
     });
+    let el = $("#emotions").emojioneArea();
+    let message  = $("#emotions").val();
+    let m=$("#moji");
+    el[0].emojioneArea.on("emojibtn.click", function(btn) {
+    //  m.append(btn.html());
+      console.log(m);
+
+
+    });
+
   }
 
   public sendTo() {

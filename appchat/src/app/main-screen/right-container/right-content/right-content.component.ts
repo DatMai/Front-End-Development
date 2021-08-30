@@ -276,4 +276,10 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
   public isMes(messages: any) {
     return this.chatService.isMes(messages);
   }
+
+  public zoomImage($event){
+    let src=$event.srcElement.src;
+    this.imageService.selectedImgSrc=src;
+    this.imageService.isShowImageModal=true;
+  }
 }
