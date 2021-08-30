@@ -15,6 +15,7 @@ import {animate, query, style, transition, trigger} from '@angular/animations';
 import {ResponsiveService} from "../../../service/responsive.service";
 import { ImageService } from 'src/app/service/image.service';
 import { ThemeService } from 'src/app/service/theme.service';
+import { SearchMessageService } from 'src/app/service/search-message.service';
 
 declare var $: any;
 @Component({
@@ -41,7 +42,7 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
   index: number = 0;
   keyWord: string = '';
   backgroundText: string = '';
-  colorText: string = "";
+  colorText: string = "#a5a5a5";
   autoScroll : boolean = true;
   constructor(
     private dataService: DataService,
@@ -49,7 +50,8 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
     private gifService: GifService,
     private imageService: ImageService,
     private themeService: ThemeService,
-    private res : ResponsiveService,
+    private res: ResponsiveService,
+    private searchMessageService: SearchMessageService
   ) {}
 
   ngAfterViewInit(){
@@ -99,7 +101,7 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
   }
   public getResultSearchMessageCount(): any {
     let count = 0;
-    count = this.chatService.searchMessage(this.keyWord).length;
+    count = this.searchMessageService.searchMessage(this.keyWord).length;
     return count;
   }
   public findUp() {

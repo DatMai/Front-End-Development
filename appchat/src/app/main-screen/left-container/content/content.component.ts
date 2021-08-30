@@ -12,6 +12,7 @@ import {animate, keyframes, query, stagger, style, transition, trigger} from "@a
 import {ResponsiveService} from "../../../service/responsive.service";
 
 import { ImageService } from 'src/app/service/image.service';
+import { SearchUserService } from 'src/app/service/search-user.service';
 
 
 @Component({
@@ -42,6 +43,7 @@ export class ContentComponent implements OnInit {
     private wss: WebSocketService,
     private chatService: ChatService,
     private gifService: GifService,
+    private searchUserService:SearchUserService,
 
     private res: ResponsiveService,
 
@@ -70,8 +72,10 @@ export class ContentComponent implements OnInit {
     this.wss.logout();
   }
   public getListSearch() {
+
     // this.res.isClickShowLeftContainer = false;
     return this.userService.search(this.name);
+
   }
   public isCheckSearch() {
     return this.name.length != 0;
