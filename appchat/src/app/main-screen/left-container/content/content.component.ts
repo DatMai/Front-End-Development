@@ -13,6 +13,7 @@ import {ResponsiveService} from "../../../service/responsive.service";
 
 import { ImageService } from 'src/app/service/image.service';
 import { SearchUserService } from 'src/app/service/search-user.service';
+import { SearchMessageService } from 'src/app/service/search-message.service';
 
 
 @Component({
@@ -43,7 +44,8 @@ export class ContentComponent implements OnInit {
     private wss: WebSocketService,
     private chatService: ChatService,
     private gifService: GifService,
-    private searchUserService:SearchUserService,
+    private searchUserService: SearchUserService,
+    private searchMessageService: SearchMessageService,
 
     private res: ResponsiveService,
 
@@ -115,6 +117,7 @@ export class ContentComponent implements OnInit {
     this.dataService.selectedChatContent.messages?.forEach(f => {
       f.highlight = false;
     })
+    this.searchMessageService.searchIndex = 0;
     console.log(this.getLastTime(chatContent));
 
     this.chatService.setSelectedChatContent(chatContent);
