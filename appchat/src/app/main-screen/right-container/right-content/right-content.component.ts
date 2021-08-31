@@ -49,7 +49,6 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
   isDarkMode: boolean = true;
   USERLOGIN: UserModel = {};
   arrayKeyWord: string[] = [];
-  index: number = 0;
   keyWord: string = '';
   backgroundText: string = '';
   colorText: string = '#a5a5a5';
@@ -104,7 +103,7 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
     this.dataService.selectedChatContent.messages?.forEach((f) => {
       f.highlight = false;
     });
-    this.index = 0;
+    this.searchMessageService.searchIndex = 0;
   }
   public getResultSearchMessageCount(): any {
     let count = 0;
@@ -134,12 +133,12 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
       }
     }
 
-    if (this.index < this.dataService.searchKeyWord.length) {
+    if (    this.searchMessageService.searchIndex < this.dataService.searchKeyWord.length) {
       document
-        .getElementById(this.dataService.searchKeyWord[this.index++])
+        .getElementById(this.dataService.searchKeyWord[this.searchMessageService.searchIndex++])
         ?.scrollIntoView();
     }
-    console.log(this.index);
+    console.log(this.searchMessageService.searchIndex);
   }
   public findDown() {
     let temp: any;
@@ -164,13 +163,12 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
       }
     }
 
-
-    if (this.index >= 0  ) {
+    if (this.searchMessageService.searchIndex >= 0  ) {
     document
-      .getElementById(this.dataService.searchKeyWord[this.index--])
+      .getElementById(this.dataService.searchKeyWord[this.searchMessageService.searchIndex--])
       ?.scrollIntoView();
     }
-    console.log(this.index);
+    console.log(this.searchMessageService.searchIndex);
   }
   public getSelectedChatContent() {
     return this.dataService.getSelectedChatContent();
