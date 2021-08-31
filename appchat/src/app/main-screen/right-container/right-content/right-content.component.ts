@@ -43,7 +43,8 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
   keyWord: string = '';
   backgroundText: string = '';
   colorText: string = "#a5a5a5";
-  autoScroll : boolean = true;
+  autoScroll: boolean = true;
+
   constructor(
     private dataService: DataService,
     private chatService: ChatService,
@@ -66,8 +67,7 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
   }
    ngOnInit(): void {
     this.dataService.searchMessage$.subscribe((text) => (this.keyWord = text));
-
-  }
+   }
 
   public checkScroll(){
     this.autoScroll = false;

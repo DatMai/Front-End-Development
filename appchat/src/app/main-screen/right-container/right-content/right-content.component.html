@@ -1,4 +1,6 @@
-<div #scrollframe class="container-fluid main-chat" id="chatContent" [style.background]="this.darkMode() ? this.background : ''">
+<div #scrollframe class=" container-fluid main-chat" id="chatContent" [ngClass]="this.darkMode() ? 'dark' : ''" [ngStyle]="{
+  'background-image': 'url(' + this.getSelectedChatContent().theme?.data?.image + ')'
+}">
     <!-- Partner chat -->
     <div class="searchMessageArea" *ngIf="isShowSearchMessage()">
         <div class="notifiSearch">
@@ -54,7 +56,7 @@
         <!-- My chat -->
         <div [ngClass]="this.typeOfMes(indexOfelement)" class="my-chat container-fluid row" *ngIf="mes.mine && this.isMes(mes)">
             <div @messagesAnimation class="wrapper text--wrapper col-12">
-              <!-- <div id ="moji"> -->
+                <!-- <div id ="moji"> -->
                 <p [id]="getId(mes.id, mes.highlight)" [ngClass]="mes.highlight ? 'highlight' : ''" class="my__text text" [style.border]="mes.highlight ? '5px solid yellow' : ''" *ngIf="!(this.isGif(mes.message)||this.isImage(mes.message))">
                     <span class="send-time">{{ this.getDate(mes.createAt) }}</span
           >{{ mes.message }}
