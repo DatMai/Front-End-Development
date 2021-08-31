@@ -1,4 +1,6 @@
+import { templateJitUrl } from '@angular/compiler';
 import { Injectable } from '@angular/core';
+import { ThemeModel } from '../model/ThemeModel';
 import { ChatService } from './chat.service';
 import { DataService } from './data.service';
 import { GifService } from './gif.service';
@@ -18,7 +20,8 @@ export class SearchMessageService {
     this.dataService.selectedChatContent.messages?.forEach((f) => {
       if (
         !this.gif.isGif(f.message) &&
-        !this.chatSerivce.isNofication(f.message)
+        !this.chatSerivce.isNofication(f.message)&&
+        f.description!="NOTIFICATION"
       )
         arraySearch.push(f.message);
     });
@@ -33,6 +36,6 @@ export class SearchMessageService {
         }
       });
     });
-    return arraySearch;
+     return arraySearch;
   }
 }
