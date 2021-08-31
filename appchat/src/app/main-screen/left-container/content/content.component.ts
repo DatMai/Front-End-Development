@@ -166,9 +166,10 @@ export class ContentComponent implements OnInit {
               rs = messages.message;
             }
           }
+
         }
       }
-      if(rs.length>25) rs=rs.substring(0,25)+"...";
+      if(rs!=undefined&&rs.length>25) rs=rs.substring(0,25)+"...";
     return rs;
   }
   public getLastTime(chatContent: ChatContent) {

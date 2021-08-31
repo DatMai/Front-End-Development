@@ -55,10 +55,14 @@
         <div [ngClass]="this.typeOfMes(indexOfelement)" class="my-chat container-fluid row" *ngIf="mes.mine && this.isMes(mes)">
             <div @messagesAnimation class="wrapper text--wrapper col-12">
               <!-- <div id ="moji"> -->
+                <div id="moji">
                 <p [id]="getId(mes.id, mes.highlight)" [ngClass]="mes.highlight ? 'highlight' : ''" class="my__text text" [style.border]="mes.highlight ? '5px solid yellow' : ''" *ngIf="!(this.isGif(mes.message)||this.isImage(mes.message))">
                     <span class="send-time">{{ this.getDate(mes.createAt) }}</span
           >{{ mes.message }}
+
+          <!-- <img class="emojioneemoji" style="width:20px;height:20px;" data-src="https://cdn.jsdelivr.net/emojione/assets/3.1/png/32/1f605.png" src="https://cdn.jsdelivr.net/emojione/assets/3.1/png/32/1f605.png"> -->
         </p>
+      </div>
       <!-- </div> -->
         <img
           class="my_image image"
