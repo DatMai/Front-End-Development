@@ -7,6 +7,7 @@ import { GifService } from './gif.service';
   providedIn: 'root',
 })
 export class SearchMessageService {
+  searchIndex: number = 0;
   constructor(
     private dataService: DataService,
     private gif: GifService,
