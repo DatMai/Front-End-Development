@@ -1,7 +1,6 @@
-
 <div class="header" [style.background]="this.darkMode() ? this.background : ''" [style.color]="this.darkMode() ? this.color : ''">
     <div @headerAnimation class="header__infor">
-      <button *ngIf="showListFriendButton()" (click)="showListFriend()" class="show-friend-list"><i class="fas fa-user-friends"></i></button>
+        <button *ngIf="showListFriendButton()" (click)="showListFriend()" class="show-friend-list"><i class="fas fa-user-friends"></i></button>
         <img src="../../../../assets/image/avatar.jpg" class="header__avatar" />
         <h6 class="header__title">
             {{ this.getSelectedChatContent().name }} <br />
@@ -9,11 +8,11 @@
     </div>
 
     <div @iconAnimation class="header__actions">
-      <div class="actions-container" >
-        <i class="far fa-eye" data-bs-toggle="modal" data-bs-target="#searchModal" data-bs-whatever="@getbootstrap"></i>
+        <div class="actions-container">
+            <i class="far fa-eye" data-bs-toggle="modal" data-bs-target="#searchModal" data-bs-whatever="@getbootstrap"></i>
 
-        <i class="fas fa-bars " (click)="this.showManager()" [style.color]="this.managerButtonDark?'#aaaaaa':''"></i>
-      </div>
+            <i class="fas fa-bars " (click)="this.showManager()" [style.color]="this.managerButtonDark?'#aaaaaa':''"></i>
+        </div>
 
     </div>
 
@@ -21,7 +20,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="searchModalLabel">Tạo cuộc hội thoại</h5>
+                    <h5 class="modal-title" id="searchModalLabel">Tìm kiếm tin nhắn</h5>
                 </div>
                 <div class="modal-body">
                     <form>

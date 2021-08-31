@@ -6,7 +6,7 @@ import { WebSocketService } from 'src/app/service/web-socket.service';
 @Component({
   selector: 'app-room-modal',
   templateUrl: './room-modal.component.html',
-  styleUrls: ['./room-modal.component.css'],
+  styleUrls: ['./room-modal.component.scss'],
 })
 export class RoomModalComponent implements OnInit {
   roomName: string = '';
