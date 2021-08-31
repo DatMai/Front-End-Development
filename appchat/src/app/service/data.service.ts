@@ -46,12 +46,12 @@ export class DataService implements OnInit {
   listTheme: ThemeModel[] = listTheme;
   constructor(private http: HttpClient) {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
-  public findThemeByName(name:string){
-    let rs: ThemeModel= listTheme.find((value:ThemeModel)=>
-      value.name==name
-    )
+  public findThemeByName(name: string) {
+    let rs: ThemeModel = listTheme.find(
+      (value: ThemeModel) => value.name == name
+    );
     return rs;
   }
 

@@ -574,7 +574,8 @@ export class WebSocketService {
             if(this.messageService.isThemeNotification(mes)){
               let name = mes.message.replace("appchat-b16ea-admin-notification-theme : ","");
               let theme=this.dataService.findThemeByName(name);
-              groupChatContentWithNameroom[0].theme=theme;
+              groupChatContentWithNameroom[0].theme = theme;
+
               mes=this.messageService.getThemeNofication(mes);
               console.log(theme);
             }
@@ -590,8 +591,10 @@ export class WebSocketService {
             )|| {};
             if(this.messageService.isThemeNotification(mes)){
               let name = mes.message.replace("appchat-b16ea-admin-notification-theme : ","");
-              let theme=this.dataService.findThemeByName(name);
-              chatContentWithThisUsermodel.theme=theme;
+              let theme = this.dataService.findThemeByName(name);
+
+              chatContentWithThisUsermodel.theme = theme;
+
               mes=this.messageService.getThemeNofication(mes);
               console.log(theme);
             }
