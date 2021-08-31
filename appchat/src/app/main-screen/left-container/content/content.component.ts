@@ -46,7 +46,6 @@ export class ContentComponent implements OnInit {
     private gifService: GifService,
     private searchUserService: SearchUserService,
     private searchMessageService: SearchMessageService,
-
     private res: ResponsiveService,
 
     private imageService: ImageService
@@ -54,7 +53,6 @@ export class ContentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.dataService.search$.subscribe((text) => (this.name = text));
     this.USERLOGIN = JSON.parse(sessionStorage.USERLOGIN);
   }
 
@@ -75,7 +73,7 @@ export class ContentComponent implements OnInit {
   }
   public getListSearch() {
     this.res.isClickShowLeftContainer = false;
-    return this.searchUserService.search(this.name);
+    return this.searchUserService.searchChatContent(this.searchUserService.keySearch);
   }
   public isCheckSearch() {
     return this.name.length != 0;

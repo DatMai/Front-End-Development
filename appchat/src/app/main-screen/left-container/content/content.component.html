@@ -17,10 +17,10 @@
   </div>
   <div @listAnimation  class="list-search list" *ngIf="this.isShowSearch()">
     <div class="checkSearch" *ngIf="this.isCheckSearch()"> <i>Tìm kiếm cho từ khoá : "{{this.name}}"</i> </div>
-    <div class="friend" *ngFor="let f of this.getListSearch(), index as index" (click)="setSelectedChatContentByUserModel(f,index)">
+    <div class="friend" *ngFor="let f of this.getListSearch(), index as index" (click)="setSelectedChatContent(f,index)">
       <img class="friend__avatar avatar--circle avatar--small" src="../../../../assets/image/avatar.jpg" alt="" />
       <h4 class="friend__infor">
-        {{ f.fullname }} <span class="text--small"><br />{{ f.status }}</span>
+        {{ f.name }} <span class="text--small"><br />{{ f.isGroup }}</span>
       </h4>
     </div>
   </div>

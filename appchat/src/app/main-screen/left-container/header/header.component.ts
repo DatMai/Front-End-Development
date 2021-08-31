@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { UserModel } from 'src/app/model/userModel';
 import { DataService } from 'src/app/service/data.service';
+import { SearchUserService } from 'src/app/service/search-user.service';
 import { UserService } from 'src/app/service/user.service';
 import { EventEmitter } from 'stream';
 
@@ -17,13 +18,13 @@ export class HeaderComponent implements OnInit {
   check: boolean = false;
   constructor(
     private dataService: DataService,
+    private searchUserService: SearchUserService,
   ) {}
 
   ngOnInit(): void {
   }
   public search() {
-    this.dataService.setSearchKeyword(this.name);
-
+    this.searchUserService.keySearch=this.name;
   }
 
   public showSetting() {
@@ -61,5 +62,6 @@ export class HeaderComponent implements OnInit {
     this.dataService.isShowListFriend = false;
     this.dataService.isShowListChatBox = false;
     this.dataService.isShowSetting = false;
+    
   }
 }
