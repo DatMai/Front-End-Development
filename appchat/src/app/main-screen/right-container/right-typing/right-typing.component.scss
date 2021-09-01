@@ -137,6 +137,11 @@
 }
 
 @media only screen and (max-width: 564px) {
+  .typing{
+    padding-top: 7px;
+    padding-left: 30px;
+
+  }
     .typing__actions {
         .button {
             display: none;
