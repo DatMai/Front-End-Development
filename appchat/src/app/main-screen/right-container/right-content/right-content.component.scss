@@ -25,6 +25,10 @@
     background: rgb(133, 133, 133);
 }
 
+.dark {
+    background-color: black;
+}
+
 .main-chat {
     overflow-x: hidden;
     overflow-y: scroll;
@@ -213,7 +217,6 @@
         transition: linear 0.2ms;
         visibility: visible;
     }
-
     .my-chat {
         float: right;
         .my__avatar {}
@@ -229,7 +232,7 @@
             color: rgb(255, 255, 255);
             background-color: gray;
             .send-time {
-                margin-left: -55px;
+                // margin-left: -55px;
             }
         }
     }

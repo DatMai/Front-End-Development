@@ -91,27 +91,37 @@ export class RightTypingComponent implements OnInit,AfterViewInit {
     this.message = this.message + this.selectedEmoji.emoji;
   }
   public showEmoji() {
+    let m=$("#moji").val();
+
     $("#emotions").emojioneArea({
-      // standalone:true,
       pickerPosition: "top",
       toneStyle:"bullet",
+      events: {
+        emojibtn_click: function (button, event) {
+          console.log('event:emojibtn.click, emoji=' + button.data("name"));
+          m+=button.data("name");
+        },
+        keydown: function (button, event) {
+
+
+          // console.log('event:'+event.+', emoji=' + button.data("name"));
+          m+=event.key;
+        }
+   }
+
+
     });
+
     let el = $("#emotions").emojioneArea();
     let message  = $("#emotions").val();
-    let m=$("#moji");
-    el[0].emojioneArea.on("emojibtn.click", function(btn) {
-    //  m.append(btn.html());
-      console.log(m);
-
-
-    });
 
   }
 
   public sendTo() {
-    let message  = $("#emotions").val();
-    this.message=message;
-    console.log(this.message);
+    // let message  = $("#emotions").val();
+
+    // this.message=message;
+    // console.log(this.message);
     this.chatService.sendTo(this.message);
     this.message = '';
   }

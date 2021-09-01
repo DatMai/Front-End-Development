@@ -8,30 +8,30 @@ import { DataService } from './data.service';
 import { MessageService } from './message.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ThemeService {
   listTheme: ThemeModel[] = listTheme;
+
   constructor(
     private dataService: DataService,
-    private chatService: ChatService,
+    private chatService: ChatService
   ) {}
   ngOnInit(): void {}
-  public setTheme(theme:ThemeModel){
-    this.dataService.selectedChatContent.theme=theme;
+  public setTheme(theme: ThemeModel) {
+    this.dataService.selectedChatContent.theme = theme;
   }
-  public clear(){
-    this.dataService.selectedChatContent.theme=undefined;
+  public clear() {
+    this.dataService.selectedChatContent.theme = undefined;
   }
-  public saveTheme(){
-    let theme =  this.dataService.selectedChatContent.theme;
-    let mes="appchat-b16ea-admin-notification-theme : " +theme?.name;
+  public saveTheme() {
+    let theme = this.dataService.selectedChatContent.theme;
+
+    let mes = 'appchat-b16ea-admin-notification-theme : ' + theme?.name;
     this.chatService.sendTo(mes);
   }
-  public findByName(name:string){
-    let rs = listTheme.find((value:ThemeModel)=>
-      value.name==name
-    )
+  public findByName(name: string) {
+    let rs = listTheme.find((value: ThemeModel) => value.name == name);
     return rs;
   }
 }

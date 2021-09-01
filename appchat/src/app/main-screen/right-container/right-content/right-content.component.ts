@@ -1,9 +1,13 @@
 import {
   AfterViewInit,
-  Component, ElementRef,
+  Component,
+  ElementRef,
   OnChanges,
-  OnInit, QueryList,
-  SimpleChanges, ViewChild, ViewChildren,
+  OnInit,
+  QueryList,
+  SimpleChanges,
+  ViewChild,
+  ViewChildren,
 } from '@angular/core';
 import { UserModel } from 'src/app/model/userModel';
 import { ChatService } from 'src/app/service/chat.service';
@@ -11,8 +15,14 @@ import { DataService } from 'src/app/service/data.service';
 import { ChatContent } from '../../../model/ChatContent';
 import { stringify } from 'querystring';
 import { GifService } from 'src/app/service/gif.service';
-import {animate, query, style, transition, trigger} from '@angular/animations';
-import {ResponsiveService} from "../../../service/responsive.service";
+import {
+  animate,
+  query,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
+import { ResponsiveService } from '../../../service/responsive.service';
 import { ImageService } from 'src/app/service/image.service';
 import { ThemeService } from 'src/app/service/theme.service';
 import { SearchMessageService } from 'src/app/service/search-message.service';
@@ -32,18 +42,18 @@ declare var $: any;
   ],
 })
 export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
-  @ViewChild('scrollframe', {static: false}) scrollFrame?: ElementRef;
+  @ViewChild('scrollframe', { static: false }) scrollFrame?: ElementRef;
   @ViewChildren('item') itemElements?: QueryList<any>;
   private scrollContainer: any;
   background: string = 'black';
   isDarkMode: boolean = true;
   USERLOGIN: UserModel = {};
   arrayKeyWord: string[] = [];
-  index: number = 0;
   keyWord: string = '';
   backgroundText: string = '';
-  colorText: string = "#a5a5a5";
-  autoScroll : boolean = true;
+  colorText: string = '#a5a5a5';
+  autoScroll: boolean = true;
+
   constructor(
     private dataService: DataService,
     private chatService: ChatService,
@@ -54,30 +64,25 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
     private searchMessageService: SearchMessageService
   ) {}
 
-  ngAfterViewInit(){
+  ngAfterViewInit() {
     this.scrollContainer = this.scrollFrame?.nativeElement;
-    this.itemElements?.changes.subscribe(_ => this.onItemElementsChanged());
+    this.itemElements?.changes.subscribe((_) => this.onItemElementsChanged());
   }
   private onItemElementsChanged(): void {
     this.scrollToBottom();
   }
-  ngOnChanges(changes: SimpleChanges): void {
-
-  }
-   ngOnInit(): void {
+  ngOnChanges(changes: SimpleChanges): void {}
+  ngOnInit(): void {
     this.dataService.searchMessage$.subscribe((text) => (this.keyWord = text));
-
   }
 
-  public checkScroll(){
+  public checkScroll() {
     this.autoScroll = false;
   }
 
   public darkMode() {
     return this.dataService.isDarkMode;
   }
-
-
 
   public getId(id: any, highlight: boolean): string {
     let getTextId = 'text' + id;
@@ -98,6 +103,7 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
     this.dataService.selectedChatContent.messages?.forEach((f) => {
       f.highlight = false;
     });
+    this.searchMessageService.searchIndex = 0;
   }
   public getResultSearchMessageCount(): any {
     let count = 0;
@@ -105,24 +111,64 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
     return count;
   }
   public findUp() {
-    this.dataService.searchKeyWord.sort();
-    this.dataService.searchKeyWord.reverse();
-    if (this.index < this.dataService.searchKeyWord.length) {
+    let temp: any;
+    for (let i = 0; i < this.dataService.searchKeyWord.length; i++) {
+      for (let j = i; j < this.dataService.searchKeyWord.length; j++) {
+        if (
+          parseInt( this.dataService.searchKeyWord[i].substring(
+            4,
+            this.dataService.searchKeyWord[i].length
+          ))
+          <
+          parseInt( this.dataService.searchKeyWord[j].substring(
+            4,
+            this.dataService.searchKeyWord[j].length
+          )
+        ))
+          {
+          temp = this.dataService.searchKeyWord[i];
+          this.dataService.searchKeyWord[i] = this.dataService.searchKeyWord[j];
+          this.dataService.searchKeyWord[j] = temp;
+        }
+      }
+    }
+
+    if (    this.searchMessageService.searchIndex < this.dataService.searchKeyWord.length) {
       document
-        .getElementById(this.dataService.searchKeyWord[this.index++])
+        .getElementById(this.dataService.searchKeyWord[this.searchMessageService.searchIndex++])
         ?.scrollIntoView();
     }
-    console.log(this.index);
+    console.log(this.searchMessageService.searchIndex);
   }
   public findDown() {
-    this.dataService.searchKeyWord.sort();
-    this.dataService.searchKeyWord.reverse();
-    if (this.index >= 0) {
-      document
-        .getElementById(this.dataService.searchKeyWord[this.index--])
-        ?.scrollIntoView();
+    let temp: any;
+    for (let i = 0; i < this.dataService.searchKeyWord.length; i++) {
+      for (let j = i; j < this.dataService.searchKeyWord.length; j++) {
+        if (
+          parseInt( this.dataService.searchKeyWord[i].substring(
+            4,
+            this.dataService.searchKeyWord[i].length
+          ))
+          <
+          parseInt( this.dataService.searchKeyWord[j].substring(
+            4,
+            this.dataService.searchKeyWord[j].length
+          )
+        ))
+          {
+          temp = this.dataService.searchKeyWord[i];
+          this.dataService.searchKeyWord[i] = this.dataService.searchKeyWord[j];
+          this.dataService.searchKeyWord[j] = temp;
+        }
+      }
     }
-    console.log(this.index);
+
+    if (this.searchMessageService.searchIndex >= 0  ) {
+    document
+      .getElementById(this.dataService.searchKeyWord[this.searchMessageService.searchIndex--])
+      ?.scrollIntoView();
+    }
+    console.log(this.searchMessageService.searchIndex);
   }
   public getSelectedChatContent() {
     return this.dataService.getSelectedChatContent();
@@ -132,7 +178,7 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
     this.scrollContainer.scroll({
       top: this.scrollContainer.scrollHeight,
       left: 0,
-      behavior: 'auto'
+      behavior: 'auto',
     });
   }
 
@@ -277,9 +323,9 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
     return this.chatService.isMes(messages);
   }
 
-  public zoomImage($event){
-    let src=$event.srcElement.src;
-    this.imageService.selectedImgSrc=src;
-    this.imageService.isShowImageModal=true;
+  public zoomImage($event) {
+    let src = $event.srcElement.src;
+    this.imageService.selectedImgSrc = src;
+    this.imageService.isShowImageModal = true;
   }
 }

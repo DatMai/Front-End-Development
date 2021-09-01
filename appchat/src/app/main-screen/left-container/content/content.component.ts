@@ -13,6 +13,7 @@ import {ResponsiveService} from "../../../service/responsive.service";
 
 import { ImageService } from 'src/app/service/image.service';
 import { SearchUserService } from 'src/app/service/search-user.service';
+import { SearchMessageService } from 'src/app/service/search-message.service';
 
 
 @Component({
@@ -43,8 +44,8 @@ export class ContentComponent implements OnInit {
     private wss: WebSocketService,
     private chatService: ChatService,
     private gifService: GifService,
-    private searchUserService:SearchUserService,
-
+    private searchUserService: SearchUserService,
+    private searchMessageService: SearchMessageService,
     private res: ResponsiveService,
 
     private imageService: ImageService
@@ -52,7 +53,6 @@ export class ContentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.dataService.search$.subscribe((text) => (this.name = text));
     this.USERLOGIN = JSON.parse(sessionStorage.USERLOGIN);
   }
 
@@ -73,7 +73,7 @@ export class ContentComponent implements OnInit {
   }
   public getListSearch() {
     this.res.isClickShowLeftContainer = false;
-    return this.searchUserService.search(this.name);
+    return this.searchUserService.searchChatContent(this.searchUserService.keySearch);
   }
   public isCheckSearch() {
     return this.name.length != 0;
@@ -115,6 +115,7 @@ export class ContentComponent implements OnInit {
     this.dataService.selectedChatContent.messages?.forEach(f => {
       f.highlight = false;
     })
+    this.searchMessageService.searchIndex = 0;
     console.log(this.getLastTime(chatContent));
 
     this.chatService.setSelectedChatContent(chatContent);
@@ -166,9 +167,10 @@ export class ContentComponent implements OnInit {
               rs = messages.message;
             }
           }
+
         }
       }
-      if(rs.length>25) rs=rs.substring(0,25)+"...";
+      if(rs!=undefined&&rs.length>25) rs=rs.substring(0,25)+"...";
     return rs;
   }
   public getLastTime(chatContent: ChatContent) {

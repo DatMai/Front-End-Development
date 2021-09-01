@@ -74,6 +74,7 @@ export class RightHeaderComponent implements OnInit {
       0,
       this.dataService.searchKeyWord.length
     );
+    this.searchMessageService.searchIndex = 0;
     this.dataService.isShowSearchMessage = true;
   }
   public getKeyWord(event: any) {
