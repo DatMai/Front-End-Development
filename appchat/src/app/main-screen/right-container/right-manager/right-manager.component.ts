@@ -92,6 +92,11 @@ export class RightManagerComponent implements OnInit {
 
   public clickEffect(){
   }
+
+  public isShowTheBackButton(){
+    return this.res.isMobileRes(564)
+  }
+
   public hideManager(){
     this.dataService.isShowManager = false;
   }

@@ -54,6 +54,9 @@ export class RightContainerComponent implements OnInit {
   ngOnInit(): void {
 
   }
+  public hideManager(){
+    this.dataService.isShowManager = false;
+  }
 
   public isSelectedChatBox(){
     return this.chatService.isChatBoxSelected();
