@@ -250,3 +250,75 @@ footer a {
     color: #3c97bf;
     text-decoration: none;
 }
+
+@media only screen and (max-width: 564px){
+  h1 {
+    font-weight: bold;
+    margin-bottom: 1vw;
+    font-size: 5vw;
+  }
+
+  h2 {
+    text-align: center;
+  }
+
+  p {
+    font-size: 2.5vw;
+    font-weight: 50;
+  }
+
+  span {
+    font-size: 3vw;
+  }
+
+  a {
+    color: #333;
+    font-size: 3vw;
+    text-decoration: none;
+    margin: 1vw 0;
+  }
+  .social-container {
+    margin: 0 0;
+  }
+  form{
+    padding:0 1vw;
+  }
+
+  input {
+    background-color: #eee;
+    border: none;
+    padding: 1vw 1vw;
+    margin: 2vw 0;
+    width: 100%;
+  }
+  .btn,
+  .ghost {
+    border-radius: 20px;
+    border: 1px solid #FF4B2B;
+    background-color: #FF4B2B;
+    color: #FFFFFF;
+    font-size: 3vw;
+    font-weight: bold;
+    padding: 3vw 15vw;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    cursor: pointer;
+  }
+  .ghost {
+    border-radius: 20px;
+    border: 1px solid #fff;
+    background-color: transparent;
+    color: #FFFFFF;
+    font-size: 3vw;
+    font-weight: bold;
+    padding: 3vw 15vw;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    cursor: pointer;
+  }
+
+
+
+}

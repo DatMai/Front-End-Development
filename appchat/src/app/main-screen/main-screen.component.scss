@@ -30,12 +30,12 @@
       }
     }
 
-    @media only screen and (min-width: 992px) {
+    @media only screen and (min-width: 1024px) {
         .main-screen {
             display: flex;
         }
     }
-    @media only screen and (max-width: 992px) {
+    @media only screen and (max-width: 1024px) {
       .main-screen {
         &__left-container {
           position: absolute;

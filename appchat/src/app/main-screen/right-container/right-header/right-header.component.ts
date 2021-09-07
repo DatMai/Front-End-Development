@@ -91,6 +91,6 @@ export class RightHeaderComponent implements OnInit {
     this.res.isClickShowLeftContainer = !this.res.isClickShowLeftContainer;
   }
   public showListFriendButton() {
-    return this.res.isMobileRes(992);
+    return this.res.isMobileRes(1024);
   }
 }

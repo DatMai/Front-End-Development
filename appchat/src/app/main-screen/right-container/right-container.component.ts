@@ -65,7 +65,7 @@ export class RightContainerComponent implements OnInit {
     return this.dataService.isShowManager;
   }
   public leftSectionState(){
-    if(window.innerWidth < 992){
+    if(window.innerWidth <= 1024){
       return this.isShowManager()? "small-m" : "large-m";
     }
     else return this.isShowManager()? "small" : "large";
