@@ -15,16 +15,16 @@ export class ResponsiveService {
     }
   }
   public isShowLeftContainer(){
-    if(window.innerWidth > 992){
+    if(window.innerWidth > 1024){
       return true;
     }
-    if(window.innerWidth <= 992 && this.isClickShowLeftContainer == true ){
+    if(window.innerWidth <= 1024 && this.isClickShowLeftContainer == true ){
       return true;
     }
     return false;
   }
   public isShowOverlayLeft(){
-    if(window.innerWidth <= 992 && this.isClickShowLeftContainer == true ){
+    if(window.innerWidth <= 1024 && this.isClickShowLeftContainer == true ){
       return true;
     }else
     return false;
