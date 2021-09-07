@@ -49,10 +49,10 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
   isDarkMode: boolean = true;
   USERLOGIN: UserModel = {};
   arrayKeyWord: string[] = [];
-  keyWord: string = '';
   backgroundText: string = '';
   colorText: string = '#a5a5a5';
   autoScroll: boolean = true;
+  keyWord: string = '';
 
   constructor(
     private dataService: DataService,
@@ -74,6 +74,7 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
   ngOnChanges(changes: SimpleChanges): void {}
   ngOnInit(): void {
     this.dataService.searchMessage$.subscribe((text) => (this.keyWord = text));
+
   }
 
   public checkScroll() {
@@ -95,9 +96,7 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
     // console.log(this.dataService.searchKeyWord);
     return getTextId;
   }
-  public isShowSearchMessage() {
-    return this.dataService.isShowSearchMessage;
-  }
+
   public close() {
     this.dataService.isShowSearchMessage = false;
     this.dataService.selectedChatContent.messages?.forEach((f) => {
@@ -109,6 +108,9 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
     let count = 0;
     count = this.searchMessageService.searchMessage(this.keyWord).length;
     return count;
+  }
+  public isShowSearchMessage() {
+    return this.dataService.isShowSearchMessage;
   }
   public findUp() {
     let temp: any;
@@ -170,6 +172,8 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
     }
     console.log(this.searchMessageService.searchIndex);
   }
+
+
   public getSelectedChatContent() {
     return this.dataService.getSelectedChatContent();
   }

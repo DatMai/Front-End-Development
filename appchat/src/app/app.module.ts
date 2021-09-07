@@ -34,6 +34,7 @@ import {AngularFireModule} from "@angular/fire"
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { ThemeModalComponent } from './main-screen/right-container/right-manager/theme-modal/theme-modal.component';
 import { ImageModalComponent } from './main-screen/right-container/right-content/image-modal/image-modal.component';
+import { SearchWordModalComponent } from './main-screen/right-container/right-content/search-word-modal/search-word-modal.component';
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import { ImageModalComponent } from './main-screen/right-container/right-content
     SendGifComponent,
     ThemeModalComponent,
     ImageModalComponent,
+    SearchWordModalComponent,
 
   ],
   imports: [

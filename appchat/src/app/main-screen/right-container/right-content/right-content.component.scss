@@ -134,42 +134,6 @@
             -webkit-background-clip: text;
         }
     }
-    .text {
-        font-size: 16px;
-        padding: 10px;
-        word-wrap: break-word;
-        border-radius: 30px;
-    }
-    .text:hover .send-time {
-        transition: linear 0.2ms;
-        visibility: visible;
-    }
-    .partner-chat {
-        position: relative;
-        z-index: 2;
-        .partner__avatar {
-            margin-top: 0;
-            margin-right: 1vw;
-        }
-        .partner__text {
-            align-items: center;
-            width: fit-content;
-            max-width: 500px;
-            color: rgb(255, 255, 255);
-            background-image: linear-gradient(#d32a4c, #eb522c);
-            .send-time {
-                margin-left: 13px;
-            }
-
-        }
-        .partner__text:hover {
-            background-color: blue;
-        }
-        .partner__name {
-            font-size: 12px;
-            margin-left: 5px;
-        }
-    }
     .image {
         width: 400px;
     }
@@ -199,7 +163,7 @@
     .send-time {
         color: wheat !important;
         padding: 2px;
-        position: absolute;
+        // position: absolute;
         z-index: 999;
         background-color: #221c1f;
         align-items: center;
@@ -217,12 +181,51 @@
         transition: linear 0.2ms;
         visibility: visible;
     }
+    .partner-chat {
+        position: relative;
+        z-index: 2;
+        .partner_image {
+            cursor: pointer;
+        }
+        .partner__avatar {
+            margin-top: 0;
+            margin-right: 1vw;
+        }
+        .partner__text {
+            align-items: center;
+            width: fit-content;
+            max-width: 70vh;
+            color: rgb(255, 255, 255);
+            background-image: linear-gradient(#d32a4c, #eb522c);
+            .send-time {
+              margin-left:13px;
+              position: absolute;
+            }
+        }
+        .partner__text:hover {
+            background-color: blue;
+        }
+        .partner__name {
+            font-size: 12px;
+            margin-left: 5px;
+        }
+    }
     .my-chat {
         float: right;
         .my__avatar {}
         .my_image {
             float: right;
             cursor: pointer;
+        }
+        .my__text:hover +.send-time{
+
+          transition: linear 0.2ms;
+          visibility: visible;
+          // line-height: center;
+        }
+        .send-time {
+          vertical-align: center;
+          float: right;
         }
         .my__text {
             align-items: center;
@@ -231,9 +234,6 @@
             float: right;
             color: rgb(255, 255, 255);
             background-color: gray;
-            .send-time {
-                // margin-left: -55px;
-            }
         }
     }
 }

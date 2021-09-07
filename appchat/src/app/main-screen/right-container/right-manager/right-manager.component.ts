@@ -4,7 +4,7 @@ import { DataService } from 'src/app/service/data.service';
 import {animate, keyframes, query, stagger, state, style, transition, trigger} from "@angular/animations";
 import theme from "../../../data/theme.json";
 import { ThemeModel } from 'src/app/model/ThemeModel';
-import {ResponsiveService} from "../../../service/responsive.service";
+import { ImageService } from 'src/app/service/image.service';
 @Component({
   selector: 'app-right-manager',
   templateUrl: './right-manager.component.html',
@@ -65,8 +65,7 @@ export class RightManagerComponent implements OnInit {
   backgroundText: string = '';
   colorText: string = '#a5a5a5';
   themeList:ThemeModel[] = theme;
-  constructor(private dataService:DataService,
-              private  res : ResponsiveService
+  constructor(private dataService:DataService,private imageService: ImageService
     ) { }
 
   ngOnInit(): void {
@@ -119,4 +118,8 @@ export class RightManagerComponent implements OnInit {
     this.isShowChatPrivate = !this.isShowChatPrivate
   }
 
+  //Lấy tất cả đường dẫn ảnh từ nhóm chat đang được chọn
+  public getAllImageStringFromSelectedChatContent(){
+    return this.imageService.getAllImageStringFromChatContent(this.dataService.selectedChatContent);
+  }
 }

@@ -8,6 +8,12 @@ import { ThemeModel } from '../model/ThemeModel';
 export class MessageService {
 
   constructor() { }
+
+
+
+
+
+
   public getLastTime(thatTime:string,thisTime: string) {
     // let mes = this.roomName.split(' ');
     let today = new Date(thisTime);
@@ -110,7 +116,6 @@ export class MessageService {
     return rs;
   }
   public getDate(time:string){
-    // console.log(time);
     let rs:string ='';
     let thatday = new Date(time);
     let today = new Date();
