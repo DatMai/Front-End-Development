@@ -3,20 +3,21 @@
 }">
     <!-- Partner chat -->
     <div class="searchMessageArea" *ngIf="isShowSearchMessage()">
-        <div class="notifiSearch">
-            <div class="message">Từ khóa được tìm kiếm là: "{{ this.keyWord }}"</div>
-            <div class="message">
-                Có {{ this.getResultSearchMessageCount() }} kết quả được tìm thấy
-            </div>
-        </div>
-        <div class="btnSearch">
-            <div><i class="up fas fa-caret-up" (click)="findUp()"></i></div>
-            <div><i class="down fas fa-caret-down" (click)="findDown()"></i></div>
-        </div>
-        <div class="btnSearchClose">
-            <div><i class="fas fa-times" (click)="close()"></i></div>
-        </div>
+      <div class="notifiSearch">
+          <div class="message">Từ khóa được tìm kiếm là: "{{ this.keyWord }}"</div>
+          <div class="message">
+              Có {{ this.getResultSearchMessageCount() }} kết quả được tìm thấy
+          </div>
+      </div>
+      <div class="btnSearch">
+          <div><i class="up fas fa-caret-up" (click)="findUp()"></i></div>
+          <div><i class="down fas fa-caret-down" (click)="findDown()"></i></div>
+      </div>
+      <div class="btnSearchClose">
+          <div><i class="fas fa-times" (click)="close()"></i></div>
+      </div>
     </div>
+
     <!-- <div class="drops">
         <div class="drop"></div>
         <div class="drop"></div>
@@ -44,7 +45,12 @@
 
                     </p>
 
-                    <img class="partner_image image" (click)="this.zoomImage($event)" data-src="{{mes.message}}" alt="Image" *ngIf="this.isGif(mes.message)||this.isImage(mes.message)" />
+                    <img class="partner_image image"
+                    data-bs-toggle="modal" data-bs-target="#imageModal"
+                     (click)="this.zoomImage($event)"
+                      data-src="{{mes.message}}"
+                      alt="Image"
+                      *ngIf="this.isGif(mes.message)||this.isImage(mes.message)" />
 
                   </div>
             </div>
@@ -70,6 +76,7 @@
           class="my_image image"
           alt="Image"
           data-src="{{mes.message}}"
+          data-bs-toggle="modal" data-bs-target="#imageModal"
           (click)="this.zoomImage($event)"
           *ngIf="this.isGif(mes.message)||this.isImage(mes.message)"
         />

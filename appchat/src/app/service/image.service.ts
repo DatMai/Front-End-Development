@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { ChatContent } from '../model/ChatContent';
 import { ChatService } from './chat.service';
 
 @Injectable({
@@ -37,10 +38,21 @@ export class ImageService {
     await this.fileUpload(event);
     this.callback();
   }
+  //Kiểm tra xem tin nhắn có phải là ảnh không
   public isImage(message:string){
     let startUrl= "https://firebasestorage.googleapis.com/v0/b/appchat-b16ea.appspot.com/o/image"
     let re = new RegExp(startUrl);
     if (re.test(message)) return true;
     return false;
+  }
+  //Lấy tất cả đường dẫn  ảnh được gửi trong 1 nhóm chat
+  public getAllImageStringFromChatContent(chatContent: ChatContent){
+    let rs:string[]=[];
+    chatContent.messages?.forEach(element => {
+      if (this.isImage(element.message)) {
+        rs.push(element.message);
+      }
+    });
+    return rs;
   }
 }
