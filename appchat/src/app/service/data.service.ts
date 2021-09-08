@@ -34,7 +34,6 @@ export class DataService implements OnInit {
   isShowListFriend: boolean = false;
   isShowListChatBox: boolean = true;
   isShowSetting: boolean = false;
-  isShowFunction: boolean = false;
   isShowSearch: boolean = false;
   isShowManager: boolean = false;
   isShowSearchMessage: boolean = false;
