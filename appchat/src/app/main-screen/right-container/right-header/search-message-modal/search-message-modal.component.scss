@@ -1,0 +1,50 @@
+ .modal {
+     .done {
+         background-image: linear-gradient(#d32a4c, #eb522c);
+     }
+ }
+
+ .far {
+     margin-right: 50px;
+     font-size: 24px;
+     //margin-left: 100px;
+ }
+
+ .form-input {
+     border: 2px solid #eee;
+     border-radius: 10px;
+     padding: 0 20px;
+     transition: 0.25s ease;
+     width: 100%;
+     height: 50px;
+ }
+
+ .form-field {
+     position: relative;
+     margin-top: 30px;
+ }
+
+ .form-input:focus {
+     border-color: #ee0400;
+ }
+
+ .form-label {
+     position: absolute;
+     top: 50%;
+     transform: translateY(-50%);
+     left: 31px;
+     user-select: none;
+     color: rgb(32, 32, 32);
+     pointer-events: none;
+     font-size: 17px;
+     transition: 0.25s ease;
+ }
+
+ .form-input:not(:placeholder-shown)+.form-label,
+ .form-input:focus+.form-label {
+     top: -7px;
+     padding: 0 7px;
+     display: inline-block;
+     background-color: white;
+     color: #ee0400;
+ }

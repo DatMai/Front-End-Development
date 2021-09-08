@@ -66,22 +66,14 @@ export class RightManagerComponent implements OnInit {
   backgroundText: string = '';
   colorText: string = '#a5a5a5';
   themeList:ThemeModel[] = theme;
- 
-  constructor(private dataService:DataService,
-    private imageService: ImageService,
-    private res:ResponsiveService
+  constructor(private dataService:DataService,private imageService: ImageService,private res:ResponsiveService
     ) { }
 
   ngOnInit(): void {
 
   }
 
-  public darkMode() {
-    this.dataService.isDarkMode = !this.dataService.isDarkMode;
-  }
-  public getDarkMode() {
-    return this.dataService.isDarkMode;
-  }
+
  public listState(flag:boolean){
     return flag? 'show':'hide';
   }
