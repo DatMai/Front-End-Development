@@ -26,19 +26,12 @@ export class HeaderComponent implements OnInit {
   public search() {
     this.searchUserService.keySearch=this.name;
   }
-  public showFunction() {
-    this.dataService.isShowFunction = true;
-    this.dataService.isShowSetting = false;
-    this.dataService.isShowListChatBox = false;
-    this.dataService.isShowListFriend = false;
-    this.dataService.isShowSearch = false;
-  }
+
   public showSetting() {
     this.dataService.isShowSetting = true;
     this.dataService.isShowListChatBox = false;
     this.dataService.isShowListFriend = false;
     this.dataService.isShowSearch = false;
-    this.dataService.isShowFunction = false;
   }
   public getUserlogin() {
     return this.dataService.USERLOGIN;
@@ -48,14 +41,12 @@ export class HeaderComponent implements OnInit {
     this.dataService.isShowListFriend = false;
     this.dataService.isShowSetting = false;
     this.dataService.isShowSearch = false;
-    this.dataService.isShowFunction = false;
   }
   public showListFriend() {
     this.dataService.isShowListFriend = true;
     this.dataService.isShowListChatBox = false;
     this.dataService.isShowSetting = false;
     this.dataService.isShowSearch = false;
-    this.dataService.isShowFunction = false;
   }
   public isShowListChatBox() {
     return this.dataService.isShowListChatBox;
@@ -66,16 +57,11 @@ export class HeaderComponent implements OnInit {
   public isShowSetting() {
     return this.dataService.isShowSetting;
   }
-  public isShowFunction() {
-
-    return this.dataService.isShowFunction;
-  }
   public showSearch() {
     this.dataService.isShowSearch = true;
     this.dataService.isShowListFriend = false;
     this.dataService.isShowListChatBox = false;
     this.dataService.isShowSetting = false;
-    this.dataService.isShowFunction = false;
-
+    
   }
 }

@@ -34,6 +34,13 @@
     overflow-y: scroll;
     height: calc(100vh - 70px - 40px - 10px);
     padding-bottom: 5px;
+    .searchMessageArea {
+        height: 100px;
+        width: 400px;
+        background-color: rgba(255, 255, 255, 0.603);
+        display: flex;
+        padding: 5px;
+    }
     .drops {
         margin-top: 300px;
         margin-left: 600px;
@@ -191,8 +198,8 @@
             color: rgb(255, 255, 255);
             background-image: linear-gradient(#d32a4c, #eb522c);
             .send-time {
-                margin-left: 13px;
-                position: absolute;
+              margin-left:13px;
+              position: absolute;
             }
         }
         .partner__text:hover {
@@ -210,14 +217,15 @@
             float: right;
             cursor: pointer;
         }
-        .my__text:hover+.send-time {
-            transition: linear 0.2ms;
-            visibility: visible;
-            // line-height: center;
+        .my__text:hover +.send-time{
+
+          transition: linear 0.2ms;
+          visibility: visible;
+          // line-height: center;
         }
         .send-time {
-            vertical-align: center;
-            float: right;
+          vertical-align: center;
+          float: right;
         }
         .my__text {
             align-items: center;

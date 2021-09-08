@@ -1,24 +1,23 @@
-<div #scrollframe class="container-fluid main-chat" id="chatContent" [ngClass]="this.darkMode() ? 'dark' : ''" [ngStyle]="{
-    'background-image':
-      'url(' + this.getSelectedChatContent().theme?.data?.image + ')'
-  }">
-    <!-- Search Message Dialog -->
+<div #scrollframe class=" container-fluid main-chat" id="chatContent" [ngClass]="this.darkMode() ? 'dark' : ''" [ngStyle]="{
+  'background-image': 'url(' + this.getSelectedChatContent().theme?.data?.image + ')'
+}">
+    <!-- Partner chat -->
     <div class="searchMessageArea" *ngIf="isShowSearchMessage()">
-        <div class="notifiSearch">
-            <div class="message">Từ khóa được tìm kiếm là: "{{ this.keyWord }}"</div>
-            <div class="message">
-                Có {{ this.getResultSearchMessageCount() }} kết quả được tìm thấy
-            </div>
-        </div>
-        <div class="btnSearch">
-            <div><i class="up fas fa-caret-up" (click)="findUp()"></i></div>
-            <div><i class="down fas fa-caret-down" (click)="findDown()"></i></div>
-        </div>
-        <div class="btnSearchClose">
-            <div><i class="fas fa-times" (click)="close()"></i></div>
-        </div>
+      <div class="notifiSearch">
+          <div class="message">Từ khóa được tìm kiếm là: "{{ this.keyWord }}"</div>
+          <div class="message">
+              Có {{ this.getResultSearchMessageCount() }} kết quả được tìm thấy
+          </div>
+      </div>
+      <div class="btnSearch">
+          <div><i class="up fas fa-caret-up" (click)="findUp()"></i></div>
+          <div><i class="down fas fa-caret-down" (click)="findDown()"></i></div>
+      </div>
+      <div class="btnSearchClose">
+          <div><i class="fas fa-times" (click)="close()"></i></div>
+      </div>
     </div>
-    <!-- End Dialog -->
+
     <!-- <div class="drops">
         <div class="drop"></div>
         <div class="drop"></div>
@@ -37,24 +36,27 @@
                     <!-- <img class=" partner__avatar avatar "  src="../../../../assets/image/avatar.jpg" > -->
                 </div>
                 <div @messagesAnimation class="text--wrapper">
-                    <h6 class="partner__name" [style.color]="this.darkMode() ? this.colorText : ''" *ngIf="isShowName(indexOfelement)">
+                    <h6 class="partner__name" [style.color]="this.darkMode()?this.colorText:''" *ngIf="isShowName(indexOfelement)">
                         {{ mes.userName }}
                     </h6>
-                    <p [id]="getId(mes.id, mes.highlight)" [ngClass]="mes.highlight ? 'highlight' : ''" class="partner__text text" [style.border]="mes.highlight ? '5px solid yellow' : ''" *ngIf="!(this.isGif(mes.message) || this.isImage(mes.message))" [style.background]="
-              this.getSelectedChatContent().theme?.name != undefined
-                ? this.getSelectedChatContent().theme?.data?.background
-                : ''
-            ">
+                    <p  [id]="getId(mes.id, mes.highlight)" [ngClass]="mes.highlight ? 'highlight' : ''" class="partner__text text" [style.border]="mes.highlight ? '5px solid yellow' : ''" *ngIf="!(this.isGif(mes.message)||this.isImage(mes.message))" [style.background]="this.getSelectedChatContent().theme?.name!=undefined? this.getSelectedChatContent().theme?.data?.background:''">
                         {{ mes.message }}
-                        <span class="send-time">{{ this.getDate(mes.createAt) }}</span>
+                    <span class="send-time">{{ this.getDate(mes.createAt) }}</span>
+
                     </p>
 
-                    <img class="partner_image image" data-bs-toggle="modal" data-bs-target="#imageModal" (click)="this.zoomImage($event)" data-src="{{ mes.message }}" alt="Image" *ngIf="this.isGif(mes.message) || this.isImage(mes.message)" />
-                </div>
+                    <img class="partner_image image"
+                    data-bs-toggle="modal" data-bs-target="#imageModal"
+                     (click)="this.zoomImage($event)"
+                      data-src="{{mes.message}}"
+                      alt="Image"
+                      *ngIf="this.isGif(mes.message)||this.isImage(mes.message)" />
+
+                  </div>
             </div>
         </div>
 
-        <h6 class="nofitication" [style.color]="this.darkMode() ? this.colorText : ''" *ngIf="this.isNofication(mes)">
+        <h6 class="nofitication" [style.color]="this.darkMode()?this.colorText:''" *ngIf="this.isNofication(mes)">
             {{ mes.message }}
         </h6>
 
@@ -62,16 +64,26 @@
         <!-- My chat -->
         <div [ngClass]="this.typeOfMes(indexOfelement)" class="my-chat container-fluid row" *ngIf="mes.mine && this.isMes(mes)">
             <div @messagesAnimation class="wrapper text--wrapper col-12">
-                <p [id]="getId(mes.id, mes.highlight)" [ngClass]="mes.highlight ? 'highlight' : ''" class="my__text text" [style.border]="mes.highlight ? '5px solid yellow' : ''" *ngIf="!(this.isGif(mes.message) || this.isImage(mes.message))">
-                    {{ mes.message }}
-                    <!-- <img class="emojioneemoji" style="width:20px;height:20px;" data-src="https://cdn.jsdelivr.net/emojione/assets/3.1/png/32/1f605.png" src="https://cdn.jsdelivr.net/emojione/assets/3.1/png/32/1f605.png"> -->
-                </p>
-                <img class="my_image image" alt="Image" data-src="{{ mes.message }}" data-bs-toggle="modal" data-bs-target="#imageModal" (click)="this.zoomImage($event)" *ngIf="this.isGif(mes.message) || this.isImage(mes.message)" />
-                <span class="send-time">{{ this.getDate(mes.createAt) }}</span>
+                <p [id]="getId(mes.id, mes.highlight)"
+                 [ngClass]="mes.highlight ? 'highlight' : ''" class="my__text text"
+                  [style.border]="mes.highlight ? '5px solid yellow' : ''"
+                 *ngIf="!(this.isGif(mes.message)||this.isImage(mes.message))">
+                  {{ mes.message }}
+          <!-- <img class="emojioneemoji" style="width:20px;height:20px;" data-src="https://cdn.jsdelivr.net/emojione/assets/3.1/png/32/1f605.png" src="https://cdn.jsdelivr.net/emojione/assets/3.1/png/32/1f605.png"> -->
+        </p>
+        <img
+          class="my_image image"
+          alt="Image"
+          data-src="{{mes.message}}"
+          data-bs-toggle="modal" data-bs-target="#imageModal"
+          (click)="this.zoomImage($event)"
+          *ngIf="this.isGif(mes.message)||this.isImage(mes.message)"
+        />
+        <span class="send-time">{{ this.getDate(mes.createAt) }}</span>
 
-                <app-image-modal></app-image-modal>
-            </div>
-        </div>
-        <!-- End my chat -->
-    </ng-container>
+        <app-image-modal></app-image-modal>
+      </div>
+    </div>
+    <!-- End my chat -->
+  </ng-container>
 </div>
