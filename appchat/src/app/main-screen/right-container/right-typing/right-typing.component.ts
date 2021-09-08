@@ -54,20 +54,7 @@ export class RightTypingComponent implements OnInit,AfterViewInit {
     private res : ResponsiveService
   ) {}
   ngAfterViewInit(): void {
-    $("#emotions").emojioneArea({
-      pickerPosition: "top",
-      toneStyle:"bullet",
-      events: {
-        emojibtn_click: function (button, event) {
-          console.log('event:emojibtn.click, emoji=' + button.data("name"));
-        },
-        keydown: function (button, event) {
-          // console.log('event:'+event.+', emoji=' + button.data("name"));
-        }
-   }
 
-
-    });
   }
   public sendImage(event:any){
     this.imageService.sendImage(event);
@@ -131,9 +118,9 @@ export class RightTypingComponent implements OnInit,AfterViewInit {
   }
 
   public sendTo() {
-    let message  = $("#emotions").val();
+    // let message  = $("#emotions").val();
 
-    this.message=message;
+    // this.message=message;
     // console.log(this.message);
     this.chatService.sendTo(this.message);
     this.message = '';

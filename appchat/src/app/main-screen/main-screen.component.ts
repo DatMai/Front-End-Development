@@ -26,7 +26,6 @@ export class MainScreenComponent implements OnInit {
     if (sessionStorage.length==0) {
       this.router.navigateByUrl('login');
     }
-    
   }
 
   isShowLeftContainer(){
