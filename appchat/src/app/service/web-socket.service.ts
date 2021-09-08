@@ -345,7 +345,7 @@ export class WebSocketService {
           "Bạn đã đăng xuất. \n Vui lòng refresh lại trang để đăng nhập tiếp"
         );
       } else {
-        console.log( "Lỗi logout " + data);
+        console.log( "Lỗi    " + data);
 
       }
     }
