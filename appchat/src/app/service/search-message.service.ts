@@ -38,4 +38,26 @@ export class SearchMessageService {
     });
      return arraySearch;
   }
+  public sortById() {  let temp: any;
+    for (let i = 0; i < this.dataService.searchKeyWord.length; i++) {
+      for (let j = i; j < this.dataService.searchKeyWord.length; j++) {
+        if (
+          parseInt( this.dataService.searchKeyWord[i].substring(
+            4,
+            this.dataService.searchKeyWord[i].length
+          ))
+          <
+          parseInt( this.dataService.searchKeyWord[j].substring(
+            4,
+            this.dataService.searchKeyWord[j].length
+          )
+        ))
+          {
+          temp = this.dataService.searchKeyWord[i];
+          this.dataService.searchKeyWord[i] = this.dataService.searchKeyWord[j];
+          this.dataService.searchKeyWord[j] = temp;
+        }
+      }
+    }
+}
 }
