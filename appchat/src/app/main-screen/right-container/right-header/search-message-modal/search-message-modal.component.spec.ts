@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SearchWordModalComponent } from './search-word-modal.component';
+import { SearchMessageModalComponent } from './search-message-modal.component';
 
-describe('SearchWordModalComponent', () => {
-  let component: SearchWordModalComponent;
-  let fixture: ComponentFixture<SearchWordModalComponent>;
+describe('SearchMessageModalComponent', () => {
+  let component: SearchMessageModalComponent;
+  let fixture: ComponentFixture<SearchMessageModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SearchWordModalComponent ]
+      declarations: [ SearchMessageModalComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SearchWordModalComponent);
+    fixture = TestBed.createComponent(SearchMessageModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

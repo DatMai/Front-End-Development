@@ -56,7 +56,12 @@ export class ContentComponent implements OnInit {
   ngOnInit(): void {
     this.USERLOGIN = JSON.parse(sessionStorage.USERLOGIN);
   }
-
+  public darkMode() {
+    this.dataService.isDarkMode = !this.dataService.isDarkMode;
+  }
+  public getDarkMode() {
+    return this.dataService.isDarkMode;
+  }
   public selected(index :number){
     let listActive : any = document.getElementsByClassName("chat-active");
     for(let i = 0; i < listActive.length; i++){
@@ -82,6 +87,9 @@ export class ContentComponent implements OnInit {
   }
   public isShowSearch() {
     return this.dataService.isShowSearch;
+  }
+  public isShowFunction() {
+    return this.dataService.isShowFunction;
   }
   public checkUser(user: UserModel) {
     return this.wss.checkUser(user);

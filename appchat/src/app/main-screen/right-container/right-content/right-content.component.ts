@@ -113,28 +113,7 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
     return this.dataService.isShowSearchMessage;
   }
   public findUp() {
-    let temp: any;
-    for (let i = 0; i < this.dataService.searchKeyWord.length; i++) {
-      for (let j = i; j < this.dataService.searchKeyWord.length; j++) {
-        if (
-          parseInt( this.dataService.searchKeyWord[i].substring(
-            4,
-            this.dataService.searchKeyWord[i].length
-          ))
-          <
-          parseInt( this.dataService.searchKeyWord[j].substring(
-            4,
-            this.dataService.searchKeyWord[j].length
-          )
-        ))
-          {
-          temp = this.dataService.searchKeyWord[i];
-          this.dataService.searchKeyWord[i] = this.dataService.searchKeyWord[j];
-          this.dataService.searchKeyWord[j] = temp;
-        }
-      }
-    }
-
+    this.searchMessageService.sortById();
     if (    this.searchMessageService.searchIndex < this.dataService.searchKeyWord.length) {
       document
         .getElementById(this.dataService.searchKeyWord[this.searchMessageService.searchIndex++])
@@ -143,27 +122,7 @@ export class RightContentComponent implements OnInit, OnChanges, AfterViewInit {
     console.log(this.searchMessageService.searchIndex);
   }
   public findDown() {
-    let temp: any;
-    for (let i = 0; i < this.dataService.searchKeyWord.length; i++) {
-      for (let j = i; j < this.dataService.searchKeyWord.length; j++) {
-        if (
-          parseInt( this.dataService.searchKeyWord[i].substring(
-            4,
-            this.dataService.searchKeyWord[i].length
-          ))
-          <
-          parseInt( this.dataService.searchKeyWord[j].substring(
-            4,
-            this.dataService.searchKeyWord[j].length
-          )
-        ))
-          {
-          temp = this.dataService.searchKeyWord[i];
-          this.dataService.searchKeyWord[i] = this.dataService.searchKeyWord[j];
-          this.dataService.searchKeyWord[j] = temp;
-        }
-      }
-    }
+    this.searchMessageService.sortById();
 
     if (this.searchMessageService.searchIndex >= 0  ) {
     document
