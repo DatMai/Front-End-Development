@@ -66,13 +66,7 @@ export class RightManagerComponent implements OnInit {
   backgroundText: string = '';
   colorText: string = '#a5a5a5';
   themeList:ThemeModel[] = theme;
- 
   constructor(private dataService:DataService,private imageService: ImageService,private res:ResponsiveService
- 
-  constructor(private dataService:DataService,
-    private imageService: ImageService,
-    private res:ResponsiveService
- 
     ) { }
 
   ngOnInit(): void {
