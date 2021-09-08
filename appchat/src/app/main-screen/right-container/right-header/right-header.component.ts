@@ -67,19 +67,7 @@ export class RightHeaderComponent implements OnInit {
   public darkMode() {
     return this.dataService.isDarkMode;
   }
-  public getKeyWordToSearch() {
-    this.dataService.setSearchKeywordMessage(this.keyWord);
-    this.searchMessageService.searchMessage(this.keyWord);
-    this.dataService.searchKeyWord.splice(
-      0,
-      this.dataService.searchKeyWord.length
-    );
-    this.searchMessageService.searchIndex = 0;
-    this.dataService.isShowSearchMessage = true;
-  }
-  public getKeyWord(event: any) {
-    this.keyWord = event.target.value;
-  }
+
   public getSelectedChatContent() {
     return this.dataService.getSelectedChatContent();
   }
