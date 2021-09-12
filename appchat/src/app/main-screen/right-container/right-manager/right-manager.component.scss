@@ -191,12 +191,10 @@
         }
         .chat-private__list{
           display: flex;
-          width: 400px;
+          width: 350px;
           flex-wrap: wrap;
           border-radius: 0 !important;
-          //margin-left: -50px;
           overflow-y: scroll;
-          //height: 70vh ;
           margin-block-start: 0px;
           padding-inline-start: 0px;
           .list__item{

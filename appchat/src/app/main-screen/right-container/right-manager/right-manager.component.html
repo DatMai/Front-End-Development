@@ -23,7 +23,7 @@
         <ul @listAnimation *ngIf="isShowChatPrivate" class="chat-private__list list">
 
             <li class="list__item" *ngFor="let link of this.getAllImageStringFromSelectedChatContent()">
-                <img style="width:50px;height:50px;" src="{{link}}" alt="">
+                <img class="image" src="{{link}}" alt="">
             </li>
         </ul>
     </div>
