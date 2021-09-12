@@ -123,5 +123,10 @@ export class RightManagerComponent implements OnInit {
   public getAllImageStringFromSelectedChatContent(){
     return this.imageService.getAllImageStringFromChatContent(this.dataService.selectedChatContent);
   }
-
+  
+  public zoomImage($event) {
+    let src = $event.srcElement.src;
+    this.imageService.selectedImgSrc = src;
+    this.imageService.isShowImageModal = true;
+  }
 }
