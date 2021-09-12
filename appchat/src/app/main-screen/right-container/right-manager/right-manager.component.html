@@ -11,9 +11,7 @@
       <span class="title__icon"><i class="fas fa-angle-down"></i></span>
     </button>
         <ul @listAnimation *ngIf="isShowChatSetting" class="chat-setting__list list">
-            <li class="list__item">
-                <div (click)="darkMode()"><i class="fas fa-moon"></i> Dark Mode</div>
-            </li>
+
             <li class="list__item" type="button" data-bs-toggle="modal" data-bs-target="#themeModal">Đổi chủ đề</li>
         </ul>
     </div>
@@ -23,8 +21,9 @@
       <span class="title__icon"><i class="fas fa-angle-down"></i></span>
     </button>
         <ul @listAnimation *ngIf="isShowChatPrivate" class="chat-private__list list">
-            <li class="list__item" *ngFor="let list of this.getAllImageStringFromSelectedChatContent(), index as index">
-              <img class="image" src="{{list}}"  alt="" >
+
+            <li class="list__item" *ngFor="let link of this.getAllImageStringFromSelectedChatContent()">
+                <img style="width:50px;height:50px;" src="{{link}}" alt="">
             </li>
         </ul>
     </div>
