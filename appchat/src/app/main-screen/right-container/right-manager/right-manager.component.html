@@ -23,8 +23,8 @@
       <span class="title__icon"><i class="fas fa-angle-down"></i></span>
     </button>
         <ul @listAnimation *ngIf="isShowChatPrivate" class="chat-private__list list">
-            <li class="list__item" *ngFor="let link of this.getAllImageStringFromSelectedChatContent()">
-              <img style="width:50px;height:50px;" src="{{link}}"  alt="">
+            <li class="list__item" *ngFor="let list of this.getAllImageStringFromSelectedChatContent(), index as index">
+              <img class="image" src="{{list}}"  alt="" >
             </li>
         </ul>
     </div>
@@ -41,4 +41,5 @@
         </ul>
     </div>
 </div>
+
 <app-theme-modal></app-theme-modal>

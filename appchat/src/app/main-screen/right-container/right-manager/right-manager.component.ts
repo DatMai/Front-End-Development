@@ -5,6 +5,8 @@ import {animate, keyframes, query, stagger, state, style, transition, trigger} f
 import theme from "../../../data/theme.json";
 import { ThemeModel } from 'src/app/model/ThemeModel';
 import { ImageService } from 'src/app/service/image.service';
+import {ResponsiveService} from "../../../service/responsive.service";
+import {list3Images} from "../../../model/list3Pictures";
 @Component({
   selector: 'app-right-manager',
   templateUrl: './right-manager.component.html',
@@ -65,7 +67,8 @@ export class RightManagerComponent implements OnInit {
   backgroundText: string = '';
   colorText: string = '#a5a5a5';
   themeList:ThemeModel[] = theme;
-  constructor(private dataService:DataService,private imageService: ImageService
+  constructor(private dataService:DataService,private imageService: ImageService,
+              private  res : ResponsiveService
     ) { }
 
   ngOnInit(): void {
@@ -116,10 +119,28 @@ export class RightManagerComponent implements OnInit {
   }
   public showChatPrivate(){
     this.isShowChatPrivate = !this.isShowChatPrivate
+    this.getListTop3Images();
   }
 
   //Lấy tất cả đường dẫn ảnh từ nhóm chat đang được chọn
   public getAllImageStringFromSelectedChatContent(){
     return this.imageService.getAllImageStringFromChatContent(this.dataService.selectedChatContent);
+  }
+  //Lấy từng bộ 3 ảnh
+  public getListTop3Images(){
+    let result : list3Images[] = [];
+    let j = 0;
+    let pictures :list3Images = new list3Images();
+    let allImagesString : string[] = this.getAllImageStringFromSelectedChatContent();
+    for(let i = 0; i < allImagesString.length; i++){
+      j++
+      if(j == 3){
+        result.push(pictures);
+        pictures = new list3Images();
+        j=0;
+      }
+      pictures.images?.push(allImagesString[i]);
+    }
+    return result;
   }
 }
