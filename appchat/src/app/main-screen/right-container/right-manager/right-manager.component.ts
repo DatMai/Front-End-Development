@@ -5,7 +5,9 @@ import {animate, keyframes, query, stagger, state, style, transition, trigger} f
 import theme from "../../../data/theme.json";
 import { ThemeModel } from 'src/app/model/ThemeModel';
 import { ImageService } from 'src/app/service/image.service';
+
 import { ResponsiveService } from 'src/app/service/responsive.service';
+
 @Component({
   selector: 'app-right-manager',
   templateUrl: './right-manager.component.html',
@@ -66,21 +68,17 @@ export class RightManagerComponent implements OnInit {
   backgroundText: string = '';
   colorText: string = '#a5a5a5';
   themeList:ThemeModel[] = theme;
-  constructor(private dataService:DataService,
-    private imageService: ImageService,
-    private res:ResponsiveService
+
+  constructor(private dataService:DataService,private imageService: ImageService,
+              private  res : ResponsiveService
+
     ) { }
 
   ngOnInit(): void {
 
   }
 
-  public darkMode() {
-    this.dataService.isDarkMode = !this.dataService.isDarkMode;
-  }
-  public getDarkMode() {
-    return this.dataService.isDarkMode;
-  }
+
  public listState(flag:boolean){
     return flag? 'show':'hide';
   }
@@ -121,8 +119,9 @@ export class RightManagerComponent implements OnInit {
     this.isShowChatPrivate = !this.isShowChatPrivate
   }
 
-  //Lấy tất cả đường dẫn ảnh từ nhóm chat đang được chọn
+
   public getAllImageStringFromSelectedChatContent(){
     return this.imageService.getAllImageStringFromChatContent(this.dataService.selectedChatContent);
   }
+
 }
