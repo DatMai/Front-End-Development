@@ -3,6 +3,9 @@
     height: 100%;
     background-color: #221c1f;
     color: #a5a5a5;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    max-height: 100vh;
     .header {
         padding-top: 25px;
         padding-bottom: 25px;
@@ -196,7 +199,7 @@
           border-radius: 0 !important;
           //margin-left: -50px;
           overflow-y: scroll;
-          //height: 70vh ;
+          max-height: 70vh ;
           margin-block-start: 0px;
           padding-inline-start: 0px;
           .list__item{

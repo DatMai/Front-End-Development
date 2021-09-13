@@ -30,7 +30,7 @@
 
     <div class="manager__chat-sharing manager__item" *ngIf="this.isShowUserList()">
         <button [ngClass]="isActive(isShowChatSharing)" (click)="showChatSharing()" class="chat-sharing__title title">
-      <span class="title__info">Thành viên trong nhóm chat</span>
+      <span class="title__info">Các thành viên</span>
       <span class="title__icon"><i class="fas fa-angle-down"></i></span>
     </button>
         <ul @listAnimation *ngIf="isShowChatSharing" class="chat-sharing__list list">
