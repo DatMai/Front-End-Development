@@ -20,6 +20,7 @@ export class SendGifComponent implements OnInit {
     return this.gifService.listGifs;
   }
   sendGif(url:string){
+    this.gifService.isShowGif = false;
     this.chatService.sendTo(url);
 
   }

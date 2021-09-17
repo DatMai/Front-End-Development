@@ -1,5 +1,5 @@
 
-<app-send-gif *ngIf="checkGifShow" ></app-send-gif>
+<app-send-gif *ngIf="showGif()" ></app-send-gif>
 <div class="actions-m" *ngIf="isShowTypingMobile()">
   <div class="actions-m__container">
     <!--        <button class="button images"><i class="fas fa-image"></i></button>-->
@@ -51,11 +51,11 @@
     </button>
 
       <button class="button emotion" (click)="sendTo()" >
-        <i class="fas fa-thumbs-up" ></i>
+        <i class="fa fa-paper-plane"></i>
       </button>
 
         <!-- <button class="btn sending-text" (click)="sendTo()" *ngIf="this.isChatBoxSelected()">
-      <i class="fa fa-paper-plane"></i>
+
     </button> -->
     </div>
     <!-- </form> -->
