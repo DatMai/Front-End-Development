@@ -164,6 +164,8 @@ export class MessageService {
     if (time.match(' phút')){
       time.replace(' phút', '');
       let minutes= Number.parseInt(time);
+      //10(phút) là thời gian tối thiểu để hiển thị thông báo
+      //nếu 2 lần gửi cách nhau chưa quá 10 phút thì sẽ không hiển thị thông báo thời gian
       if (minutes<10) {
         return '';
       }else{
