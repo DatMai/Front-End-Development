@@ -42,6 +42,7 @@ export class DataService implements OnInit {
   chatContentUserName: string = '';
   userList: UserModel[] = userData;
   listTheme: ThemeModel[] = listTheme;
+
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {}

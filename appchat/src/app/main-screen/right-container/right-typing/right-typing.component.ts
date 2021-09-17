@@ -8,6 +8,7 @@ import emojis from "../../.././data/emojis.json";
 import Callback = JQuery.Deferred.Callback;
 import {ResponsiveService} from "../../../service/responsive.service";
 import { ImageService } from 'src/app/service/image.service';
+import {GifService} from "../../../service/gif.service";
 
 declare var $: any;
 
@@ -51,11 +52,17 @@ export class RightTypingComponent implements OnInit,AfterViewInit {
     private dataService: DataService,
     private chatService: ChatService,
     private imageService: ImageService,
-    private res : ResponsiveService
+    private res : ResponsiveService,
+    private gif : GifService
   ) {}
   ngAfterViewInit(): void {
 
   }
+
+  public showGif(){
+    return this.gif.isShowGif;
+  }
+
   public sendImage(event:any){
     this.imageService.sendImage(event);
   }
@@ -79,7 +86,7 @@ export class RightTypingComponent implements OnInit,AfterViewInit {
   }
 
   public gifClick(){
-    this.checkGifShow = !this.checkGifShow;
+    this.gif.isShowGif = !this.gif.isShowGif;
   }
   public isChatBoxSelected() {
     return this.chatService.isChatBoxSelected();
